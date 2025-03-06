@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+* { 
+    margin: 0px; 
+    padding: 0px; 
+  }
+
+  
+body, html {
+    font-family: 'Lato', sans-serif;
+    background-color: #dbd4c5;
+  }
+  
+  .action-button {  
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 10px 16px 10px 12px;
+    color: #ffffff;
+     transition: background-color 0.3s, color 0.3s;
+  }
+  .action-button:hover {
+    border: 0.5px solid #CBD2E0;
+  }
+  .action-button:active{
+    transform: scale(0.97);
+  }
+  

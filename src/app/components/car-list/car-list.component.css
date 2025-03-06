@@ -1,0 +1,56 @@
+.cars-component {
+    padding: 200px 300px;
+    align-items: center;
+}
+.filters-container {
+    background-color:#f0f0f0;
+    padding: 20px;
+    border-radius: 4px; 
+}
+.row-1 {
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+}
+.row-2 {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    font-size: 15px; 
+    font-weight: 400;
+    position: relative;
+  }
+  
+  .filters label {
+    position: absolute;
+    top: -10px;  /* Немного увеличиваем, чтобы label перекрывал */
+    left: 10px;
+    padding: 0 5px;
+    font-size: 13px; 
+    font-weight: 400;
+    background-color:#f0f0f0;
+    z-index: 1;  /* Увеличиваем z-index, чтобы label был выше */
+    color: #232323;;
+  }
+  
+  .filters dx-select-box {
+    position: relative;
+    display: block;
+    border: 1px solid #232323;
+    border-radius: 4px; 
+    padding: 5px; 
+    background-color: #f0f0f0;
+}
+
+
+::ng-deep dx-text-box dx-texteditor-container {
+    width: 150px;
+    background-color: #f0f0f0;
+}

@@ -1,0 +1,39 @@
+<div class="cars-component">
+    <div class="filters-container">
+        <div class="row-1">
+            <date-component> </date-component>
+            <date-component> </date-component>
+            <dx-text-box  placeholder="Цена от" [showClearButton]="true">
+            </dx-text-box>
+            <dx-text-box placeholder="Цена до" [showClearButton]="true">
+            </dx-text-box>
+            <dx-text-box placeholder="Сумма залога от" [showClearButton]="true">
+            </dx-text-box>
+            <dx-text-box placeholder="Сумма залога до" [showClearButton]="true">
+            </dx-text-box>
+        </div>
+        <div class="row-2">
+            <div class="filters">
+                <label>Категории автомобилей</label>
+                <dx-select-box displayExpr="name" valueExpr="idMemoType" placeholder="Все">
+                </dx-select-box>
+            </div>
+            <div class="filters">
+                <label>Марки автомобилей</label>
+                <dx-select-box displayExpr="name" valueExpr="idMemoType" placeholder="Все">
+                </dx-select-box>
+            </div>
+            <div class="filters">
+                <label>Трансмиссия</label>
+                <dx-select-box displayExpr="name" valueExpr="idMemoType" placeholder="Все">
+                </dx-select-box>
+            </div>
+            <div class="filters">
+                <label>Топливо</label>
+                <dx-select-box displayExpr="name" valueExpr="idMemoType" placeholder="Все">
+                </dx-select-box>
+            </div>
+        </div>
+    </div>
+
+</div>
