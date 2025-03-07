@@ -1,0 +1,151 @@
+.account-component {
+    display: flex;
+    flex-direction: row; 
+    gap: 20px; 
+    padding: 30px 60px;
+    flex-grow: 1;
+}
+
+/* Левая колонка для пользовательской информации */
+.info-container {
+    flex: 1; /* Левая треть */
+    max-width: 30%; /* Максимальная ширина */
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Правая колонка для вкладок и аренд */
+.rent-container {
+    flex: 2; /* Две трети */
+
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Общие стили для элементов */
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.user-info {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+
+}
+.user-info span {
+    margin-top: 10px;
+}
+
+.tabs-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+.tab-content {
+    overflow-y: auto;
+    height: 640px;
+}
+.tab-button {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+    position: relative; /* Для добавления псевдоэлементов */
+    outline: none;
+    transition: color 0.3s ease;
+}
+
+.tab-button:hover {
+    color: #000; /* Цвет текста при наведении */
+}
+
+.tab-button.active {
+    color: #000; /* Активная вкладка — чёрный текст */
+    font-weight: bold;
+}
+
+.tab-button.active::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #232323; /* Цвет подчеркивания */
+}
+
+
+
+
+/* Стили вкладок */
+.tab-content {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Растягиваем содержимое вкладок */
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    overflow-y: auto; /* Добавляем прокрутку при большом содержимом */
+}
+
+.car-item {
+    flex: 0 1 calc(45% - 20px); /* Каждая карточка занимает половину ширины, минус отступ */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+.car-image {
+    width: 300px;
+    height: 225px;
+    object-fit: cover; /* Подгоняет изображение */
+    margin-right: 15px; /* Отступ справа от изображения */
+    border-radius: 4px; /* Добавляет закругление углов */
+}
+
+.car-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-title {
+    margin-left: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.car-details {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    gap: 10px;
+}
+.car-details span {
+    font-size: 16px;
+    color: #555;
+    display: block; /* Отображает каждую деталь на новой строке */
+}

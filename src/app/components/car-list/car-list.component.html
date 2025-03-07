@@ -3,7 +3,7 @@
         <div class="row-1">
             <date-component> </date-component>
             <date-component> </date-component>
-            <dx-text-box  placeholder="Цена от" [showClearButton]="true">
+            <dx-text-box placeholder="Цена от" [showClearButton]="true">
             </dx-text-box>
             <dx-text-box placeholder="Цена до" [showClearButton]="true">
             </dx-text-box>
@@ -35,5 +35,23 @@
             </div>
         </div>
     </div>
-
+    <div class="list-container">
+        <div *ngFor="let car of cars" class="car-item">
+            <img [src]="car.carImage" alt="{{ car.carName }}" class="car-image" />
+            <div class="car-info">
+                <div class="car-title">{{ car.carName }}</div>
+                <div class="car-details">
+                    <span>Топливо: {{ car.fuelTypeName }}</span>
+                    <span>Класс: {{ car.carClassName }}</span>
+                    <span>Трансмиссия: {{ car.carTransmissioName }}</span>
+                    <div class="cost-container">
+                        <span>Цена : {{car.cost}}</span>
+                        <span>Сумма залога: {{car.deposit}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
 </div>

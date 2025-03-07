@@ -1,0 +1,61 @@
+<div class="account-component">
+    <!-- Блок для пользовательских данных -->
+    <div class="info-container">
+        <h2>Мои данные</h2>
+        <div class="user-info">
+            <img [src]="user.avatar" alt="Аватар пользователя" class="user-avatar" />
+            <span><strong>Email:</strong> {{ user.email }}</span>
+            <span><strong>Телефон:</strong> {{ user.phone }}</span>
+            <span><strong>Водительское удостоверение:</strong> {{ user.license }}</span>
+            <button class="edit-button" (click)="editUser()">Редактировать</button>
+        </div>
+    </div>
+
+
+    <div class="rent-container">
+        <div class="tabs-container">
+            <button class="tab-button" [class.active]="activeTab === 'activeRents'"
+                (click)="setActiveTab('activeRents')">
+                Текущие аренды
+            </button>
+            <button class="tab-button" [class.active]="activeTab === 'rentHistory'"
+                (click)="setActiveTab('rentHistory')">
+                История аренды
+            </button>
+        </div>
+        <div class="tab-content">
+            <!-- Вкладка текущих аренд -->
+            <div *ngIf="activeTab === 'activeRents'">
+
+                <div class="car-item" *ngFor="let rent of rentActive">
+                    <img [src]="rent.car.carImage" alt="{{ rent.car.carName }}" class="car-image" />
+                    <div class="car-info">
+                        <div class="car-title">{{ rent.car.carName }}</div>
+                        <div class="car-details">
+                            <span> {{ rent.startDate | date }} - {{ rent.endDate | date}}</span>
+                            <div class="cost-container">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка истории аренд -->
+            <div *ngIf="activeTab === 'rentHistory'">
+                <div class="car-item" *ngFor="let rent of rentHistory">
+                    <img [src]="rent.car.carImage" alt="{{ rent.car.carName }}" class="car-image" />
+                    <div class="car-info">
+                        <div class="car-title">{{ rent.car.carName }}</div>
+                        <div class="car-details">
+                            <span> {{ rent.startDate | date }} - {{ rent.endDate | date}}</span>
+                            <div class="cost-container">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
