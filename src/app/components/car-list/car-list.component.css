@@ -1,15 +1,16 @@
 .cars-component {
-    padding: 30px 60px;
     align-items: center;
+    padding: 30px 60px;
 }
 .filters-container {
     display: flex; 
     flex-direction: column; 
-    background-color: #ffffff;
+    background-color:#dbd4c5;
     padding: 20px;
     border-radius: 4px; 
     align-items: center; 
     justify-content: center;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .row-1, .row-2 {
@@ -33,6 +34,7 @@
     font-size: 15px; 
     font-weight: 400;
     position: relative;
+    background-color:#dbd4c5;
   }
   
   .filters label {
@@ -42,7 +44,7 @@
     padding: 0 5px;
     font-size: 13px; 
     font-weight: 400;
-    background-color:#ffffff;
+    background-color:#dbd4c5;
     z-index: 1;  /* Увеличиваем z-index, чтобы label был выше */
     color: #232323;;
   }
@@ -53,14 +55,32 @@
     border: 1px solid #232323;
     border-radius: 4px; 
     padding: 5px; 
-    background-color: #ffffff;
+    background-color:#dbd4c5;
 }
 
-
-::ng-deep dx-text-box dx-texteditor-container {
+::ng-deep dx-text-box {
     width: 150px;
-    background-color: #ffffff;
+    height: 42px;
+    background-color: #dbd4c5;
+    border-radius: 4px;
+    border: 1px solid #232323;
+    color: #232323;
 }
+
+::ng-deep dx-text-box .dx-texteditor-container {
+    background-color: #dbd4c5;
+    border: 1px solid #232323;
+    color: #232323;
+}
+
+::ng-deep .filters * {
+    background-color: #dbd4c5 !important; /* Задаём фон всем дочерним элементам */
+    border-radius: 4px; /* Закруглённые углы, если это применимо */
+    box-shadow: none; /* Убираем тени */
+    color: #232323; /* Цвет текста */
+}
+
+
 
 .list-container {
     margin-top: 40px;
@@ -68,14 +88,26 @@
     flex-wrap: wrap; /* Позволяет переносить строки */
     justify-content: space-between; /* Добавляет равномерное расстояние между элементами */
     gap: 20px; /* Отступы между элементами */
-    background-color: #ffffff;
+    background-color: #dbd4c5;
     padding: 20px;
     border-radius: 4px;
     overflow-y: auto;
-    height: 500px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 530px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+.list-container::-webkit-scrollbar {
+    width: 12px; 
+    background-color: #dbd4c5; 
+    border-radius: 8px; 
+}
+
+
+.list-container::-webkit-scrollbar-thumb {
+    background-color: #232323; 
+    border-radius: 8px;
+    border: 2px solid #dbd4c5; 
+}
 .car-item {
     flex: 0 1 calc(50% - 40px); /* Каждая карточка занимает половину ширины, минус отступ */
     display: flex;
@@ -86,6 +118,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
+    cursor: pointer;
 }
 
 

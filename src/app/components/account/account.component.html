@@ -23,12 +23,12 @@
                 История аренды
             </button>
         </div>
-        <div class="tab-content">
+        <div style="width: 100%;" >
             <!-- Вкладка текущих аренд -->
-            <div *ngIf="activeTab === 'activeRents'">
+            <div  class ="tab-content" *ngIf="activeTab === 'activeRents'">
 
                 <div class="car-item" *ngFor="let rent of rentActive">
-                    <img [src]="rent.car.carImage" alt="{{ rent.car.carName }}" class="car-image" />
+                    <img [src]="rent.car.carImages[0]" alt="{{ rent.car.carName }}" class="car-image" />
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">
@@ -42,16 +42,14 @@
             </div>
 
             <!-- Вкладка истории аренд -->
-            <div *ngIf="activeTab === 'rentHistory'">
+            <div class ="tab-content" *ngIf="activeTab === 'rentHistory'">
                 <div class="car-item" *ngFor="let rent of rentHistory">
-                    <img [src]="rent.car.carImage" alt="{{ rent.car.carName }}" class="car-image" />
+                    <img [src]="rent.car.carImages[0]" alt="{{ rent.car.carName }}" class="car-image" />
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">
                             <span> {{ rent.startDate | date }} - {{ rent.endDate | date}}</span>
-                            <div class="cost-container">
 
-                            </div>
                         </div>
                     </div>
                 </div>

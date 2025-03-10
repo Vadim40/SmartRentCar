@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'date-component',
   templateUrl: './date.component.html',
+  styleUrls: ['./date.component.css']
 })
 export class DateComponent implements OnInit {
 

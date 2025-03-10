@@ -1,14 +1,24 @@
 export interface Car {
     carId: number;
-    carName: string;
-    fuelTypeName: string;
-    carClassName: string;
-    carTransmissioName: string;
-    carImage: string;
-    cost: number;
-    deposit: number;
+    carName: string; 
+    fuelTypeName: string; 
+    carClassName: string; 
+    carTransmissioName: string; 
+    carImages: string[]; 
+    cost: number; 
+    deposit: number; 
+    seats: number; 
+    airConditioning: boolean; 
+    gps: boolean; 
+    modelYear: number; 
+    bookings?: BookingPeriod[];
 }
 
+export interface BookingPeriod {
+    startDate: Date; 
+    endDate: Date;   
+  }
+  
 export const cars: Car[] = [
     {
         carId: 1,
@@ -16,9 +26,13 @@ export const cars: Car[] = [
         fuelTypeName: "Бензин",
         carClassName: "Седан",
         carTransmissioName: "Автоматическая",
-        carImage: "assets/1.jpg",
+        carImages: ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg", "assets/1.jpg"],
         cost: 3000,
-        deposit: 15000
+        deposit: 15000,
+        seats: 5,
+        airConditioning: true,
+        gps: true,
+        modelYear: 2022
     },
     {
         carId: 2,
@@ -26,9 +40,13 @@ export const cars: Car[] = [
         fuelTypeName: "Бензин",
         carClassName: "Седан",
         carTransmissioName: "Механическая",
-        carImage: "assets/2.jpg",
+        carImages: ["assets/2.jpg", "assets/4.jpg", "assets/5.jpg"],
         cost: 2800,
-        deposit: 14000
+        deposit: 14000,
+        seats: 5,
+        airConditioning: true,
+        gps: false,
+        modelYear: 2021
     },
     {
         carId: 3,
@@ -36,9 +54,13 @@ export const cars: Car[] = [
         fuelTypeName: "Дизель",
         carClassName: "Хэтчбек",
         carTransmissioName: "Автоматическая",
-        carImage: "assets/3.jpg",
+        carImages: ["assets/3.jpg", "assets/1.jpg", "assets/4.jpg"],
         cost: 2500,
-        deposit: 12000
+        deposit: 12000,
+        seats: 5,
+        airConditioning: true,
+        gps: false,
+        modelYear: 2020
     },
     {
         carId: 4,
@@ -46,9 +68,13 @@ export const cars: Car[] = [
         fuelTypeName: "Газ",
         carClassName: "Кроссовер",
         carTransmissioName: "Автоматическая",
-        carImage: "assets/4.jpg",
+        carImages: ["assets/4.jpg", "assets/2.jpg", "assets/5.jpg"],
         cost: 4000,
-        deposit: 20000
+        deposit: 20000,
+        seats: 7,
+        airConditioning: true,
+        gps: true,
+        modelYear: 2023
     },
     {
         carId: 5,
@@ -56,8 +82,14 @@ export const cars: Car[] = [
         fuelTypeName: "Бензин",
         carClassName: "Седан",
         carTransmissioName: "Автоматическая",
-        carImage: "assets/5.jpg",
+        carImages: ["assets/5.jpg", "assets/3.jpg", "assets/1.jpg"],
         cost: 5000,
-        deposit: 25000
+        deposit: 25000,
+        seats: 5,
+        airConditioning: true,
+        gps: true,
+
+        modelYear: 2022
     }
 ];
+

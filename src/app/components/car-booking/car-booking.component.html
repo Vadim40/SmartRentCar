@@ -1,0 +1,28 @@
+<div class="booking-container">
+    <!-- Поле с Angular Material Date Range Picker -->
+    <mat-form-field appearance="fill">
+        <mat-label>Выберите диапазон дат</mat-label>
+        <mat-date-range-input [rangePicker]="picker" [min]="minDate" [max]="maxDate">
+          <input matStartDate matInput placeholder="Начало" [matDatepickerFilter]="dateFilter">
+          <input matEndDate matInput placeholder="Конец" [matDatepickerFilter]="dateFilter">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      
+  
+    <button mat-raised-button color="primary" (click)="confirmBooking()">
+      Подтвердить бронирование
+    </button>
+  
+    <!-- Список занятых периодов для справки -->
+    <div class="bookings-info">
+      <h3>Занятые периоды:</h3>
+      <ul>
+        <li *ngFor="let booking of bookings">
+          {{ booking.startDate | date:'shortDate' }} - {{ booking.endDate | date:'shortDate' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
