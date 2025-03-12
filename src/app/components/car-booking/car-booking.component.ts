@@ -1,41 +1,56 @@
-import { Component } from '@angular/core';
-
-export interface BookingPeriod {
-  startDate: Date;
-  endDate: Date;
-}
+import { Component, OnInit } from '@angular/core';
+import flatpickr from 'flatpickr';
 
 @Component({
   selector: 'app-car-booking',
   templateUrl: './car-booking.component.html',
   styleUrls: ['./car-booking.component.css']
 })
-export class CarBookingComponent {
-  // Пример бронированных периодов
-  bookings: BookingPeriod[] = [
-    { startDate: new Date('2025-02-23'), endDate: new Date('2025-02-25') },
-    { startDate: new Date('2025-03-15'), endDate: new Date('2025-03-20') },
-    { startDate: new Date('2025-04-01'), endDate: new Date('2025-04-05') }
+export class CarBookingComponent implements OnInit {
+  bookings = [
+    { startDate: new Date(2025, 2, 15), endDate: new Date(2025, 2, 20) },
+    { startDate: new Date(2025, 2, 25), endDate: new Date(2025, 2, 28) }
   ];
 
-  // Минимальная и максимальная доступные даты
-  minDate: Date = new Date('2025-01-01');
-  maxDate: Date = new Date('2025-12-31');
+  ngOnInit(): void {
+    // Инициализация Flatpickr
+    flatpickr('#dateRangePicker', {
+      mode: 'range',
+      dateFormat: 'Y-m-d',
+      disable: this.generateDisabledDates(),
+      onClose: (selectedDates) => {
+        if (selectedDates.length === 2) {
+          const [startDate, endDate] = selectedDates;
 
-  // Изначально выбранный диапазон (например, с 1 января 2025 по 10 января 2025)
-  selectedRange: Date[] = [ new Date('2025-01-01'), new Date('2025-01-10') ];
+          // Проверяем пересечения с уже существующими бронированиями
+          const hasConflict = this.bookings.some(booking =>
+            (startDate <= booking.endDate && endDate >= booking.startDate)
+          );
 
-  // Функция, которая будет фильтровать (блокировать) даты, попадающие в бронированные периоды
-  dateFilter = (date: Date | null): boolean => {
-    if (!date) return true;
-    const day = date.getDay();
-    // например, блокировать воскресенье (0) и субботу (6)
-    return day !== 0 && day !== 6;
+          if (hasConflict) {
+            alert('Выбранный диапазон пересекается с занятыми периодами.');
+            // Сброс выбора
+            (document.querySelector('#dateRangePicker') as HTMLInputElement).value = '';
+          } else {
+            console.log('Выбранный диапазон:', startDate, endDate);
+          }
+        }
+      }
+    });
   }
 
-  confirmBooking() {
-    if (this.selectedRange && this.selectedRange.length === 2) {
-      alert(`Бронирование подтверждено: ${this.selectedRange[0].toLocaleDateString()} - ${this.selectedRange[1].toLocaleDateString()}`);
-    }
+  // Генерация массива всех занятых дат для их блокировки в календаре
+  private generateDisabledDates(): Date[] {
+    const disabledDates: Date[] = [];
+
+    this.bookings.forEach(booking => {
+      let currentDate = new Date(booking.startDate);
+      while (currentDate <= booking.endDate) {
+        disabledDates.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    });
+
+    return disabledDates;
   }
 }

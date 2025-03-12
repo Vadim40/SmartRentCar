@@ -1,91 +1,26 @@
-.booking-container {
-    margin: 20px auto;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-  }
-  
-  .available-slots {
-    margin-top: 20px;
-  }
-  
-  .available-slots h3 {
-    margin-bottom: 10px;
-    font-size: 1.2em;
-    color: #232323;
-  }
-  
-  .available-slots ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .available-slots li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 5px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .available-slots li:last-child {
-    border-bottom: none;
-  }
-  
-  .available-slots button {
-    background-color: #dbd4c5;
-    border: 1px solid #232323;
-    color: #232323;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .available-slots button:hover {
-    background-color: #c8bea8;
-  }
-  
-  .selected-range-info {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .selected-range-info h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  
-  .selected-range-info span {
-    display: block;
-    font-size: 1em;
-    color: #232323;
-    margin-bottom: 10px;
-  }
-  
-  .selected-range-info button {
-    background-color: #dbd4c5;
-    border: 1px solid #232323;
-    color: #232323;
-    padding: 5px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .selected-range-info button:hover {
-    background-color: #c8bea8;
-  }
-  
-  .booked-cell {
-    background-color: #ffcccc !important;
-    color: #ffffff !important;
-    padding: 5px;
-    border-radius: 4px;
-  }
-  
+::ng-deep .flatpickr-day.disabled {
+  background-color: rgba(255, 0, 0, 0.6); /* Яркий красный фон */
+  color: white; /* Белый текст */
+  border-radius: 50%; /* Круглая форма */
+  border: 1px solid darkred; /* Дополнительный контур */
+  cursor: not-allowed; /* Недоступность */
+  opacity: 1; /* Убираем прозрачность */
+}
+
+::ng-deep .flatpickr-day.prevMonthDay,
+::ng-deep .flatpickr-day.nextMonthDay {
+  opacity: 0.3; /* Более слабая прозрачность */
+  color: #999; /* Серый текст */
+}
+
+::ng-deep .flatpickr-day.selected {
+  background-color: rgba(0, 123, 255, 0.8); /* Синий фон для выбранного диапазона */
+  color: white; /* Белый текст */
+  border-radius: 50%;
+}
+
+::ng-deep .flatpickr-day.today {
+  border: 1px solid #00ff00; /* Зеленый контур для текущего дня */
+  background-color: rgba(0, 255, 0, 0.3); /* Зеленый фон */
+  color: black;
+}
