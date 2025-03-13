@@ -12,11 +12,15 @@
     background-color: #dbd4c5;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
 }
-
+.edit-button {
+    margin: 20px;
+    background-color: #dbd4c5;
+    color: #232323;
+    width: 40%;
+}
 .rent-container {
     flex: 2; /* Две трети */
     display: flex;

@@ -1,16 +1,17 @@
-::ng-deep .flatpickr-day.disabled {
-  background-color: rgba(255, 0, 0, 0.6); /* Яркий красный фон */
-  color: white; /* Белый текст */
+::ng-deep .flatpickr-calendar .flatpickr-day.disabled {
+  background-color: rgba(255, 0, 0, 0.6) !important; /* Яркий красный фон */
+  color: white !important; /* Белый текст */
   border-radius: 50%; /* Круглая форма */
   border: 1px solid darkred; /* Дополнительный контур */
-  cursor: not-allowed; /* Недоступность */
-  opacity: 1; /* Убираем прозрачность */
+
+  opacity: 1 !important; /* Убираем прозрачность */
 }
+
 
 ::ng-deep .flatpickr-day.prevMonthDay,
 ::ng-deep .flatpickr-day.nextMonthDay {
-  opacity: 0.3; /* Более слабая прозрачность */
-  color: #999; /* Серый текст */
+  opacity: 0.5; /* Более слабая прозрачность */
+  color: black;
 }
 
 ::ng-deep .flatpickr-day.selected {
@@ -23,4 +24,96 @@
   border: 1px solid #00ff00; /* Зеленый контур для текущего дня */
   background-color: rgba(0, 255, 0, 0.3); /* Зеленый фон */
   color: black;
+}
+
+.date-picker-container {
+  background-color: #dbd4c5;
+  color: #232323;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px; /* Ограничиваем ширину для адаптивности */
+  margin-bottom: 20px;
+}
+
+.booking-header {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: block;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+  border: 1px solid #232323;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  color: #232323;
+  background-color: #dbd4c5;
+}
+
+.clear-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #999;
+  cursor: pointer;
+}
+
+.clear-icon:hover {
+  color: #333;
+}
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #232323;
+}
+
+.summary-container p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.label {
+  font-weight: bold;
+  color: #555;
+}
+
+.value {
+  font-weight: bold;
+  color: #000;
+}
+
+.booking-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.booking-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.booking-button:hover:not(:disabled) {
+  background-color: #0056b3;
 }

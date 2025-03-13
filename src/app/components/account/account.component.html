@@ -2,12 +2,12 @@
     <!-- Блок для пользовательских данных -->
     <div class="info-container">
         <h2>Мои данные</h2>
+        <img [src]="user.avatar" alt="Аватар пользователя" class="user-avatar" />
         <div class="user-info">
-            <img [src]="user.avatar" alt="Аватар пользователя" class="user-avatar" />
             <span><strong>Email:</strong> {{ user.email }}</span>
             <span><strong>Телефон:</strong> {{ user.phone }}</span>
             <span><strong>Водительское удостоверение:</strong> {{ user.license }}</span>
-            <button class="edit-button" (click)="editUser()">Редактировать</button>
+            <button class="action-button edit-button" (click)="editUser()">Редактировать</button>
         </div>
     </div>
 

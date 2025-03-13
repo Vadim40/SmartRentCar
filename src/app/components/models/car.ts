@@ -17,8 +17,8 @@ export interface Car {
 export interface BookingPeriod {
     startDate: Date; 
     endDate: Date;   
-  }
-  
+}
+
 export const cars: Car[] = [
     {
         carId: 1,
@@ -32,7 +32,11 @@ export const cars: Car[] = [
         seats: 5,
         airConditioning: true,
         gps: true,
-        modelYear: 2022
+        modelYear: 2022,
+        bookings: [
+            { startDate: new Date(2025, 2, 10), endDate: new Date(2025, 2, 15) },
+            { startDate: new Date(2025, 2, 20), endDate: new Date(2025, 2, 25) }
+        ]
     },
     {
         carId: 2,
@@ -46,7 +50,11 @@ export const cars: Car[] = [
         seats: 5,
         airConditioning: true,
         gps: false,
-        modelYear: 2021
+        modelYear: 2021,
+        bookings: [
+            { startDate: new Date(2025, 2, 12), endDate: new Date(2025, 2, 18) },
+            { startDate: new Date(2025, 2, 22), endDate: new Date(2025, 2, 24) }
+        ]
     },
     {
         carId: 3,
@@ -60,7 +68,11 @@ export const cars: Car[] = [
         seats: 5,
         airConditioning: true,
         gps: false,
-        modelYear: 2020
+        modelYear: 2020,
+        bookings: [
+            { startDate: new Date(2025, 2, 14), endDate: new Date(2025, 2, 16) },
+            { startDate: new Date(2025, 2, 21), endDate: new Date(2025, 2, 23) }
+        ]
     },
     {
         carId: 4,
@@ -74,7 +86,11 @@ export const cars: Car[] = [
         seats: 7,
         airConditioning: true,
         gps: true,
-        modelYear: 2023
+        modelYear: 2023,
+        bookings: [
+            { startDate: new Date(2025, 2, 11), endDate: new Date(2025, 2, 17) },
+            { startDate: new Date(2025, 2, 26), endDate: new Date(2025, 2, 28) }
+        ]
     },
     {
         carId: 5,
@@ -88,8 +104,10 @@ export const cars: Car[] = [
         seats: 5,
         airConditioning: true,
         gps: true,
-
-        modelYear: 2022
+        modelYear: 2022,
+        bookings: [
+            { startDate: new Date(2025, 2, 13), endDate: new Date(2025, 2, 19) },
+            { startDate: new Date(2025, 2, 22), endDate: new Date(2025, 2, 27) }
+        ]
     }
 ];
-

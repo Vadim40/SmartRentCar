@@ -1,3 +1,15 @@
 <div class="date-picker-container">
-  <input type="text" id="dateRangePicker" placeholder="Выберите диапазон">
+  <span class="booking-header">Бронирование для {{ car.carName }}</span>
+  <div class="input-wrapper">
+    <input type="text" id="dateRangePicker" placeholder="Выберите диапазон">
+    <span class="clear-icon" (click)="resetPicker()">&#10005;</span> <!-- Крестик -->
+  </div>
 </div>
+
+<div class="summary-container">
+  <span> Цена за день:{{ car.cost }} ₽</span>
+  <span >Залог:{{ car.deposit }} ₽</span>
+  <span *ngIf="totalCost > 0">Общая стоимость: {{ totalCost }} ₽</span>
+</div>
+
+<button [disabled]="!canProceed" class="booking-button">Оформить бронирование</button>

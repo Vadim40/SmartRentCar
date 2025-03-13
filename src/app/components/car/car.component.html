@@ -1,46 +1,48 @@
-<div class="car-details">
-    <!-- Левый блок: изображения автомобиля -->
-    <div class="car-images">
-      <div class="main-image">
-        <img [src]="car.carImages[0]" [alt]="car.carName" />
+<div class="car-component">
+  <!-- Левый блок: изображения автомобиля -->
+  <div class="car-container">
+    <div class="car-details">
+      <div class="car-images">
+        <div class="main-image">
+          <img [src]="car.carImages[0]" [alt]="car.carName" />
+        </div>
+        <div class="thumbnail-images">
+          <img *ngFor="let img of car.carImages.slice(1, 3)" [src]="img" [alt]="car.carName" />
+        </div>
+        <div *ngIf="car.carImages.length > 3" class="additional-images">
+          <button (click)="viewMoreImages()">Посмотреть больше</button>
+        </div>
       </div>
-      <div class="thumbnail-images">
-        <img
-          *ngFor="let img of car.carImages.slice(1, 3)"
-          [src]="img"
-          [alt]="car.carName"
-        />
-      </div>
-      <div *ngIf="car.carImages.length > 3" class="additional-images">
-        <button (click)="viewMoreImages()">Посмотреть больше</button>
+
+      <!-- Правый блок: информация об автомобиле -->
+      <div class="car-info">
+        <h2>{{ car.carName }}</h2>
+        <span><strong>Год выпуска:</strong> {{ car.modelYear }}</span><br />
+        <span><strong>Тип топлива:</strong> {{ car.fuelTypeName }}</span><br />
+        <span><strong>Класс:</strong> {{ car.carClassName }}</span><br />
+        <span><strong>Трансмиссия:</strong> {{ car.carTransmissioName }}</span><br />
+        <span><strong>Цена за день:</strong> {{ car.cost }} ₽</span><br />
+        <span><strong>Залог:</strong> {{ car.deposit }} ₽</span><br />
+        <span><strong>Количество мест:</strong> {{ car.seats }}</span><br />
+        <span><strong>Кондиционер:</strong> {{ car.airConditioning ? 'Есть' : 'Нет' }}</span><br />
+        <span><strong>GPS:</strong> {{ car.gps ? 'Есть' : 'Нет' }}</span><br />
       </div>
     </div>
-  
-    <!-- Правый блок: информация об автомобиле -->
-    <div class="car-info">
-      <h2>{{ car.carName }}</h2>
-      <span><strong>Год выпуска:</strong> {{ car.modelYear }}</span><br />
-      <span><strong>Тип топлива:</strong> {{ car.fuelTypeName }}</span><br />
-      <span><strong>Класс:</strong> {{ car.carClassName }}</span><br />
-      <span><strong>Трансмиссия:</strong> {{ car.carTransmissioName }}</span><br />
-      <span><strong>Цена за день:</strong> {{ car.cost }} ₽</span><br />
-      <span><strong>Залог:</strong> {{ car.deposit }} ₽</span><br />
-      <span><strong>Количество мест:</strong> {{ car.seats }}</span><br />
-      <span><strong>Кондиционер:</strong> {{ car.airConditioning ? 'Есть' : 'Нет' }}</span><br />
-      <span><strong>GPS:</strong> {{ car.gps ? 'Есть' : 'Нет' }}</span><br />
+
+    <div class="company-info">
+      <div class="company-logo">
+        <img [src]="company.image" [alt]="company.name" />
+      </div>
+      <div class="company-details">
+        <h3>{{ company.name }}</h3>
+        <span><strong>Email:</strong> {{ company.email }}</span><br />
+        <span><strong>Телефон:</strong> {{ company.phoneNumber }}</span>
+      </div>
     </div>
+
   </div>
-  
-  <app-car-booking> </app-car-booking>
-  <!-- Информация о компании -->
-  <div class="company-info">
-    <div class="company-logo">
-      <img [src]="company.image" [alt]="company.name" />
-    </div>
-    <div class="company-details">
-      <h3>{{ company.name }}</h3>
-      <span><strong>Email:</strong> {{ company.email }}</span><br />
-      <span><strong>Телефон:</strong> {{ company.phoneNumber }}</span>
-    </div>
-  </div>
-  
+  <app-car-booking [car]="car"></app-car-booking>
+</div>
+
+
+<!-- Информация о компании -->
