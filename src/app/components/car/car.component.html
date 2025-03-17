@@ -17,16 +17,46 @@
       <!-- Правый блок: информация об автомобиле -->
       <div class="car-info">
         <h2>{{ car.carName }}</h2>
-        <span><strong>Год выпуска:</strong> {{ car.modelYear }}</span><br />
-        <span><strong>Тип топлива:</strong> {{ car.fuelTypeName }}</span><br />
-        <span><strong>Класс:</strong> {{ car.carClassName }}</span><br />
-        <span><strong>Трансмиссия:</strong> {{ car.carTransmissioName }}</span><br />
-        <span><strong>Цена за день:</strong> {{ car.cost }} ₽</span><br />
-        <span><strong>Залог:</strong> {{ car.deposit }} ₽</span><br />
-        <span><strong>Количество мест:</strong> {{ car.seats }}</span><br />
-        <span><strong>Кондиционер:</strong> {{ car.airConditioning ? 'Есть' : 'Нет' }}</span><br />
-        <span><strong>GPS:</strong> {{ car.gps ? 'Есть' : 'Нет' }}</span><br />
+        <table>
+          <tr>
+            <th>Год выпуска</th>
+            <td>{{ car.modelYear }}</td>
+          </tr>
+          <tr>
+            <th>Тип топлива</th>
+            <td>{{ car.fuelTypeName }}</td>
+          </tr>
+          <tr>
+            <th>Класс</th>
+            <td>{{ car.carClassName }}</td>
+          </tr>
+          <tr>
+            <th>Трансмиссия</th>
+            <td>{{ car.carTransmissioName }}</td>
+          </tr>
+          <tr>
+            <th>Цена за день</th>
+            <td>{{ car.cost }} ₽</td>
+          </tr>
+          <tr>
+            <th>Залог</th>
+            <td>{{ car.deposit }} ₽</td>
+          </tr>
+          <tr>
+            <th>Количество мест</th>
+            <td>{{ car.seats }}</td>
+          </tr>
+          <tr>
+            <th>Кондиционер</th>
+            <td>{{ car.airConditioning ? 'Есть' : 'Нет' }}</td>
+          </tr>
+          <tr>
+            <th>GPS</th>
+            <td>{{ car.gps ? 'Есть' : 'Нет' }}</td>
+          </tr>
+        </table>
       </div>
+      
     </div>
 
     <div class="company-info">
