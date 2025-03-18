@@ -2,25 +2,27 @@
     align-items: center;
     padding: 30px 60px;
 }
+
 .filters-container {
-    display: flex; 
-    flex-direction: column; 
-    background-color:#dbd4c5;
+    display: flex;
+    flex-direction: column;
+    background-color: #dbd4c5;
     padding: 20px;
-    border-radius: 4px; 
-    align-items: center; 
+    border-radius: 4px;
+    align-items: center;
     justify-content: center;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.row-1, .row-2 {
-   
+.row-1,
+.row-2 {
+
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 9px;
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 .row-2 {
@@ -31,31 +33,45 @@
     display: flex;
     flex-direction: column;
     height: 40px;
-    font-size: 15px; 
+    font-size: 15px;
     font-weight: 400;
     position: relative;
-    background-color:#dbd4c5;
-  }
-  
-  .filters label {
+    background-color: #dbd4c5;
+}
+
+label {
     position: absolute;
-    top: -10px;  /* Немного увеличиваем, чтобы label перекрывал */
+    top: -10px;
     left: 10px;
     padding: 0 5px;
-    font-size: 13px; 
+    font-size: 13px;
     font-weight: 400;
-    background-color:#dbd4c5;
-    z-index: 1;  /* Увеличиваем z-index, чтобы label был выше */
-    color: #232323;;
-  }
-  
-  .filters dx-select-box {
+    background-color: #dbd4c5;
+    z-index: 1;
+    color: #232323;
+    ;
+}
+
+.filters dx-select-box {
     position: relative;
     display: block;
     border: 1px solid #232323;
-    border-radius: 4px; 
-    padding: 5px; 
-    background-color:#dbd4c5;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #dbd4c5;
+}
+
+.date-box {
+    position: relative;
+}
+
+.text-box {
+    position: relative;
+}
+
+::ng-deep .dx-texteditor-input {
+    font-size: 15px !important;
+    font-weight: 400 !important;
 }
 
 ::ng-deep dx-text-box {
@@ -74,10 +90,9 @@
 }
 
 ::ng-deep .filters * {
-    background-color: #dbd4c5 !important; /* Задаём фон всем дочерним элементам */
-    border-radius: 4px; /* Закруглённые углы, если это применимо */
-    box-shadow: none; /* Убираем тени */
-    color: #232323; /* Цвет текста */
+    background-color: #dbd4c5 !important;
+    border-radius: 4px;
+    color: #232323;
 }
 
 
@@ -85,9 +100,9 @@
 .list-container {
     margin-top: 40px;
     display: flex;
-    flex-wrap: wrap; /* Позволяет переносить строки */
-    justify-content: space-between; /* Добавляет равномерное расстояние между элементами */
-    gap: 20px; /* Отступы между элементами */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
     background-color: #dbd4c5;
     padding: 20px;
     border-radius: 4px;
@@ -97,19 +112,21 @@
 }
 
 .list-container::-webkit-scrollbar {
-    width: 12px; 
-    background-color: #dbd4c5; 
-    border-radius: 8px; 
+    width: 12px;
+    background-color: #dbd4c5;
+    border-radius: 8px;
 }
 
 
 .list-container::-webkit-scrollbar-thumb {
-    background-color: #232323; 
+    background-color: #232323;
     border-radius: 8px;
-    border: 2px solid #dbd4c5; 
+    border: 2px solid #dbd4c5;
 }
+
 .car-item {
-    flex: 0 1 calc(50% - 40px); /* Каждая карточка занимает половину ширины, минус отступ */
+    flex: 0 1 calc(50% - 40px);
+    /* Каждая карточка занимает половину ширины, минус отступ */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -125,9 +142,9 @@
 .car-image {
     width: 300px;
     height: 225px;
-    object-fit: cover; /* Подгоняет изображение */
-    margin-right: 15px; /* Отступ справа от изображения */
-    border-radius: 4px; /* Добавляет закругление углов */
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 4px;
 }
 
 .car-info {
@@ -138,33 +155,38 @@
 
 .car-title {
     margin-left: 20px;
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 22px;
+    font-weight: 500;
+
 }
 
 .car-details {
     display: flex;
     flex-direction: column;
-    margin: 30px;
-    gap: 10px;
-}
-.car-details span {
-    font-size: 16px;
-    color: #555;
-    display: block; /* Отображает каждую деталь на новой строке */
+    margin: 20px;
+    gap: 15px;
+
 }
 
-.cost-container{
+.car-details span {
+    font-size: 15px;
+    font-weight: 400;
+    color: #232323;
+    display: block;
+}
+
+.cost-container {
     margin-top: 30px;
     gap: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  
+
 }
+
 .cost-container span {
     margin: 0px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 500;
     color: #232323;
 }

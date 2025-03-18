@@ -22,13 +22,13 @@
 }
 .logo span {
     margin-left: 15px;
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 500;
-    color: #ffffff;
+    color:  #f2eadd;
 }
 
 .dx-button {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
 }
 .buttons-container {

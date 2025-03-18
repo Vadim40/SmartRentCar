@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { User } from '../models/user';
-import { Rent, RentActive, RentHistory } from '../models/rent';
+import { Rent, RentActive, RentHistory } from 'src/app/models/rent';
+import { User } from 'src/app/models/user';
+
 
 @Component({
   selector: 'app-account',

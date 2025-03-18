@@ -1,16 +1,35 @@
 <div class="cars-component">
     <div class="filters-container">
         <div class="row-1">
-            <date-component> </date-component>
-            <date-component> </date-component>
-            <dx-text-box placeholder="Цена от" [showClearButton]="true">
-            </dx-text-box>
-            <dx-text-box placeholder="Цена до" [showClearButton]="true">
-            </dx-text-box>
-            <dx-text-box placeholder="Сумма залога от" [showClearButton]="true">
-            </dx-text-box>
-            <dx-text-box placeholder="Сумма залога до" [showClearButton]="true">
-            </dx-text-box>
+            <div class="date-box">
+                <label>Дата с</label>
+                <date-component></date-component>
+            </div>
+            <div class="date-box">
+                <label>Дата по</label>
+                <date-component></date-component>
+            </div>
+            <div class="text-box">
+                <label>Цена от</label>
+                <dx-text-box placeholder="Цена от" [showClearButton]="true">
+                </dx-text-box>
+            </div>
+            <div class="text-box">
+                <label>Цена до</label>
+                <dx-text-box placeholder="Цена до" [showClearButton]="true">
+                </dx-text-box>
+            </div>
+            <div class="text-box">
+                <label>Сумма залога от</label>
+                <dx-text-box placeholder="Сумма залога от" [showClearButton]="true">
+                </dx-text-box>
+            </div>
+            <div class="text-box">
+                <label>Сумма залога до</label>
+                <dx-text-box placeholder="Сумма залога до" [showClearButton]="true">
+                </dx-text-box>
+            </div>
+
         </div>
         <div class="row-2">
             <div class="filters">
@@ -36,10 +55,10 @@
         </div>
     </div>
     <div class="list-container">
-        <div *ngFor="let car of cars" class="car-item"  (click)="redirectToCar(car.carId)">
+        <div *ngFor="let car of cars" class="car-item" (click)="redirectToCar(car.carId)">
             <img [src]="car.carImages[0]" alt="{{ car.carName }}" class="car-image" />
             <div class="car-info">
-                <div class="car-title">{{ car.carName }}</div>
+                <span class="car-title">{{ car.carName }}</span>
                 <div class="car-details">
                     <span>Топливо: {{ car.fuelTypeName }}</span>
                     <span>Класс: {{ car.carClassName }}</span>
@@ -52,6 +71,6 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 </div>

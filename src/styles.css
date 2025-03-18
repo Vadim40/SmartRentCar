@@ -1,14 +1,21 @@
+
 * { 
     margin: 0px; 
     padding: 0px; 
   }
 
   
-body, html {
-    font-family: 'Gloock', serif;
-    background-color: #dbd4c5;
+  body, html {
+    font-family: 'Roboto', sans-serif !important;
+    background-color: #dbd4c5 !important;
   }
-  
+
+.dx-widget, .dx-button, .dx-data-grid, .dx-textbox .dx-texteditor-input {
+  font-family: 'Roboto', sans-serif !important;
+}
+button {
+  font-family: 'Roboto', sans-serif !important;
+}
   .action-button {  
     height: 40px;
     cursor: pointer;
@@ -17,7 +24,7 @@ body, html {
     justify-content: center;
     border-radius: 4px;
     padding: 10px 16px 10px 12px;
-    color: #ffffff;
+    color: #f2eadd;
      transition: background-color 0.3s, color 0.3s;
   }
   .action-button:hover {

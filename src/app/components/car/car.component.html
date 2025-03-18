@@ -10,48 +10,54 @@
           <img *ngFor="let img of car.carImages.slice(1, 3)" [src]="img" [alt]="car.carName" />
         </div>
         <div *ngIf="car.carImages.length > 3" class="additional-images">
-          <button (click)="viewMoreImages()">Посмотреть больше</button>
+          <dx-button
+            class="action-button"
+            stylingMode="text"
+            (onClick)="viewMoreImages()">
+            Посмотреть больше
+          </dx-button>
         </div>
+        
       </div>
 
       <!-- Правый блок: информация об автомобиле -->
       <div class="car-info">
-        <h2>{{ car.carName }}</h2>
+        <span>{{ car.carName }}</span>
         <table>
           <tr>
-            <th>Год выпуска</th>
+            <td>Год выпуска</td>
             <td>{{ car.modelYear }}</td>
           </tr>
           <tr>
-            <th>Тип топлива</th>
+            <td>Тип топлива</td>
             <td>{{ car.fuelTypeName }}</td>
           </tr>
           <tr>
-            <th>Класс</th>
+            <td>Класс</td>
             <td>{{ car.carClassName }}</td>
           </tr>
           <tr>
-            <th>Трансмиссия</th>
+            <td>Трансмиссия</td>
             <td>{{ car.carTransmissioName }}</td>
           </tr>
           <tr>
-            <th>Цена за день</th>
+            <td>Цена за день</td>
             <td>{{ car.cost }} ₽</td>
           </tr>
           <tr>
-            <th>Залог</th>
+            <td>Залог</td>
             <td>{{ car.deposit }} ₽</td>
           </tr>
           <tr>
-            <th>Количество мест</th>
+            <td>Количество мест</td>
             <td>{{ car.seats }}</td>
           </tr>
           <tr>
-            <th>Кондиционер</th>
+            <td>Кондиционер</td>
             <td>{{ car.airConditioning ? 'Есть' : 'Нет' }}</td>
           </tr>
           <tr>
-            <th>GPS</th>
+            <td>GPS</td>
             <td>{{ car.gps ? 'Есть' : 'Нет' }}</td>
           </tr>
         </table>

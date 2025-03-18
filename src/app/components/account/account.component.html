@@ -1,13 +1,14 @@
 <div class="account-component">
     <!-- Блок для пользовательских данных -->
     <div class="info-container">
-        <h2>Мои данные</h2>
+        <span>Мои данные</span>
         <img [src]="user.avatar" alt="Аватар пользователя" class="user-avatar" />
         <div class="user-info">
-            <span><strong>Email:</strong> {{ user.email }}</span>
-            <span><strong>Телефон:</strong> {{ user.phone }}</span>
-            <span><strong>Водительское удостоверение:</strong> {{ user.license }}</span>
+            <span>Email: {{ user.email }}</span>
+            <span>Телефон: {{ user.phone }}</span>
+            <span>Водительское удостоверение: {{ user.license }}</span>
             <button class="action-button edit-button" (click)="editUser()">Редактировать</button>
+
         </div>
     </div>
 
@@ -32,9 +33,13 @@
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">
-                            <span> {{ rent.startDate | date }} - {{ rent.endDate | date}}</span>
-                            <div class="cost-container">
+                            <span> {{ rent.startDate | date:'dd.MM.yyyy' }} - {{ rent.endDate | date:'dd.MM.yyyy' }}</span>
 
+                            <div class="cost-container">
+                                <div class="cost-container">
+                                    <span>Итоговая стоимость : {{rent.cost}}</span>
+                                    <span>Сумма залога: {{rent.deposit}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -48,8 +53,11 @@
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">
-                            <span> {{ rent.startDate | date }} - {{ rent.endDate | date}}</span>
-
+                            <span> {{ rent.startDate | date:'dd.MM.yyyy' }} - {{ rent.endDate | date:'dd.MM.yyyy' }}</span>
+                            <div class="cost-container">
+                                <span>Итоговая стоимость : {{rent.cost}}</span>
+                                <span>Сумма залога: {{rent.deposit}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

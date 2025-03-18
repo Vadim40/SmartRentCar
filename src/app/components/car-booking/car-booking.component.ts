@@ -1,7 +1,8 @@
 import flatpickr from 'flatpickr';
 import { Russian } from "flatpickr/dist/l10n/ru.js";
 import { Component, OnInit, Input } from '@angular/core';
-import { Car } from '../models/car';
+import { Car } from 'src/app/models/car';
+
 
 
 @Component({
@@ -10,12 +11,12 @@ import { Car } from '../models/car';
   styleUrls: ['./car-booking.component.css']
 })
 export class CarBookingComponent implements OnInit {
-  @Input() car!: Car; // Получаем данные об автомобиле через @Input
+  @Input() car!: Car; 
 
   private flatpickrInstance: flatpickr.Instance | undefined;
-  totalCost: number = 0; // Итоговая стоимость
-  depositAmount: number = 0; // Залог
-  canProceed: boolean = false; // Возможность перехода к следующему шагу
+  totalCost: number = 0;
+  depositAmount: number = 0; 
+  canProceed: boolean = false; 
 
   ngOnInit(): void {
     const today = new Date();
@@ -74,7 +75,7 @@ export class CarBookingComponent implements OnInit {
         alert('Выбранный диапазон пересекается с занятыми периодами.');
         this.resetPicker();
       } else {
-        this.calculateCost(startDate, endDate); // Расчёт стоимости при корректных датах
+        this.calculateCost(startDate, endDate);
         console.log('Выбранный диапазон:', startDate, endDate);
       }
     }
@@ -86,20 +87,20 @@ export class CarBookingComponent implements OnInit {
   
     this.totalCost = days * this.car.cost;
     this.depositAmount = this.car.deposit;
-    this.canProceed = true; // Разрешаем переход к следующему шагу
+    this.canProceed = true;
   }
   
 
   resetPicker(): void {
     if (this.flatpickrInstance) {
-      this.flatpickrInstance.clear(); // Сбрасываем состояние flatpickr
+      this.flatpickrInstance.clear(); 
     }
     const datePicker = document.querySelector('#dateRangePicker') as HTMLInputElement;
     if (datePicker) {
-      datePicker.value = ''; // Очищаем поле ввода
+      datePicker.value = ''; 
     }
-    this.totalCost = 0; // Сбрасываем стоимость
-    this.depositAmount = 0; // Сбрасываем залог
-    this.canProceed = false; // Отключаем кнопку перехода
+    this.totalCost = 0; 
+    this.depositAmount = 0; 
+    this.canProceed = false; 
   }
 }

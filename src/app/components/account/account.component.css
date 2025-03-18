@@ -15,23 +15,31 @@
     flex-direction: column;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .edit-button {
-    margin: 20px;
+    margin-top: 20px;
     background-color: #dbd4c5;
     color: #232323;
-    width: 40%;
+    width: 35%;
+    font-size: 15px;
+    font-weight: 400;
+    border: 1px solid #232323;
 }
 .rent-container {
     flex: 2; /* Две трети */
     display: flex;
     flex-direction: column;
 }
+.info-container span {
+    font-size: 22px;
+    font-weight: 500;
+}
 
 .user-avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin: 10px 0px;
     object-fit: cover;
 }
 
@@ -43,6 +51,8 @@
 }
 .user-info span {
     margin-top: 10px;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .tabs-container {
@@ -55,20 +65,20 @@
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 22px;
+    font-weight: 500;
     color: #555;
-    position: relative; /* Для добавления псевдоэлементов */
+    position: relative; 
     outline: none;
     transition: color 0.3s ease;
 }
 
 .tab-button:hover {
-    color: #000; /* Цвет текста при наведении */
+    color:#232323;  
 }
 
 .tab-button.active {
-    color: #000; /* Активная вкладка — чёрный текст */
-    font-weight: bold;
+    color: #232323;  
 }
 
 .tab-button.active::after {
@@ -106,7 +116,6 @@
     align-items: flex-start; 
     margin-bottom: 15px;
     padding: 10px;
-    border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f2eadd;
 }
@@ -121,7 +130,6 @@
 }
 
 .car-info {
-    margin: 40px 0px;
     display: flex;
     flex-direction: column;
     
@@ -130,18 +138,27 @@
 
 .car-title {
     margin-left: 20px;
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 22px;
+    font-weight: 500;
+    
 }
-
 .car-details {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    justify-content: space-between;
+    margin: 20px;
     gap: 10px;
 }
 .car-details span {
     font-size: 16px;
     color: #555;
     display: block; 
+}
+
+.cost-container{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
 }

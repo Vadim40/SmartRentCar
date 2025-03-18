@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Car, cars } from '../models/car';
+
 import { Router } from '@angular/router';
+import { Car, cars } from 'src/app/models/car';
 
 @Component({
   selector: 'app-car-list',
