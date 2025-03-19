@@ -2,14 +2,31 @@
   <span class="booking-header">Бронирование </span>
   <div class="input-wrapper">
     <input type="text" id="dateRangePicker" placeholder="Выберите диапазон">
-    <span class="clear-icon" (click)="resetPicker()">&#10005;</span> <!-- Крестик -->
+    <span class="clear-icon" (click)="resetPicker()">&#10005;</span>
   </div>
 </div>
 
 <div class="summary-container">
-  <span> Цена за день:{{ car.cost }} ₽</span>
-  <span >Залог:{{ car.deposit }} ₽</span>
+  <span>Цена за день: {{ car.cost }} ₽</span>
+  <span>Залог: {{ car.deposit }} ₽</span>
   <span *ngIf="totalCost > 0">Общая стоимость: {{ totalCost }} ₽</span>
 </div>
 
-<button [disabled]="!canProceed" class="booking-button">Оформить бронирование</button>
+<button [disabled]="!canProceed" class="action-button proceed-button" (click)="openPopup()">Продолжить бронирование</button>
+
+<!-- Popup -->
+<div class="popup-overlay" *ngIf="isPopupOpen">
+  <div class="popup">
+    <h2>Подтверждение бронирования</h2>
+    <div class="details">
+      <p><strong>Автомобиль:</strong> {{ car.carName }}</p>
+      <p><strong>Даты аренды:</strong> {{ selectedDateRange }}</p>
+      <p><strong>Общая стоимость:</strong> {{ totalCost }} ₽</p>
+      <p><strong>Залог:</strong> {{ car.deposit }} ₽</p>
+    </div>
+    <div class="confirmation">
+      <button class="action-button confirm-button" (click)="confirmBooking()">Подтвердить</button>
+      <button class="action-button cancel-button" (click)="closePopup()">Отмена</button>
+    </div>
+  </div>
+</div>

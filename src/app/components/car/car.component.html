@@ -10,12 +10,12 @@
           <img *ngFor="let img of car.carImages.slice(1, 3)" [src]="img" [alt]="car.carName" />
         </div>
         <div *ngIf="car.carImages.length > 3" class="additional-images">
-          <dx-button
+          <button
             class="action-button"
-            stylingMode="text"
             (onClick)="viewMoreImages()">
             Посмотреть больше
-          </dx-button>
+          </button>
+
         </div>
         
       </div>

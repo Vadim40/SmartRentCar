@@ -41,12 +41,12 @@
 }
 
 
-.dx-button {
+.action-button {
   font-size: 15px;
   font-weight: 400;
   border: 1px solid #232323;
   color: #232323;
-  width: 200px;
+  background-color: #dbd4c5;
 }
 .dx-button-content{
   display: inline-block; 

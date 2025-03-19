@@ -4,9 +4,9 @@
         <span>Мои данные</span>
         <img [src]="user.avatar" alt="Аватар пользователя" class="user-avatar" />
         <div class="user-info">
-            <span>Email: {{ user.email }}</span>
-            <span>Телефон: {{ user.phone }}</span>
-            <span>Водительское удостоверение: {{ user.license }}</span>
+            <span><b>Email:</b> {{ user.email }}</span>
+            <span><b>Телефон:</b> {{ user.phone }}</span>
+            <span><b>Водительское удостоверение:</b> {{ user.license }}</span>
             <button class="action-button edit-button" (click)="editUser()">Редактировать</button>
 
         </div>
