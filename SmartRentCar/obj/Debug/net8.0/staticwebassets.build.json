@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "g4jFdJn+T2oRUwd8CES3fSgNynO4m+2B2IH5xGwNzbo=",
+  "Source": "SmartRentCar",
+  "BasePath": "_content/SmartRentCar",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "SmartRentCar\\wwwroot",
+      "Source": "SmartRentCar",
+      "ContentRoot": "d:\\Learning\\SmartRentCar\\SmartRentCar\\wwwroot\\",
+      "BasePath": "_content/SmartRentCar",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
