@@ -1,0 +1,52 @@
+# Общие файлы и папки для проектов ASP.NET и Angular
+node_modules/
+dist/
+.env
+*.log
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vspx
+*.pdb
+*.pidb
+*.sdf
+*.cache
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+*.code-settings
+
+# Angular CLI
+.angular/
+.angular.json
+package-lock.json
+
+# Артефакты сборки
+bin/
+obj/
+build/
+publish/
+debug/
+release/
+
+# NuGet
+*.nupkg
+*.snupkg
+/packages/
+project.lock.json
+project.fragment.lock.json
+
+# SQL Server
+*.mdf
+*.ldf
+
+# IIS/ASP.NET временные файлы
+iisexpress/
+~$*
+*~
+aspnet_client/

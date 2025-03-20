@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using SmartRentCar.Config;
+using SmartRentCar.Repositories;
+using SmartRentCar.Repositories.Impl;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +13,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+    options.UseSqlite("Data Source=smartRentCar.db"));
+builder.Services.AddScoped<ICarRepository, CarRepositoryImpl>();
+builder.Services.AddScoped<IRentContractRepository, RentContractRepositoryImpl>();
+builder.Services.AddScoped<IUserRepository, UserRepositoryImpl>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryImpl>();
+
 
 var app = builder.Build();
 app.UseSwagger();

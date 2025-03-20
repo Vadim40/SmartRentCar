@@ -3,7 +3,7 @@
     public class CarImage
     {
         public int CarImageId { get; set; }
-        public string CarId { get; set; }
+        public int CarId { get; set; }
      
         public byte[] ImageData { get; set; }
     }

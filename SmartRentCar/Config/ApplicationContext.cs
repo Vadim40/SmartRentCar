@@ -11,11 +11,11 @@ namespace SmartRentCar.Config
         public DbSet<Company> Companys => Set<Company>();
         public DbSet<RentContract> RentContracts => Set<RentContract>();
         public DbSet<ContractStatus> ContractStatuses => Set<ContractStatus>();
-        public DbSet<CarBrand> carBrands => Set<CarBrand>();
+        public DbSet<CarBrand> CarBrands => Set<CarBrand>();
         public DbSet<CarClass> CarClasses => Set<CarClass>();
-        public DbSet<CarFuelType> carFuelTypes => Set<CarFuelType>();
-        public DbSet<CarImage> carImages => Set<CarImage>();
-        public DbSet<CarTransmission> carTransmissions => Set<CarTransmission>();
+        public DbSet<CarFuelType> CarFuelTypes => Set<CarFuelType>();
+        public DbSet<CarImage> CarImages => Set<CarImage>();
+        public DbSet<CarTransmission> CarTransmissions => Set<CarTransmission>();
 
         public ApplicationContext() => Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

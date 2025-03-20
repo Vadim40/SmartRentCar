@@ -24,6 +24,9 @@ namespace SmartRentCar.Models
         [ForeignKey("CarTransmission")]
         public int TransmissionTypeId { get; set; }
 
+        public decimal CostPerDay { get; set; }
+        public decimal DepositAmount { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string CarName { get; set; }
