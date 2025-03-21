@@ -10,7 +10,7 @@ namespace SmartRentCar.Repositories.Impl
         {
             _context = context;
         }
-        public async Task<Company> GetCompany(int companyId)
+        public async Task<Company> GetCompanyById(int companyId)
         {
             var company = await _context.Companys.FindAsync(companyId);
             if (company == null)

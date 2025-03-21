@@ -13,7 +13,7 @@ namespace SmartRentCar.Repositories.Impl
         }
 
 
-        public async Task<User> GetUser(int userId)
+        public async Task<User> GetUserById(int userId)
         {
 
             var user = await _context.Users.FindAsync(userId);
@@ -26,10 +26,11 @@ namespace SmartRentCar.Repositories.Impl
         }
 
  
-        public async Task SaveUser(User user)
+        public async Task<int> SaveUser(User user)
         {
             await _context.Users.AddAsync(user); 
-            await _context.SaveChangesAsync();   
+            await _context.SaveChangesAsync();
+            return user.UserId;
         }
 
         
@@ -37,12 +38,13 @@ namespace SmartRentCar.Repositories.Impl
         {
             _context.Users.Update(user);       
             await _context.SaveChangesAsync();
+
         }
 
        
-        public async Task DeleteUser(int userId)
+        public async Task DeleteUserById(int userId)
         {
-            var user = await GetUser(userId);    
+            var user = await GetUserById(userId);    
             if (user != null)
             {
                 _context.Users.Remove(user);    

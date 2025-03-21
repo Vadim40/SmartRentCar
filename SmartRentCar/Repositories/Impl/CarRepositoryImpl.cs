@@ -13,7 +13,7 @@ namespace SmartRentCar.Repositories.Impl
         {
             _context = context;
         }
-        public async Task DeleteCar(int carId)
+        public async Task DeleteCarById(int carId)
         {
             var car = await _context.Cars.FindAsync(carId);
 
@@ -24,7 +24,7 @@ namespace SmartRentCar.Repositories.Impl
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Car> GetCar(int carId)
+        public async Task<Car> GetCarById(int carId)
         {
             var car = await _context.Cars.FindAsync(carId);
             if (car == null)
@@ -57,7 +57,7 @@ namespace SmartRentCar.Repositories.Impl
             return query.ToListAsync();
         }
 
-        public async Task<List<Car>> GetCars(FilterToCars filter)
+        public async Task<List<Car>> GetCarsByFilter(FilterToCars filter)
         {
             var query = _context.Cars.Where(car =>
                (!filter.CostMin.HasValue || car.CostPerDay >= filter.CostMin.Value) &&

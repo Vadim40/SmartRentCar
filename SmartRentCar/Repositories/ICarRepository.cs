@@ -6,13 +6,13 @@ namespace SmartRentCar.Repositories
 {
     public interface ICarRepository
     {
-        public Task<List<Car>> GetCars(FilterToCars filter);
-        public Task<Car> GetCar(int carId);
+        public Task<List<Car>> GetCarsByFilter(FilterToCars filter);
+        public Task<Car> GetCarById(int carId);
         
         public Task<int> SaveCar (Car car);
         public Task UpdateCar (Car car);
 
-        public Task DeleteCar (int carId);
+        public Task DeleteCarById (int carId);
 
         public Task<List<CarBrand>> GetCarBrands();
         public Task<List<CarClass>> GetCarClasses();

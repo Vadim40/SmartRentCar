@@ -12,7 +12,7 @@ namespace SmartRentCar.Repositories.Impl
         {
             _context = context;
         }
-        public async Task DeleteRentContract(int contractId)
+        public async Task DeleteRentContractById(int contractId)
         {
             var contract = await _context.RentContracts.FindAsync(contractId);
             if (contract != null)

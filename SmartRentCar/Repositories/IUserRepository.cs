@@ -4,11 +4,11 @@ namespace SmartRentCar.Repositories
 {
     public interface IUserRepository
     {
-        public Task<User> GetUser(int userId);
+        public Task<User> GetUserById(int userId);
 
-        public Task SaveUser(User user);
+        public Task<int> SaveUser(User user);
         public Task UpdateUser(User user);
-        public Task DeleteUser(int userId);
+        public Task DeleteUserById(int userId);
 
     }
 }

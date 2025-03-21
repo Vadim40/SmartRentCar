@@ -9,7 +9,7 @@ namespace SmartRentCar.Repositories
         public Task<int> SaveRentContract(RentContract contract);
         public Task UpdateRentContract (RentContract contract);
 
-        public Task DeleteRentContract (int contractId);
+        public Task DeleteRentContractById (int contractId);
     }
 }
 

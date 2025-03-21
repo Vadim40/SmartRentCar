@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "g4jFdJn+T2oRUwd8CES3fSgNynO4m+2B2IH5xGwNzbo=",
+  "Hash": "79adMpdT6IxFL9u5Iw96U0x4hjsi7I81XdbYuh1Rtsg=",
   "Source": "SmartRentCar",
   "BasePath": "_content/SmartRentCar",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "SmartRentCar\\wwwroot",
       "Source": "SmartRentCar",
-      "ContentRoot": "d:\\Learning\\SmartRentCar\\SmartRentCar\\wwwroot\\",
+      "ContentRoot": "D:\\Learning\\SmartRentCar\\SmartRentCar\\wwwroot\\",
       "BasePath": "_content/SmartRentCar",
       "Pattern": "**"
     }

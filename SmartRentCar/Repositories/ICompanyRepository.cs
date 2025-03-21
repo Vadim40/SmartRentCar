@@ -4,6 +4,6 @@ namespace SmartRentCar.Repositories
 {
     public interface ICompanyRepository
     {
-        public Task<Company> GetCompany(int companyId);
+        public Task<Company> GetCompanyById(int companyId);
     }
 }

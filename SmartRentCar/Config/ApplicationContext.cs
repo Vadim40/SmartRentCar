@@ -6,6 +6,9 @@ namespace SmartRentCar.Config
 {
     public class ApplicationContext : DbContext
     {
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        {
+        }
         public DbSet<User> Users => Set<User>();
         public DbSet<Car> Cars => Set<Car>();
         public DbSet<Company> Companys => Set<Company>();
@@ -17,7 +20,6 @@ namespace SmartRentCar.Config
         public DbSet<CarImage> CarImages => Set<CarImage>();
         public DbSet<CarTransmission> CarTransmissions => Set<CarTransmission>();
 
-        public ApplicationContext() => Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=smartRentCar.db");
