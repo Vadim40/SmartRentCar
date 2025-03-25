@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "D:\\Learning\\SmartRentCar\\SmartRentCar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\services\\icarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:services\\icarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\carinfo\\carimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\carinfo\\carimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\carinfo\\carbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\carinfo\\carbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\cardto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\cardto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\config\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:config\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\controllers\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:controllers\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\impl\\carrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\impl\\carrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\config\\applicationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,164 +39,24 @@
       "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\services\\impl\\rentcontractserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:services\\impl\\rentcontractserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\services\\impl\\companyserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:services\\impl\\companyserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\services\\impl\\carserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:services\\impl\\carserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\impl\\carrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\impl\\carrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\impl\\companyrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\impl\\companyrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\icompanyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\icompanyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\companydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\companydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\config\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:config\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\cardto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\cardto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\cartransmissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\cartransmissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\carinfo\\cartransmission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\carinfo\\cartransmission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\carfueltypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\carfueltypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\carinfo\\carfueltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\carinfo\\carfueltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\carclassdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\carclassdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\carinfo\\carclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\carinfo\\carclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\carbranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\carbranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\carinfo\\carbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\carinfo\\carbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\carinfo\\carimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\carinfo\\carimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\services\\impl\\userserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:services\\impl\\userserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\rentcontractdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\rentcontractdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\rentcontractstatuses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\rentcontractstatuses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\filtertocars.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\filtertocars.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\dto\\carimagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:dto\\carimagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\clientapp\\src\\app\\models\\car.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:clientapp\\src\\app\\models\\car.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\rentcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\rentcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\impl\\userrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\impl\\userrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\impl\\rentcontractrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\impl\\rentcontractrepositoryimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\services\\irentcontractservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:services\\irentcontractservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\irentcontractrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\irentcontractrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\services\\icompanyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:services\\icompanyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\repositories\\icarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:repositories\\icarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\models\\contractstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:models\\contractstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\clientapp\\src\\app\\models\\rent.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:clientapp\\src\\app\\models\\rent.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|d:\\learning\\smartrentcar\\smartrentcar\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A82AFF9E-A1F9-4DEB-8108-083409B56A65}|SmartRentCar.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -182,290 +66,199 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CarServiceImpl.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\Impl\\CarServiceImpl.cs",
-              "RelativeDocumentMoniker": "Services\\Impl\\CarServiceImpl.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\Impl\\CarServiceImpl.cs*",
-              "RelativeToolTip": "Services\\Impl\\CarServiceImpl.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAaAAAA",
+              "DocumentIndex": 0,
+              "Title": "CarImage.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarImage.cs",
+              "RelativeDocumentMoniker": "Models\\CarInfo\\CarImage.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarImage.cs",
+              "RelativeToolTip": "Models\\CarInfo\\CarImage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:35:04.332Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IUserRepository.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\IUserRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\IUserRepository.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\IUserRepository.cs",
-              "RelativeToolTip": "Repositories\\IUserRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T06:57:18.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CompanyRepositoryImpl.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\CompanyRepositoryImpl.cs",
-              "RelativeDocumentMoniker": "Repositories\\Impl\\CompanyRepositoryImpl.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\CompanyRepositoryImpl.cs",
-              "RelativeToolTip": "Repositories\\Impl\\CompanyRepositoryImpl.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T07:36:56.541Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CarRepositoryImpl.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\CarRepositoryImpl.cs",
-              "RelativeDocumentMoniker": "Repositories\\Impl\\CarRepositoryImpl.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\CarRepositoryImpl.cs",
-              "RelativeToolTip": "Repositories\\Impl\\CarRepositoryImpl.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAA9wGIAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T07:11:34.994Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T07:31:25.478Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CompanyServiceImpl.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\Impl\\CompanyServiceImpl.cs",
-              "RelativeDocumentMoniker": "Services\\Impl\\CompanyServiceImpl.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\Impl\\CompanyServiceImpl.cs*",
-              "RelativeToolTip": "Services\\Impl\\CompanyServiceImpl.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:35:19.686Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RentContractServiceImpl.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\Impl\\RentContractServiceImpl.cs",
-              "RelativeDocumentMoniker": "Services\\Impl\\RentContractServiceImpl.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\Impl\\RentContractServiceImpl.cs*",
-              "RelativeToolTip": "Services\\Impl\\RentContractServiceImpl.cs*",
-              "ViewState": "AQIAABgAAAAAAAAAAAAowCEAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T11:27:14.28Z",
+              "WhenOpened": "2025-03-24T09:55:03.365Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ApplicationContext.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Config\\ApplicationContext.cs",
-              "RelativeDocumentMoniker": "Config\\ApplicationContext.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Config\\ApplicationContext.cs",
-              "RelativeToolTip": "Config\\ApplicationContext.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAmwA4AAAA9AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T06:55:18.361Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ICarService.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\ICarService.cs",
-              "RelativeDocumentMoniker": "Services\\ICarService.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\ICarService.cs",
-              "RelativeToolTip": "Services\\ICarService.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAAAAcAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:30:30.529Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ICompanyRepository.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\ICompanyRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\ICompanyRepository.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\ICompanyRepository.cs",
-              "RelativeToolTip": "Repositories\\ICompanyRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T06:57:17.169Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CompanyDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CompanyDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\CompanyDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CompanyDTO.cs",
-              "RelativeToolTip": "DTO\\CompanyDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:57:49.881Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Config\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "Config\\MappingProfile.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Config\\MappingProfile.cs*",
-              "RelativeToolTip": "Config\\MappingProfile.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:24:24.628Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Car.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\Car.cs",
-              "RelativeDocumentMoniker": "Models\\Car.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\Car.cs",
-              "RelativeToolTip": "Models\\Car.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAuwCgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T06:55:01.991Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CarDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\CarDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarDTO.cs",
-              "RelativeToolTip": "DTO\\CarDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:33:43.737Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "CarTransmission.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarTransmission.cs",
-              "RelativeDocumentMoniker": "Models\\CarInfo\\CarTransmission.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarTransmission.cs",
-              "RelativeToolTip": "Models\\CarInfo\\CarTransmission.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:38:00.327Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "CarFuelType.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarFuelType.cs",
-              "RelativeDocumentMoniker": "Models\\CarInfo\\CarFuelType.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarFuelType.cs",
-              "RelativeToolTip": "Models\\CarInfo\\CarFuelType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:37:38.425Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "CarClass.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarClass.cs",
-              "RelativeDocumentMoniker": "Models\\CarInfo\\CarClass.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarClass.cs",
-              "RelativeToolTip": "Models\\CarInfo\\CarClass.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:49:52.644Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
               "Title": "CarBrand.cs",
               "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarBrand.cs",
               "RelativeDocumentMoniker": "Models\\CarInfo\\CarBrand.cs",
               "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarBrand.cs",
               "RelativeToolTip": "Models\\CarInfo\\CarBrand.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAoAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:49:56.3Z"
+              "WhenOpened": "2025-03-24T09:24:46.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2134626684:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:279999103:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1431621968:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:5:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:6:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "CarBrandDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarBrandDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\CarBrandDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarBrandDTO.cs",
-              "RelativeToolTip": "DTO\\CarBrandDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAFAAAA",
+              "DocumentIndex": 2,
+              "Title": "CarDTO.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarDTO.cs",
+              "RelativeDocumentMoniker": "DTO\\CarDTO.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarDTO.cs",
+              "RelativeToolTip": "DTO\\CarDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:51:58.676Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "CarTransmissionDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarTransmissionDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\CarTransmissionDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarTransmissionDTO.cs*",
-              "RelativeToolTip": "DTO\\CarTransmissionDTO.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:52:48.121Z",
+              "WhenOpened": "2025-03-24T09:25:29.904Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "CarClassDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarClassDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\CarClassDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarClassDTO.cs",
-              "RelativeToolTip": "DTO\\CarClassDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
+              "DocumentIndex": 6,
+              "Title": "Car.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\Car.cs",
+              "RelativeDocumentMoniker": "Models\\Car.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\Car.cs",
+              "RelativeToolTip": "Models\\Car.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAiwCgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:52:07.803Z"
+              "WhenOpened": "2025-03-24T09:15:11.11Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "CarFuelTypeDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarFuelTypeDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\CarFuelTypeDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarFuelTypeDTO.cs",
-              "RelativeToolTip": "DTO\\CarFuelTypeDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "DocumentIndex": 7,
+              "Title": "ApplicationContext.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Config\\ApplicationContext.cs",
+              "RelativeDocumentMoniker": "Config\\ApplicationContext.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Config\\ApplicationContext.cs",
+              "RelativeToolTip": "Config\\ApplicationContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T09:52:32.645Z"
+              "WhenOpened": "2025-03-24T09:14:30.548Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 3,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Config\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Config\\MappingProfile.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Config\\MappingProfile.cs",
+              "RelativeToolTip": "Config\\MappingProfile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T09:14:22.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "car.ts",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\ClientApp\\src\\app\\models\\car.ts",
+              "RelativeDocumentMoniker": "ClientApp\\src\\app\\models\\car.ts",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\ClientApp\\src\\app\\models\\car.ts",
+              "RelativeToolTip": "ClientApp\\src\\app\\models\\car.ts",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-03-24T09:09:21.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAADAAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-24T08:46:03.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAwCsAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T08:44:54.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CarController.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Controllers\\CarController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CarController.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Controllers\\CarController.cs",
+              "RelativeToolTip": "Controllers\\CarController.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T08:42:27.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CarRepositoryImpl.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\CarRepositoryImpl.cs",
+              "RelativeDocumentMoniker": "Repositories\\Impl\\CarRepositoryImpl.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\CarRepositoryImpl.cs",
+              "RelativeToolTip": "Repositories\\Impl\\CarRepositoryImpl.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAkwCAAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T07:49:52.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RentContract.cs",
+              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\RentContract.cs",
+              "RelativeDocumentMoniker": "Models\\RentContract.cs",
+              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\RentContract.cs",
+              "RelativeToolTip": "Models\\RentContract.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAYwCkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T07:43:15.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -473,247 +266,21 @@
               "RelativeToolTip": "Models\\User.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAswCgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T07:44:51.087Z"
+              "WhenOpened": "2025-03-24T07:29:13.103Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\UserDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\UserDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\UserDTO.cs",
-              "RelativeToolTip": "DTO\\UserDTO.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T07:44:47.906Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "UserServiceImpl.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\Impl\\UserServiceImpl.cs",
-              "RelativeDocumentMoniker": "Services\\Impl\\UserServiceImpl.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\Impl\\UserServiceImpl.cs",
-              "RelativeToolTip": "Services\\Impl\\UserServiceImpl.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAwwDgAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T07:38:15.649Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "CarImage.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarImage.cs",
-              "RelativeDocumentMoniker": "Models\\CarInfo\\CarImage.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\CarInfo\\CarImage.cs",
-              "RelativeToolTip": "Models\\CarInfo\\CarImage.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T07:59:13.489Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "RentContractDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\RentContractDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\RentContractDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\RentContractDTO.cs",
-              "RelativeToolTip": "DTO\\RentContractDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T07:30:19.961Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "FilterToCars.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\FilterToCars.cs",
-              "RelativeDocumentMoniker": "DTO\\FilterToCars.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\FilterToCars.cs",
-              "RelativeToolTip": "DTO\\FilterToCars.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T06:58:37.639Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "IUserService.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\IUserService.cs",
-              "RelativeDocumentMoniker": "Services\\IUserService.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\IUserService.cs",
-              "RelativeToolTip": "Services\\IUserService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA0AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:22:46.791Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "CarImageDTO.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarImageDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\CarImageDTO.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\CarImageDTO.cs",
-              "RelativeToolTip": "DTO\\CarImageDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:51:39.829Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "RentContractStatuses.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\RentContractStatuses.cs",
-              "RelativeDocumentMoniker": "DTO\\RentContractStatuses.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\DTO\\RentContractStatuses.cs",
-              "RelativeToolTip": "DTO\\RentContractStatuses.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T08:28:33.332Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "UserRepositoryImpl.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\UserRepositoryImpl.cs",
-              "RelativeDocumentMoniker": "Repositories\\Impl\\UserRepositoryImpl.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\UserRepositoryImpl.cs",
-              "RelativeToolTip": "Repositories\\Impl\\UserRepositoryImpl.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAowB8AAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T07:42:53.945Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "IRentContractService.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\IRentContractService.cs",
-              "RelativeDocumentMoniker": "Services\\IRentContractService.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\IRentContractService.cs",
-              "RelativeToolTip": "Services\\IRentContractService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:58:44.211Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "RentContract.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\RentContract.cs",
-              "RelativeDocumentMoniker": "Models\\RentContract.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\RentContract.cs",
-              "RelativeToolTip": "Models\\RentContract.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAowCYAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T07:30:06.192Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "RentContractRepositoryImpl.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\RentContractRepositoryImpl.cs",
-              "RelativeDocumentMoniker": "Repositories\\Impl\\RentContractRepositoryImpl.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\Impl\\RentContractRepositoryImpl.cs",
-              "RelativeToolTip": "Repositories\\Impl\\RentContractRepositoryImpl.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwCsAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T08:18:26.167Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "ICompanyService.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\ICompanyService.cs",
-              "RelativeDocumentMoniker": "Services\\ICompanyService.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Services\\ICompanyService.cs",
-              "RelativeToolTip": "Services\\ICompanyService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:24:16.109Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "Company.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\Company.cs",
-              "RelativeDocumentMoniker": "Models\\Company.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\Company.cs",
-              "RelativeToolTip": "Models\\Company.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:57:23.72Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "IRentContractRepository.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\IRentContractRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\IRentContractRepository.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\IRentContractRepository.cs",
-              "RelativeToolTip": "Repositories\\IRentContractRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T08:11:22.707Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "ICarRepository.cs",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\ICarRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\ICarRepository.cs",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Repositories\\ICarRepository.cs",
-              "RelativeToolTip": "Repositories\\ICarRepository.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABYAAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T06:57:16.356Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-20T06:25:00.632Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 13,
               "Title": "ContractStatus.cs",
               "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\ContractStatus.cs",
               "RelativeDocumentMoniker": "Models\\ContractStatus.cs",
               "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Models\\ContractStatus.cs",
               "RelativeToolTip": "Models\\ContractStatus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T08:25:52.641Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "rent.ts",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\ClientApp\\src\\app\\models\\rent.ts",
-              "RelativeDocumentMoniker": "ClientApp\\src\\app\\models\\rent.ts",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\ClientApp\\src\\app\\models\\rent.ts",
-              "RelativeToolTip": "ClientApp\\src\\app\\models\\rent.ts",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-03-20T08:13:21.623Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "D:\\Learning\\SmartRentCar\\SmartRentCar\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-20T06:25:03.85Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T07:28:54.706Z",
+              "EditorCaption": ""
             }
           ]
         }

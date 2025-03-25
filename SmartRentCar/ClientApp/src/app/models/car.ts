@@ -2,10 +2,10 @@ export interface Car {
     carId: number;
     carName: string; 
     fuelTypeName: string; 
-    carClassName: string; 
-    carTransmissioName: string; 
+    className: string; 
+    transmissioName: string; 
     carImages: string[]; 
-    cost: number; 
+    costPerDay: number; 
     deposit: number; 
     seats: number; 
     airConditioning: boolean; 
@@ -24,10 +24,10 @@ export const cars: Car[] = [
         carId: 1,
         carName: "Toyota Camry",
         fuelTypeName: "Бензин",
-        carClassName: "Седан",
-        carTransmissioName: "Автоматическая",
+        className: "Седан",
+        transmissioName: "Автоматическая",
         carImages: ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg", "assets/1.jpg"],
-        cost: 3000,
+        costPerDay: 3000,
         deposit: 15000,
         seats: 5,
         airConditioning: true,
@@ -42,10 +42,10 @@ export const cars: Car[] = [
         carId: 2,
         carName: "Honda Accord",
         fuelTypeName: "Бензин",
-        carClassName: "Седан",
-        carTransmissioName: "Механическая",
+        className: "Седан",
+        transmissioName: "Механическая",
         carImages: ["assets/2.jpg", "assets/4.jpg", "assets/5.jpg"],
-        cost: 2800,
+        costPerDay: 2800,
         deposit: 14000,
         seats: 5,
         airConditioning: true,
@@ -60,10 +60,10 @@ export const cars: Car[] = [
         carId: 3,
         carName: "Ford Focus",
         fuelTypeName: "Дизель",
-        carClassName: "Хэтчбек",
-        carTransmissioName: "Автоматическая",
+        className: "Хэтчбек",
+        transmissioName: "Автоматическая",
         carImages: ["assets/3.jpg", "assets/1.jpg", "assets/4.jpg"],
-        cost: 2500,
+        costPerDay: 2500,
         deposit: 12000,
         seats: 5,
         airConditioning: true,
@@ -78,10 +78,10 @@ export const cars: Car[] = [
         carId: 4,
         carName: "Hyundai Tucson",
         fuelTypeName: "Газ",
-        carClassName: "Кроссовер",
-        carTransmissioName: "Автоматическая",
+        className: "Кроссовер",
+        transmissioName: "Автоматическая",
         carImages: ["assets/4.jpg", "assets/2.jpg", "assets/5.jpg"],
-        cost: 4000,
+        costPerDay: 4000,
         deposit: 20000,
         seats: 7,
         airConditioning: true,
@@ -96,10 +96,10 @@ export const cars: Car[] = [
         carId: 5,
         carName: "BMW 5 Series",
         fuelTypeName: "Бензин",
-        carClassName: "Седан",
-        carTransmissioName: "Автоматическая",
+        className: "Седан",
+        transmissioName: "Автоматическая",
         carImages: ["assets/5.jpg", "assets/3.jpg", "assets/1.jpg"],
-        cost: 5000,
+        costPerDay: 5000,
         deposit: 25000,
         seats: 5,
         airConditioning: true,

@@ -83,7 +83,7 @@ export class CarBookingComponent implements OnInit {
 
   private calculateCost(startDate: Date, endDate: Date): void {
     const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-    this.totalCost = days * this.car.cost + this.car.deposit;
+    this.totalCost = days * this.car.costPerDay + this.car.deposit;
     this.canProceed = true;
   }
 

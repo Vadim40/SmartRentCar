@@ -9,10 +9,10 @@ namespace SmartRentCar.DTO
         public int CarId { get; set; }
 
  
-        public int ClassName { get; set; }
+        public string ClassName { get; set; }
 
-        public int FuelTypeName { get; set; }
-        public int TransmissionTypeName{ get; set; }
+        public string FuelTypeName { get; set; }
+        public string TransmissionTypeName{ get; set; }
 
         public decimal CostPerDay { get; set; }
         public decimal DepositAmount { get; set; }

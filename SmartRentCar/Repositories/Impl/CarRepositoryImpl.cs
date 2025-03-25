@@ -26,7 +26,12 @@ namespace SmartRentCar.Repositories.Impl
 
         public async Task<Car> GetCarById(int carId)
         {
-            var car = await _context.Cars.FindAsync(carId);
+            var car = await _context.Cars
+                .Include(car => car.CarClass)
+                .Include(car => car.CarTransmission)
+                .Include(car => car.CarFuelType)
+                .Include(car => car.CarBrand)
+                .FirstAsync(car => car.CarId == carId);
             if (car == null)
             {
                 throw new KeyNotFoundException($"Car with Id {carId} not found");
