@@ -17,6 +17,5 @@ export interface CarTransmission {
 }
 export interface CarImage {
     carImageId: number;
-    carId: number;
     imageDate: Blob;
 }

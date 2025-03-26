@@ -62,7 +62,8 @@
               "browserTarget": "SmartRentCar:build:production"
             },
             "development": {
-              "browserTarget": "SmartRentCar:build:development"
+              "browserTarget": "SmartRentCar:build:development",
+               "proxyConfig": "proxy.conf.js"
             }
           },
           "defaultConfiguration": "development",

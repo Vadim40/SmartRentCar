@@ -8,7 +8,7 @@
 
 <div class="summary-container">
   <span>Цена за день: {{ car.costPerDay }} ₽</span>
-  <span>Залог: {{ car.deposit }} ₽</span>
+  <span>Залог: {{ car.depositAmount }} ₽</span>
   <span *ngIf="totalCost > 0">Общая стоимость: {{ totalCost }} ₽</span>
 </div>
 
@@ -22,7 +22,7 @@
       <p><strong>Автомобиль:</strong> {{ car.carName }}</p>
       <p><strong>Даты аренды:</strong> {{ selectedDateRange }}</p>
       <p><strong>Общая стоимость:</strong> {{ totalCost }} ₽</p>
-      <p><strong>Залог:</strong> {{ car.deposit }} ₽</p>
+      <p><strong>Залог:</strong> {{ car.depositAmount }} ₽</p>
     </div>
     <div class="confirmation">
       <button class="action-button confirm-button" (click)="confirmBooking()">Подтвердить</button>

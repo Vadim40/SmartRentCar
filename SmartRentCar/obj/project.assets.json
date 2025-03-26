@@ -3716,11 +3716,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Learning\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
+      "projectUniqueName": "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
       "projectName": "SmartRentCar",
-      "projectPath": "D:\\Learning\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
+      "projectPath": "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
       "packagesPath": "C:\\Users\\HRYSHYNVA\\.nuget\\packages\\",
-      "outputPath": "D:\\Learning\\SmartRentCar\\SmartRentCar\\obj\\",
+      "outputPath": "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HRYSHYNVA\\AppData\\Roaming\\NuGet\\NuGet.Config",

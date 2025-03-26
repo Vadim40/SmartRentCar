@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "S3/LsTdzbW8=",
+  "dgSpecHash": "z54Dnvj/Vhw=",
   "success": true,
-  "projectFilePath": "D:\\Learning\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
+  "projectFilePath": "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HRYSHYNVA\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\HRYSHYNVA\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

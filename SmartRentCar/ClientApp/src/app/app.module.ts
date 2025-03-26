@@ -18,6 +18,7 @@ import { AccountComponent } from './components/account/account.component';
 import { CarComponent } from './components/car/car.component';
 import { CarBookingComponent } from './components/car-booking/car-booking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     DxButtonModule,

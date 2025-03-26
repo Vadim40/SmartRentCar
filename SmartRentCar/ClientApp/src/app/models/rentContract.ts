@@ -1,6 +1,6 @@
 import { Car, cars } from "./car";
 
-export interface Rent {
+export interface RentContract {
     rentId: number;
     car: Car;
     startDate: Date;
@@ -9,7 +9,7 @@ export interface Rent {
     deposit: number;
 }
 
-export const RentActive: Rent[] = [
+export const RentActive: RentContract[] = [
     {
         rentId: 101,
         car: cars[2],
@@ -20,7 +20,7 @@ export const RentActive: Rent[] = [
     }
 ];
 
-export const RentHistory: Rent[] = [
+export const RentHistory: RentContract[] = [
     {
         rentId: 201,
         car: cars[0],

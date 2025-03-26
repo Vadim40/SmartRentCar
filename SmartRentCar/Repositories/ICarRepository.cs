@@ -19,8 +19,8 @@ namespace SmartRentCar.Repositories
         public Task<List<CarFuelType>> GetCarFuelTypes();
         public Task<List<CarTransmission>> GetCarTransmissions();
 
-        public Task<List<CarImage>> GetCarImages(int carId);
-        public Task<CarImage> GetFirstCarImage(int carId);
+        public Task<List<CarImage>> GetCarImagesById(int carId);
+        public Task<CarImage> GetFirstCarImageById(int carId);
 
     }
 }

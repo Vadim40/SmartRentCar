@@ -11,7 +11,7 @@ namespace SmartRentCar.Models.CarInfo
         [ForeignKey("Car")]
         public int CarId { get; set; }
      
-        public byte[] ImageData { get; set; }
+        public string? ImageData { get; set; }
 
         public Car Car { get; set; }
     }

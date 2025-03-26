@@ -11,6 +11,9 @@ namespace SmartRentCar.Services
 
         public Task DeleteCarById(int carId);
 
+        public Task<List<CarImageDTO>> GetCarImagesById( int carId);
+        public Task<CarImageDTO> GetCarImageById(int carId);
+
         public Task<List<CarBrandDTO>> GetCarBrands();
         public Task<List<CarClassDTO>> GetCarClasses();
         public Task<List<CarFuelTypeDTO>> GetCarFuelTypes();

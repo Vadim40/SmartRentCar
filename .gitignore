@@ -26,18 +26,18 @@ dist/
 .angular.json
 package-lock.json
 
-# Артефакты сборки
-bin/
-obj/
-build/
-publish/
-debug/
-release/
+# Артефакты сборки (обобщение для всех уровней вложенности)
+**/bin/
+**/obj/
+**/build/
+**/publish/
+**/debug/
+**/release/
 
 # NuGet
 *.nupkg
 *.snupkg
-/packages/
+**/packages/
 project.lock.json
 project.fragment.lock.json
 
@@ -46,7 +46,14 @@ project.fragment.lock.json
 *.ldf
 
 # IIS/ASP.NET временные файлы
-iisexpress/
+**/iisexpress/
 ~$*
 *~
 aspnet_client/
+
+# Дополнительные файлы для отладки
+*.ilk
+*.ipdb
+*.iobj
+*.tlog
+*.manifest

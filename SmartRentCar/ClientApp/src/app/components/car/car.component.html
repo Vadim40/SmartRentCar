@@ -4,19 +4,19 @@
     <div class="car-details">
       <div class="car-images">
         <div class="main-image">
-          <img [src]="car.carImages[0]" [alt]="car.carName" />
+          <!-- <img [src]="car.carImages[0]" [alt]="car.carName" /> -->
         </div>
         <div class="thumbnail-images">
-          <img *ngFor="let img of car.carImages.slice(1, 3)" [src]="img" [alt]="car.carName" />
+          <!-- <img *ngFor="let img of car.carImages.slice(1, 3)" [src]="img" [alt]="car.carName" /> -->
         </div>
-        <div *ngIf="car.carImages.length > 3" class="additional-images">
+        <!-- <div *ngIf="car.carImages.length > 3" class="additional-images"> -->
           <button
             class="action-button"
             (onClick)="viewMoreImages()">
             Посмотреть больше
           </button>
 
-        </div>
+        <!-- </div> -->
         
       </div>
 
@@ -34,11 +34,11 @@
           </tr>
           <tr>
             <td>Класс</td>
-            <td>{{ car.carClassName }}</td>
+            <td>{{ car.className }}</td>
           </tr>
           <tr>
             <td>Трансмиссия</td>
-            <td>{{ car.carTransmissioName }}</td>
+            <td>{{ car.transmissioName }}</td>
           </tr>
           <tr>
             <td>Цена за день</td>
@@ -46,7 +46,7 @@
           </tr>
           <tr>
             <td>Залог</td>
-            <td>{{ car.deposit }} ₽</td>
+            <td>{{ car.depositAmount }} ₽</td>
           </tr>
           <tr>
             <td>Количество мест</td>

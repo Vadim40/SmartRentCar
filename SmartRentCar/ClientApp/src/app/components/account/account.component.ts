@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Rent, RentActive, RentHistory } from 'src/app/models/rent';
+import { RentContract, RentActive, RentHistory } from 'src/app/models/rentContract';
 import { User } from 'src/app/models/user';
 
 
@@ -18,9 +18,9 @@ export class AccountComponent {
     license: '1234-567890'
 };
 
-  rentActive: Rent [] = RentActive
+  rentActive: RentContract [] = RentActive
 
-  rentHistory: Rent [] = RentHistory
+  rentHistory: RentContract [] = RentHistory
 
 activeTab: string = 'activeRents';
 setActiveTab(tabName: string) {
@@ -31,7 +31,7 @@ editUser() {
   console.log('Редактирование пользователя');
 }
 
-cancelRent(rent: Rent) {
+cancelRent(rent: RentContract) {
   console.log(`Бронирование ${rent.rentId} отменено`);
 }
 }

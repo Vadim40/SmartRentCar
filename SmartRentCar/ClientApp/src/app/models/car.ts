@@ -1,12 +1,14 @@
+import { CarImage } from "./carInfo";
+
 export interface Car {
     carId: number;
     carName: string; 
     fuelTypeName: string; 
     className: string; 
     transmissioName: string; 
-    carImages: string[]; 
+    carImages?: CarImage[]; 
     costPerDay: number; 
-    deposit: number; 
+    depositAmount: number; 
     seats: number; 
     airConditioning: boolean; 
     gps: boolean; 
@@ -26,9 +28,8 @@ export const cars: Car[] = [
         fuelTypeName: "Бензин",
         className: "Седан",
         transmissioName: "Автоматическая",
-        carImages: ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg", "assets/1.jpg"],
         costPerDay: 3000,
-        deposit: 15000,
+        depositAmount: 15000,
         seats: 5,
         airConditioning: true,
         gps: true,
@@ -44,9 +45,8 @@ export const cars: Car[] = [
         fuelTypeName: "Бензин",
         className: "Седан",
         transmissioName: "Механическая",
-        carImages: ["assets/2.jpg", "assets/4.jpg", "assets/5.jpg"],
         costPerDay: 2800,
-        deposit: 14000,
+        depositAmount: 14000,
         seats: 5,
         airConditioning: true,
         gps: false,
@@ -62,9 +62,8 @@ export const cars: Car[] = [
         fuelTypeName: "Дизель",
         className: "Хэтчбек",
         transmissioName: "Автоматическая",
-        carImages: ["assets/3.jpg", "assets/1.jpg", "assets/4.jpg"],
         costPerDay: 2500,
-        deposit: 12000,
+        depositAmount: 12000,
         seats: 5,
         airConditioning: true,
         gps: false,
@@ -80,9 +79,8 @@ export const cars: Car[] = [
         fuelTypeName: "Газ",
         className: "Кроссовер",
         transmissioName: "Автоматическая",
-        carImages: ["assets/4.jpg", "assets/2.jpg", "assets/5.jpg"],
         costPerDay: 4000,
-        deposit: 20000,
+        depositAmount: 20000,
         seats: 7,
         airConditioning: true,
         gps: true,
@@ -98,9 +96,8 @@ export const cars: Car[] = [
         fuelTypeName: "Бензин",
         className: "Седан",
         transmissioName: "Автоматическая",
-        carImages: ["assets/5.jpg", "assets/3.jpg", "assets/1.jpg"],
         costPerDay: 5000,
-        deposit: 25000,
+        depositAmount: 25000,
         seats: 5,
         airConditioning: true,
         gps: true,

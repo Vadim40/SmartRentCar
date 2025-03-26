@@ -1,5 +1,4 @@
-﻿using SmartRentCar.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿
 
 namespace SmartRentCar.DTO
 {

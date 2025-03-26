@@ -29,7 +29,7 @@
             <div  class ="tab-content" *ngIf="activeTab === 'activeRents'">
 
                 <div class="car-item" *ngFor="let rent of rentActive">
-                    <img [src]="rent.car.carImages[0]" alt="{{ rent.car.carName }}" class="car-image" />
+                    <!-- <img [src]="rent.car.carImages[0]" alt="{{ rent.car.carName }}" class="car-image" /> -->
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">
@@ -49,7 +49,7 @@
             <!-- Вкладка истории аренд -->
             <div class ="tab-content" *ngIf="activeTab === 'rentHistory'">
                 <div class="car-item" *ngFor="let rent of rentHistory">
-                    <img [src]="rent.car.carImages[0]" alt="{{ rent.car.carName }}" class="car-image" />
+                    <!-- <img [src]="rent.car.carImages[0]" alt="{{ rent.car.carName }}" class="car-image" /> -->
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">

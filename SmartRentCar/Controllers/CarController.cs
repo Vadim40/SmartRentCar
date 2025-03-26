@@ -142,5 +142,34 @@ namespace SmartRentCar.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("{id}/images")]
+        public async Task<ActionResult> GetCarImagesById([FromRoute] int id)
+        {
+            try
+            {
+                var carImages = await _carService.GetCarImagesById(id);
+                return Ok(carImages);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("{id}/image")]
+        public async Task<ActionResult> GetCarImageById([FromRoute] int id)
+        {
+            try
+            {
+                var carImage = await _carService.GetCarImageById(id);
+                return Ok(carImage);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
+
 }

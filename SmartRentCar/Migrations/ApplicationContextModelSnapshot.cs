@@ -118,9 +118,8 @@ namespace SmartRentCar.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte[]>("ImageData")
-                        .IsRequired()
-                        .HasColumnType("BLOB");
+                    b.Property<string>("ImageData")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CarImageId");
 
@@ -222,6 +221,23 @@ namespace SmartRentCar.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("RentContracts");
+                });
+
+            modelBuilder.Entity("SmartRentCar.Models.TestCarImage", b =>
+                {
+                    b.Property<int>("CarImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("BLOB");
+
+                    b.HasKey("CarImageId");
+
+                    b.ToTable("TestCarImages");
                 });
 
             modelBuilder.Entity("SmartRentCar.Models.User", b =>

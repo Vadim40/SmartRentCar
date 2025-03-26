@@ -9,7 +9,7 @@ namespace SmartRentCar.Services.Impl
     {
         private readonly ICarRepository _carRepository;
         private readonly IMapper _mapper;
-        public CarServiceImpl (ICarRepository carRepository, IMapper mapper)
+        public CarServiceImpl(ICarRepository carRepository, IMapper mapper)
         {
             _carRepository = carRepository;
             _mapper = mapper;
@@ -78,6 +78,33 @@ namespace SmartRentCar.Services.Impl
             }
         }
 
+        public async Task<CarImageDTO> GetCarImageById(int carId)
+        {
+            try
+            {
+                var carImage = await _carRepository.GetFirstCarImageById(carId);
+                return _mapper.Map<CarImageDTO>(carImage);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public async Task<List<CarImageDTO>> GetCarImagesById(int carId)
+        {
+            try
+            {
+                var carImages = await _carRepository.GetCarImagesById(carId);
+                return _mapper.Map<List<CarImageDTO>>(carImages);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<List<CarDTO>> GetCarsByFilter(FilterToCars filter)
         {
             try
@@ -122,7 +149,7 @@ namespace SmartRentCar.Services.Impl
             try
             {
                 var car = _mapper.Map<Car>(carDTO);
-               await _carRepository.UpdateCar(car);
+                await _carRepository.UpdateCar(car);
             }
             catch (Exception ex)
             {
