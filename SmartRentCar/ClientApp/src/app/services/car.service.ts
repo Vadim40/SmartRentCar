@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { FilterToCars } from '../models/filtetToCars';
 import { Observable } from 'rxjs';
 import { Car } from '../models/car';
-import { CarBrand, CarClass, CarFuelType, CarImage, CarTransmission } from '../models/carInfo';
+import { CarBrand, CarClass, CarFuelType, CarImage, CarTransmissionType } from '../models/carInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +39,8 @@ export class CarService extends HttpService {
     if (filter.carClasses && filter.carClasses.length > 0) {
       params = params.set('carClasses', filter.carClasses.join(','));
     }
-    if (filter.carTransimission) {
-      params = params.set('carTransimission', filter.carTransimission.toString());
+    if (filter.carTransmission) {
+      params = params.set('carTransimissionType', filter.carTransmission.toString());
     }
     if (filter.carFuel) {
       params = params.set('carFuel', filter.carFuel.toString());
@@ -57,16 +57,16 @@ export class CarService extends HttpService {
   }
 
 
-  getCarFuelTypes(): Observable<CarFuelType[]> {
-    const url = `${this.apiUrl}/brands`;
+  getFuelTypes(): Observable<CarFuelType[]> {
+    const url = `${this.apiUrl}/fuel-types`;
     return this.sendRequest(url, 'GET')
   }
-  getCarTransmissions(): Observable<CarTransmission[]> {
-    const url = `${this.apiUrl}/brands`;
+  getTransmissionTypes(): Observable<CarTransmissionType[]> {
+    const url = `${this.apiUrl}/transmissions`;
     return this.sendRequest(url, 'GET')
   }
   getCarClasses(): Observable<CarClass[]> {
-    const url = `${this.apiUrl}/brands`;
+    const url = `${this.apiUrl}/classes`;
     return this.sendRequest(url, 'GET')
   }
   getBrands(): Observable<CarBrand[]> {

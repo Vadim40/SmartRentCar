@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RentContract, RentActive, RentHistory } from 'src/app/models/rentContract';
+import { RentContract } from 'src/app/models/rentContract';
 import { User } from 'src/app/models/user';
 
 
@@ -18,9 +18,9 @@ export class AccountComponent {
     license: '1234-567890'
 };
 
-  rentActive: RentContract [] = RentActive
+  rentActive: RentContract [] = [];
 
-  rentHistory: RentContract [] = RentHistory
+  rentHistory: RentContract [] = [];
 
 activeTab: string = 'activeRents';
 setActiveTab(tabName: string) {

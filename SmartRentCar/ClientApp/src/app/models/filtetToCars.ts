@@ -5,6 +5,6 @@ export interface FilterToCars {
     depositMax?: number;
     carBrands?: number [];
     carClasses?: number [];
-    carTransimission?: number;
+    carTransmission?: number;
     carFuel?: number;
 }

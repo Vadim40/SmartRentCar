@@ -8,7 +8,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatSelectModule } from '@angular/material/select';
 import { DxButtonModule, DxDateBoxModule, DxTextBoxModule, DxSelectBoxModule, DxListModule, DxDateRangeBoxModule, DxCalendarModule } from 'devextreme-angular';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -38,7 +38,6 @@ import { HttpClientModule } from '@angular/common/http';
     DxButtonModule,
     DxDateBoxModule,
     DxTextBoxModule,
-    DxSelectBoxModule,
     DxListModule,
     DxDateRangeBoxModule,
     DxCalendarModule,
@@ -48,7 +47,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

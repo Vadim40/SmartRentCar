@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj": {}
+    "e:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj": {
+    "e:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
+        "projectUniqueName": "e:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
         "projectName": "SmartRentCar",
-        "projectPath": "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
+        "projectPath": "e:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\SmartRentCar.csproj",
         "packagesPath": "C:\\Users\\HRYSHYNVA\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\obj\\",
+        "outputPath": "e:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HRYSHYNVA\\AppData\\Roaming\\NuGet\\NuGet.Config",

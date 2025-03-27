@@ -6,7 +6,7 @@ namespace SmartRentCar.DTO
     {
         public int CarImageId { get; set; }
 
-        public byte[] ImageData { get; set; }
+        public string ImageData { get; set; }
 
     }
 }

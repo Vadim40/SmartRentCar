@@ -4,20 +4,18 @@
     <div class="car-details">
       <div class="car-images">
         <div class="main-image">
-          <!-- <img [src]="car.carImages[0]" [alt]="car.carName" /> -->
+          <img [src]="car.carImages[0].imageData" [alt]="car.carName" />
         </div>
         <div class="thumbnail-images">
-          <!-- <img *ngFor="let img of car.carImages.slice(1, 3)" [src]="img" [alt]="car.carName" /> -->
+          <img *ngFor="let img of car.carImages.slice(1, 3)" [src]="img.imageData" [alt]="car.carName" />
         </div>
-        <!-- <div *ngIf="car.carImages.length > 3" class="additional-images"> -->
-          <button
-            class="action-button"
-            (onClick)="viewMoreImages()">
+        <div *ngIf="car.carImages.length > 3" class="additional-images">
+          <button class="action-button" (onClick)="viewMoreImages()">
             Посмотреть больше
           </button>
 
-        <!-- </div> -->
-        
+        </div>
+
       </div>
 
       <!-- Правый блок: информация об автомобиле -->
@@ -38,7 +36,7 @@
           </tr>
           <tr>
             <td>Трансмиссия</td>
-            <td>{{ car.transmissioName }}</td>
+            <td>{{ car.transmissionTypeName }}</td>
           </tr>
           <tr>
             <td>Цена за день</td>
@@ -62,7 +60,7 @@
           </tr>
         </table>
       </div>
-      
+
     </div>
 
     <div class="company-info">

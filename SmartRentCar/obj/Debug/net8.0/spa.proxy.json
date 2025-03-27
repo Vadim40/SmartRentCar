@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:4200",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "E:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\ClientApp",
+"WorkingDirectory": "e:\\Projects\\Sma\\SmartRentCar\\SmartRentCar\\ClientApp",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

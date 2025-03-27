@@ -32,34 +32,43 @@
 .filters {
     display: flex;
     flex-direction: column;
-    height: 40px;
     font-size: 15px;
     font-weight: 400;
-    position: relative;
+
     background-color: #dbd4c5;
+    height: auto;
+    margin-bottom: 15px;
 }
 
 label {
-    position: absolute;
-    top: -10px;
-    left: 10px;
     padding: 0 5px;
     font-size: 13px;
     font-weight: 400;
     background-color: #dbd4c5;
-    z-index: 1;
     color: #232323;
-    ;
 }
 
-.filters dx-select-box {
-    position: relative;
-    display: block;
-    border: 1px solid #232323;
-    border-radius: 4px;
-    padding: 5px;
-    background-color: #dbd4c5;
+mat-label {
+    font-size: 13px !important; /* Установка точного размера */
+    font-weight: 400 !important; /* Установка веса шрифта */
+    color: #232323 !important; /* Цвет текста */
+    margin-bottom: 5px !important; /* Отступ, если требуется */
+    background-color: transparent; /* Убедитесь, что нет лишнего фона */
 }
+
+
+
+.filters select, .filters mat-select {
+    display: block;
+    border: 1px solid #232323 !important; 
+    border-radius: 4px !important;
+    padding: 10px !important;
+    background-color: #dbd4c5 !important;
+    color: #232323 !important;
+    font-size: 15px !important;
+    box-sizing: border-box; /* Учитываем padding и границу */
+}
+
 
 .date-box {
     position: relative;
