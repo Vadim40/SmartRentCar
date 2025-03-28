@@ -15,11 +15,19 @@ export class CarListComponent {
 
 
   cars: Car[] = [];
-  filter: FilterToCars = {};
+  filter: FilterToCars = {
+    carClasses: [0],
+    carBrands: [0],
+    carFuel: 0,
+    carTransmission: 0
+  };
   carBrands: CarBrand [] = [];
   carClasses: CarClass [] = [];
   carFuelTypes: CarFuelType [] = [];
   carTransmissionTypes: CarTransmissionType [] = []
+
+  selectedCarClasses: number [] = [];
+  selectedCarBrands: number [] = [];
   constructor(
     private router: Router,
     private carService: CarService
@@ -119,73 +127,30 @@ export class CarListComponent {
   
  
   onCarClassSelectionChange(event: any) {
-    const selectedValues = event.value as Array<number | string>; // Указываем ожидаемый тип массива
-    if (selectedValues.includes(0)) {
-      this.filter.carClasses = [0]; // Если выбрано "Все"
+    if (this.filter.carClasses?.includes(0) && this.selectedCarClasses.length>0 && !this.selectedCarClasses.includes(0)) {
+      this.filter.carClasses = [0]; 
+      this.selectedCarClasses = [0];
     } else {
-      this.filter.carClasses = selectedValues.filter((value: number | string) => value !== 0).map(Number); // Преобразуем в числа
-    }
-    console.log('Выбранные категории:', this.filter.carClasses);
+      this.filter.carClasses = this.filter.carClasses?.filter((value: number) => value !== 0); 
+      this.selectedCarClasses = this.filter.carClasses || []
   }
-  
+}
   
   onCarBrandSelectionChange(event: any) {
-    const selectedValues = event.value as number[]; // Указываем, что это массив чисел
-  
-    if (selectedValues.includes(0)) {
-      // Если выбрано "Все", оставляем только "Все" (0)
-      this.filter.carBrands = [0];
-    } else {
-      // Исключаем "Все" (0) из массива и сохраняем только выбранные бренды
-      this.filter.carBrands = selectedValues.filter((value: number | string) => value !== 0).map(Number); 
-    }
-  
-    console.log('Выбранные бренды:', this.filter.carBrands);
-  }
-  onCarClassChange(event: any) {
-    const selectedOptions = Array.from(event.target.selectedOptions);
-    const selectedValues = Array.from(event.target.selectedOptions)
-    .map((option) => +(option as HTMLOptionElement).value); // Приведение типа
-  
-  
-    if (selectedValues.includes(0)) {
-      this.filter.carClasses = [0]; // Если выбрано "Все", сбрасываем остальные значения
-    } else {
-      this.filter.carClasses = selectedValues.filter(value => value !== 0); // Исключаем "Все"
-    }
-  
-    console.log('Выбранные категории:', this.filter.carClasses);
-  }
-  dropdownOpen = false;
 
-  toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
-  }
-  
-  onCarClassCheckboxChange(event: any) {
-    const value = +event.target.value; // Преобразуем в число
-    const isChecked = event.target.checked;
-  
-    if (value === 0) {
-      // Если выбрано "Все", сбросить остальные
-      this.filter.carClasses = isChecked ? [0] : [];
-    } else {
-      if (isChecked) {
-        // Добавляем категорию
-        this.filter.carClasses = this.filter.carClasses || [];
-        this.filter.carClasses = this.filter.carClasses.filter((val) => val !== 0); // Убираем "Все"
-        this.filter.carClasses.push(value);
-      } else {
-        // Убираем категорию
-        this.filter.carClasses = this.filter.carClasses || [];
-        this.filter.carClasses = this.filter.carClasses.filter((val) => val !== value);
-      }
+    if ( this.filter.carBrands?.includes(0) && this.selectedCarBrands.length>0 && !this.selectedCarBrands.includes(0)) {
+      this.filter.carBrands = [0];
+      this.selectedCarBrands = [0];
+    } 
+    else {
+      this.filter.carBrands = this.filter.carBrands?.filter((value: number) => value !== 0); 
+      this.selectedCarBrands = this.filter.carBrands || []
     }
   
-    console.log('Выбранные категории:', this.filter.carClasses);
   }
-  
-  
+
+
+
   onTransmissionChange(event: any) {
     this.filter.carTransmission = event.target.value === '' ? undefined : +event.target.value;
     

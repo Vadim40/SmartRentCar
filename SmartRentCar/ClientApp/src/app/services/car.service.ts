@@ -33,16 +33,16 @@ export class CarService extends HttpService {
     if (filter.depositMax) {
       params = params.set('depositMax', filter.depositMax.toString());
     }
-    if (filter.carBrands && filter.carBrands.length > 0) {
+    if (filter.carBrands && filter.carBrands?.[0] !=0) {
       params = params.set('carBrands', filter.carBrands.join(','));
     }
-    if (filter.carClasses && filter.carClasses.length > 0) {
+    if (filter.carClasses && filter.carClasses?.[0] !=0) {
       params = params.set('carClasses', filter.carClasses.join(','));
     }
-    if (filter.carTransmission) {
+    if (filter.carTransmission && filter.carTransmission != 0) {
       params = params.set('carTransimissionType', filter.carTransmission.toString());
     }
-    if (filter.carFuel) {
+    if (filter.carFuel && filter.carFuel !=0) {
       params = params.set('carFuel', filter.carFuel.toString());
     }
 

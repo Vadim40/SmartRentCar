@@ -75,8 +75,8 @@ namespace SmartRentCar.Repositories.Impl
                     (!filter.CostMax.HasValue || car.CostPerDay <= filter.CostMax.Value) &&
                     (!filter.DepositMin.HasValue || car.DepositAmount >= filter.DepositMin.Value) &&
                     (!filter.DepositMax.HasValue || car.DepositAmount <= filter.DepositMax.Value) &&
-                    (filter.CarBrands == null || filter.CarBrands.Count == 0 || filter.CarBrands.Contains(car.BrandId)) &&
-                    (filter.CarClasses == null || filter.CarClasses.Count == 0 || filter.CarClasses.Contains(car.ClassId)) &&
+                    (filter.CarBrands == null  || filter.CarBrands.Contains(car.BrandId)) &&
+                    (filter.CarClasses == null || filter.CarClasses.Contains(car.ClassId)) &&
                     (!filter.CarTransmission.HasValue || car.TransmissionTypeId == filter.CarTransmission.Value) &&
                     (!filter.CarFuel.HasValue || car.FuelTypeId == filter.CarFuel.Value)
      );

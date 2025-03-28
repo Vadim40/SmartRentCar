@@ -1,6 +1,6 @@
 .cars-component {
     align-items: center;
-    padding: 30px 60px;
+    padding: 30px 60px 0px 60px;
 }
 
 .filters-container {
@@ -62,14 +62,73 @@ mat-label {
     display: block;
     border: 1px solid #232323 !important; 
     border-radius: 4px !important;
-    padding: 10px !important;
     background-color: #dbd4c5 !important;
     color: #232323 !important;
     font-size: 15px !important;
-    box-sizing: border-box; /* Учитываем padding и границу */
+    min-width: 200px;
+    height: 40px;
 }
+::ng-deep .mat-mdc-select-trigger {
+    display: flex;
+    align-items: center;
+    height: 40px !important; 
+    padding: 0 10px; 
+    box-sizing: border-box;
+  }
+  
+  ::ng-deep .mat-mdc-select-value {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0; 
+  }
+  
+  ::ng-deep .mat-mdc-select-arrow-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%; 
+  }
+  ::ng-deep .mat-mdc-select-panel {
+    background-color: #f2eadd !important; /* Устанавливаем фон для панели */
+  }
+  
+  .mat-mdc-option {
+    font-size: 15px !important; /* Настраиваем размер текста */
+    color: #232323 !important; /* Устанавливаем цвет текста */
+  }
+  
+  .mat-mdc-option:hover {
+    background-color: #dbd4c5 !important; /* Фон при наведении */
+  }
+  
+  .mat-mdc-option.mat-mdc-option-selected {
+    background-color: #b8aa96 !important; /* Фон для выбранного элемента */
+  }
+  ::ng-deep .mat-mdc-option span,
+  ::ng-deep .mat-mdc-option.mdc-list-item--selected span {
+    color: #232323 !important;
+  }
+  
+  ::ng-deep .mat-pseudo-checkbox {
+    border-color: #232323 !important; 
+    background-color: transparent !important; 
+  }
+  
+  ::ng-deep .mat-pseudo-checkbox.mat-pseudo-checkbox-checked{
+    background-color: #232323 !important; 
+    
+  }
+  ::ng-deep .mat-pseudo-checkbox.mat-pseudo-checkbox-checked ::after {
+    border-color: #ddd !important;
+  }
 
-
+  
+  ::ng-deep .mat-pseudo-checkbox.mat-pseudo-checkbox-checked::after {
+    border-color: white !important; /* Меняет цвет границы на белый */
+  }
+  
+  
+  
 .date-box {
     position: relative;
 }
@@ -107,7 +166,7 @@ mat-label {
 
 
 .list-container {
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

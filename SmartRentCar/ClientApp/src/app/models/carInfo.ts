@@ -1,5 +1,5 @@
 export interface CarBrand {
-    carBrandId: number;
+    brandId: number;
     name: string;
 }
 

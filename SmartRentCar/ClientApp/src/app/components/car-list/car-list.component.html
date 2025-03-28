@@ -34,7 +34,6 @@
         
         <div class="row-2">
             <div class="filters">
-                <mat-form-field  floatLabel="always">
                   <label>Категории</label>
                   <mat-select [(value)]="filter.carClasses" multiple (selectionChange)="onCarClassSelectionChange($event)">
                     <mat-option [value]="0">Все</mat-option>
@@ -42,68 +41,39 @@
                       {{ classType.name }}
                     </mat-option>
                   </mat-select>
-                </mat-form-field>
               </div>
               
-                      <!-- <div class="filters">
-                <label class="static-label">Категории</label>
-                <div class="checkbox-group">
-                  <div>
-                    <input 
-                      type="checkbox" 
-                      id="category_all" 
-                      [value]="0" 
-                      (change)="onCarClassCheckboxChange($event)" 
-                      [checked]="filter.carClasses && filter.carClasses.includes(0)" />
-                    <label for="category_all">Все</label>
-                  </div>
-                  <div *ngFor="let classType of carClasses">
-                    <input 
-                      type="checkbox" 
-                      [id]="'category_' + classType.carClassId" 
-                      [value]="classType.carClassId" 
-                      (change)="onCarClassCheckboxChange($event)" 
-                      [checked]="filter.carClasses&& filter.carClasses.includes(classType.carClassId)" />
-                    <label [for]="'category_' + classType.carClassId">
-                      {{ classType.name }}
-                    </label>
-                  </div>
-                </div>
-              </div> -->
-              
-              
+                
             <div class="filters">
-                <mat-form-field>
-                  <mat-label>Марки </mat-label>
-                  <mat-select [(value)]="filter.carBrands" multiple (selectionChange)="onCarBrandSelectionChange($event)">
-                    <mat-option [value]="0">Все</mat-option>
-                    <mat-option *ngFor="let brand of carBrands" [value]="brand.carBrandId">
-                      {{ brand.name }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
+                <label>Марки </label>
+                <mat-select [(value)]="filter.carBrands" multiple (selectionChange)="onCarBrandSelectionChange($event)">
+                  <mat-option [value]="0">Все</mat-option>
+                  <mat-option *ngFor="let brand of carBrands" [value]="brand.brandId">
+                    {{ brand.name }}
+                  </mat-option>
+                </mat-select>
             </div>
               
-              
-              
-           
-            
+            <div class="filters">
+              <label>Трансмиссия</label>
+              <mat-select [(value)]="filter.carTransmission" (selectionChange)="onTransmissionChange($event)">
+                <mat-option [value]="0">Все</mat-option>
+                <mat-option *ngFor="let transmission of carTransmissionTypes" [value]="transmission.carTransmissionId">
+                  {{ transmission.name }}
+                </mat-option>
+              </mat-select>
+            </div>
             
             <div class="filters">
-                <label for="transmissionType">Трансмиссия</label>
-                <select id="transmissionType" (change)="onTransmissionChange($event)">
-                    <option value="">Все</option>
-                    <option *ngFor="let transmission of carTransmissionTypes" [value]="transmission.carTransmissionId">
-                        {{ transmission.name }}</option>
-                </select>
+              <label>Топливо</label>
+              <mat-select [(value)]="filter.carFuel" (selectionChange)="onFuelTypeChange($event)">
+                <mat-option [value]="0">Все</mat-option>
+                <mat-option *ngFor="let fuel of carFuelTypes" [value]="fuel.carFuelTypeId">
+                  {{ fuel.name }}
+                </mat-option>
+              </mat-select>
             </div>
-            <div class="filters">
-                <label for="fuelType">Топливо</label>
-                <select id="fuelType" (change)="onFuelTypeChange($event)">
-                    <option value="">Все</option>
-                    <option *ngFor="let fuel of carFuelTypes" [value]="fuel.carFuelTypeId">{{ fuel.name }}</option>
-                </select>
-            </div>
+            
 
         </div>
     </div>
