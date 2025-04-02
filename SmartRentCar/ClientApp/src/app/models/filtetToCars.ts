@@ -7,4 +7,6 @@ export interface FilterToCars {
     carClasses?: number [];
     carTransmission?: number;
     carFuel?: number;
+    startDate?: Date;
+    endDate?: Date;
 }

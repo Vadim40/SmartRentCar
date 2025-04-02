@@ -24,6 +24,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "date-fns": "^4.1.0",
     "devextreme": "^23.2.12",
     "devextreme-angular": "^23.2.12",
     "flatpickr": "^4.6.13",

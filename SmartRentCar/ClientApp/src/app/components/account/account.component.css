@@ -99,15 +99,22 @@
     height: 540px;
     display: flex;
     flex-wrap: wrap; 
+    align-items: flex-start; 
+    justify-content: flex-start;
     gap: 20px;
-    background-color: #f2eadd;
+    background-color: #dbd4c5;
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    align-items: flex-start;
     overflow-y: auto; 
-    background-color: #dbd4c5;
 }
+
+.tab-content.no-items {
+    align-items: center; 
+    justify-content: center; 
+
+}
+
 
 .car-item {
     flex: 0 1 calc(50% - 40px); 

@@ -4,8 +4,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FilterToCars } from '../models/filtetToCars';
 import { Observable } from 'rxjs';
-import { Car } from '../models/car';
+import { Car, CarBooking } from '../models/car';
 import { CarBrand, CarClass, CarFuelType, CarImage, CarTransmissionType } from '../models/carInfo';
+import { format } from "date-fns";
 
 @Injectable({
   providedIn: 'root'
@@ -22,37 +23,58 @@ export class CarService extends HttpService {
     let params = new HttpParams();
 
     if (filter.costMin) {
-      params = params.set('costMin', filter.costMin.toString());
+      params = params.set('costMin', filter.costMin);
     }
     if (filter.costMax) {
-      params = params.set('costMax', filter.costMax.toString());
+      params = params.set('costMax', filter.costMax);
     }
     if (filter.depositMin) {
-      params = params.set('depositMin', filter.depositMin.toString());
+      params = params.set('depositMin', filter.depositMin);
     }
     if (filter.depositMax) {
-      params = params.set('depositMax', filter.depositMax.toString());
+      params = params.set('depositMax', filter.depositMax);
     }
     if (filter.carBrands && filter.carBrands?.[0] !=0) {
-      params = params.set('carBrands', filter.carBrands.join(','));
+      filter.carBrands.forEach(carBrand =>{
+        params = params.append('carBrands', carBrand);
+      })
     }
     if (filter.carClasses && filter.carClasses?.[0] !=0) {
-      params = params.set('carClasses', filter.carClasses.join(','));
+      filter.carClasses.forEach(carClass =>{
+        params = params.append('carClasses', carClass);
+      })
+     
     }
     if (filter.carTransmission && filter.carTransmission != 0) {
-      params = params.set('carTransimissionType', filter.carTransmission.toString());
+      params = params.set('carTransmission', filter.carTransmission.toString());
     }
     if (filter.carFuel && filter.carFuel !=0) {
       params = params.set('carFuel', filter.carFuel.toString());
     }
 
-    const url = `${this.apiUrl}/filter`;
 
+    if (filter.startDate != null && filter.endDate != null) {
+        const startLocal = format(filter.startDate, "yyyy-MM-dd'T'HH:mm:ss");
+        const endLocal = format(filter.endDate, "yyyy-MM-dd'T'HH:mm:ss");
+    
+        params = params.set('startDate', startLocal);
+        params = params.set('endDate', endLocal);
+    }
+    
+  
+
+    const url = `${this.apiUrl}/filter`;
+    console.log(params)
     return this.sendRequest(url, 'GET', params);
   }
 
   getCar(carId: number): Observable<Car> {
     const url = `${this.apiUrl}/${carId}`;
+    return this.sendRequest(url, 'GET')
+  }
+
+  getCarBookings(carId: number): Observable<CarBooking []> {
+    const url = `${this.apiUrl}/${carId}/bookings`;
     return this.sendRequest(url, 'GET')
   }
 

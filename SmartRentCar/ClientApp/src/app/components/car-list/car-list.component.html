@@ -3,33 +3,52 @@
         <div class="row-1">
             <div class="date-box">
                 <label>Дата с</label>
-                <date-component></date-component>
+                <date-component [date]="startDate" (dateChange)="onStartDateChange($event)"></date-component>
             </div>
             <div class="date-box">
                 <label>Дата по</label>
-                <date-component></date-component>
+                <date-component [date]="endDate" (dateChange)="onEndDateChange($event)" ></date-component>
             </div>
             <div class="text-box">
                 <label>Цена от</label>
-                <dx-text-box placeholder="Цена от" [showClearButton]="true">
-                </dx-text-box>
+                <dx-text-box 
+                placeholder="Цена от" 
+                [showClearButton]="true" 
+                [value]="filter.costMin !== undefined ? filter.costMin.toString() : ''" 
+                (onValueChanged)="onCostMinChange($event)">
+              </dx-text-box>
+              
             </div>
             <div class="text-box">
-                <label>Цена до</label>
-                <dx-text-box placeholder="Цена до" [showClearButton]="true">
-                </dx-text-box>
+              <label>Цена до</label>
+              <dx-text-box 
+                placeholder="Цена до" 
+                [showClearButton]="true" 
+                [value]="filter.costMax !== undefined ? filter.costMax.toString() : ''" 
+                (onValueChanged)="onCostMaxChange($event)">
+              </dx-text-box>
             </div>
+            
             <div class="text-box">
-                <label>Сумма залога от</label>
-                <dx-text-box placeholder="Сумма залога от" [showClearButton]="true">
-                </dx-text-box>
+              <label>Сумма залога от</label>
+              <dx-text-box 
+                placeholder="Сумма залога от" 
+                [showClearButton]="true" 
+                [value]="filter.depositMin !== undefined ? filter.depositMin.toString() : ''" 
+                (onValueChanged)="onDepositMinChange($event)">
+              </dx-text-box>
             </div>
+            
             <div class="text-box">
-                <label>Сумма залога до</label>
-                <dx-text-box placeholder="Сумма залога до" [showClearButton]="true">
-                </dx-text-box>
+              <label>Сумма залога до</label>
+              <dx-text-box 
+                placeholder="Сумма залога до" 
+                [showClearButton]="true" 
+                [value]="filter.depositMax !== undefined ? filter.depositMax.toString() : ''" 
+                (onValueChanged)="onDepositMaxChange($event)">
+              </dx-text-box>
             </div>
-
+            
         </div>
         
         <div class="row-2">
@@ -78,22 +97,27 @@
         </div>
     </div>
     <div class="list-container">
-        <div *ngFor="let car of cars" class="car-item" (click)="redirectToCar(car.carId)">
-            <img class="car-image" [src]="car.carImages[0].imageData" alt="Car Image" />
-            <div class="car-info">
-                <span class="car-title">{{ car.carName }}</span>
-                <div class="car-details">
-                    <span>Топливо: {{ car.fuelTypeName }}</span>
-                    <span>Класс: {{ car.className }}</span>
-                    <span>Трансмиссия: {{ car.transmissionTypeName }}</span>
-                    <div class="cost-container">
-                        <span>Цена : {{car.costPerDay}}</span>
-                        <span>Сумма залога: {{car.depositAmount}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div *ngIf="cars.length === 0" class="no-items">
+          <span>Автомобили не найдены. Попробуйте изменить фильтры.</span>
+      </div>
+  
+      <div *ngFor="let car of cars" class="car-item" (click)="redirectToCar(car.carId)">
+          <img class="car-image" [src]="car.carImages[0].imageData" alt="Car Image" />
+          <div class="car-info">
+              <span class="car-title">{{ car.carName }}</span>
+              <div class="car-details">
+                  <span>Топливо: {{ car.fuelTypeName }}</span>
+                  <span>Класс: {{ car.className }}</span>
+                  <span>Трансмиссия: {{ car.transmissionTypeName }}</span>
+                  <div class="cost-container">
+                      <span>Цена : {{car.costPerDay}}</span>
+                      <span>Сумма залога: {{car.depositAmount}}</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
 
 
 </div>

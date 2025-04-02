@@ -13,10 +13,10 @@ export interface Car {
     airConditioning: boolean; 
     gps: boolean; 
     modelYear: number; 
-    bookings?: BookingPeriod[];
+    bookings?: CarBooking[];
 }
 
-export interface BookingPeriod {
+export interface CarBooking {
     startDate: Date; 
     endDate: Date;   
 }

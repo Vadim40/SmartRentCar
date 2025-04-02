@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using SmartRentCar.Config;
 using SmartRentCar.DTO;
 using SmartRentCar.Models;
 using SmartRentCar.Repositories;
@@ -8,17 +10,40 @@ namespace SmartRentCar.Services.Impl
     public class CarServiceImpl : ICarService
     {
         private readonly ICarRepository _carRepository;
+        private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
-        public CarServiceImpl(ICarRepository carRepository, IMapper mapper)
+        public CarServiceImpl(ICarRepository carRepository, IMapper mapper, ApplicationContext context)
         {
             _carRepository = carRepository;
             _mapper = mapper;
+            _context = context;
+
         }
         public async Task DeleteCarById(int carId)
         {
             try
             {
                 await _carRepository.DeleteCarById(carId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<CarBookingDTO>> GetCarBookings(int carId)
+        {
+            try
+            {
+                return await _context.RentContracts
+                       .Where(r => r.CarId == carId && r.EndDate > DateTime.Now)
+                        .Select(r => new CarBookingDTO
+                        {
+                            StartDate = r.StartDate,
+                            EndDate = r.EndDate
+                        })
+                        .ToListAsync();
+
             }
             catch (Exception ex)
             {

@@ -31,6 +31,7 @@ namespace SmartRentCar.Controllers
             }
         }
 
+
         [HttpGet("brands")]
         public async Task<ActionResult> GetCarBrands()
         {
@@ -94,6 +95,20 @@ namespace SmartRentCar.Controllers
             {
                 var cars = await _carService.GetCarsByFilter(filter);
                 return Ok(cars);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+         [HttpGet("{carId}/bookings")]
+        public async Task<ActionResult> GetCarBookings([FromRoute] int carId)
+        {
+            try
+            {
+                var carBookings = await _carService.GetCarBookings(carId);
+                return Ok(carBookings);
             }
             catch (Exception ex)
             {

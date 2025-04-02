@@ -10,5 +10,8 @@
         public List<int>?CarClasses { get; set; }
         public int? CarTransmission { get; set; }
         public int? CarFuel { get; set; }
+        
+        public DateTime? StartDate {get; set;}
+        public DateTime? EndDate { get; set;}
     }
 }

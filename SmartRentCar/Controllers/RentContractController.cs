@@ -29,12 +29,13 @@ namespace SmartRentCar.Controllers
             }
         }
 
-        [HttpGet("status/{userId}/{statusId}")]
+        [HttpGet("status/{statusId}")]
         public async Task<IActionResult> GetRentContractsByStatus(int userId, int statusId)
         {
+            //TODO заменить на реальный id из токена
             try
             {
-                var rentContracts = await _rentContractService.GetRentContractsByStatus(userId, statusId);
+                var rentContracts = await _rentContractService.GetRentContractsByStatus(1, statusId);
                 return Ok(rentContracts);
             }
             catch (Exception ex)

@@ -6,6 +6,7 @@ namespace SmartRentCar.DTO
     {
       
         public int RentContractId { get; set; }
+        public int CarId {get; set;}
 
         public DateTime StartDate { get; set; }
 
@@ -19,7 +20,6 @@ namespace SmartRentCar.DTO
 
         public DateTime CreatedAt { get; set; }
 
-        public Car Car { get; set; }
 
     }
 }

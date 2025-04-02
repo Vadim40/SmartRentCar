@@ -15,8 +15,8 @@ export class RentContractService extends HttpService {
     super(httpClient);
   }
 
-  getRentContractsByStatus(userId: number, statusId: number): Observable<RentContract[]> {
-    const url = `${this.apiUrl}/status/${userId}/${statusId}`;
+  getRentContractsByStatus(statusId: number): Observable<RentContract[]> {
+    const url = `${this.apiUrl}/status/${statusId}`;
     return this.sendRequest(url, 'GET');
   }
 

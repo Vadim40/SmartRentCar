@@ -3,6 +3,7 @@ using SmartRentCar.Config;
 using SmartRentCar.DTO;
 using SmartRentCar.Models;
 using SmartRentCar.Models.CarInfo;
+using System.Linq;
 using System.Text;
 
 namespace SmartRentCar.Repositories.Impl
@@ -66,11 +67,16 @@ namespace SmartRentCar.Repositories.Impl
         public async Task<List<Car>> GetCarsByFilter(FilterToCars filter)
         {
             var query = _context.Cars
+                
                  .Include(car => car.CarClass)
                  .Include(car => car.CarTransmission)
                  .Include(car => car.CarFuelType)
                  .Include(car => car.CarBrand)
                  .Where(car =>
+                    (!_context.RentContracts.Any(rent =>
+                    rent.CarId == car.CarId &&
+                    filter.StartDate <= rent.EndDate &&
+                    filter.EndDate >= rent.StartDate)) &&
                     (!filter.CostMin.HasValue || car.CostPerDay >= filter.CostMin.Value) &&
                     (!filter.CostMax.HasValue || car.CostPerDay <= filter.CostMax.Value) &&
                     (!filter.DepositMin.HasValue || car.DepositAmount >= filter.DepositMin.Value) &&

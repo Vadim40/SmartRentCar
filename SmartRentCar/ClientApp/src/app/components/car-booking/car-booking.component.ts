@@ -1,7 +1,8 @@
 import flatpickr from 'flatpickr';
 import { Russian } from "flatpickr/dist/l10n/ru.js";
 import { Component, OnInit, Input } from '@angular/core';
-import { Car } from 'src/app/models/car';
+import { Car, CarBooking } from 'src/app/models/car';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car-booking',
@@ -17,26 +18,46 @@ export class CarBookingComponent implements OnInit {
   isPopupOpen: boolean = false;
   selectedDateRange: string = ''; 
 
-  ngOnInit(): void {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+  constructor(private carService: CarService){
 
-    this.flatpickrInstance = flatpickr('#dateRangePicker', {
-      mode: 'range',
-      locale: Russian,
-      dateFormat: "d.m.Y",
-      minDate: today,
-      disable: this.generateDisabledDates(),
-      onClose: (selectedDates) => this.handleDateSelection(selectedDates)
-    }) as flatpickr.Instance;
   }
-
+  ngOnInit(): void {
+    this.getCarBookings();
+  }
+  
+  getCarBookings() {
+    this.carService.getCarBookings(this.car.carId).subscribe({
+      next: (carBookings: CarBooking[]) => {
+        this.car.bookings = carBookings;
+        console.log(carBookings);
+  
+        // Инициализируем flatpickr после загрузки данных
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+  
+        this.flatpickrInstance = flatpickr('#dateRangePicker', {
+          mode: 'range',
+          locale: Russian,
+          dateFormat: "d.m.Y",
+          minDate: today,
+          disable: this.generateDisabledDates(), // Теперь даты заблокируются корректно
+          onClose: (selectedDates) => this.handleDateSelection(selectedDates)
+        }) as flatpickr.Instance;
+      },
+      error: (error) => {
+        console.error("Ошибка получения бронирования", error);
+      }
+    });
+  }
+  
   private generateDisabledDates(): Date[] {
     const disabledDates: Date[] = [];
     if (this.car.bookings) {
       this.car.bookings.forEach(booking => {
-        let currentDate = new Date(booking.startDate);
-        while (currentDate <= booking.endDate) {
+        let currentDate = new Date(booking.startDate); 
+        let endDate = new Date(booking.endDate);
+  
+        while (currentDate <= endDate) {
           disabledDates.push(new Date(currentDate));
           currentDate.setDate(currentDate.getDate() + 1);
         }
@@ -44,6 +65,7 @@ export class CarBookingComponent implements OnInit {
     }
     return disabledDates;
   }
+  
 
   private handleDateSelection(selectedDates: Date[]): void {
     if (selectedDates.length === 1) {

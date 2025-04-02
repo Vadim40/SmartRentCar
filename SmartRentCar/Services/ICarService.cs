@@ -6,6 +6,7 @@ namespace SmartRentCar.Services
     {
         public Task<List<CarDTO>> GetCarsByFilter(FilterToCars filter);
         public Task<CarDTO> GetCarById(int carId);
+        public Task<List<CarBookingDTO>> GetCarBookings( int carId);
         public Task<int> SaveCar(CarDTO car);
         public Task UpdateCar(CarDTO car);
 

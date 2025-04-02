@@ -169,6 +169,7 @@ mat-label {
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start; 
     justify-content: space-between;
     gap: 20px;
     background-color: #dbd4c5;
@@ -178,6 +179,8 @@ mat-label {
     height: 530px;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
 }
+
+
 
 .list-container::-webkit-scrollbar {
     width: 12px;
