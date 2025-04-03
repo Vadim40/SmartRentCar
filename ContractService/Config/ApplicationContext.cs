@@ -11,7 +11,7 @@ namespace ContractService.Config
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=smartRentCar.db");
+            optionsBuilder.UseSqlite("Data Source=contracts.db");
         }
     }
 }
