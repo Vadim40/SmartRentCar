@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ContractService.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContractService.Config
 {
@@ -7,7 +8,10 @@ namespace ContractService.Config
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }
-     
+        public DbSet<BlockchainContract> BlockchainContracts => Set<BlockchainContract>();
+        public DbSet<ContractStatus> ContractStatuses => Set<ContractStatus>();
+        public DbSet<DepositProcessing> DepositProcessings => Set<DepositProcessing>();
+        public DbSet<ProcessingStatus> ProcessingStatuses => Set<ProcessingStatus>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
