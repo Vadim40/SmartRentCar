@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "hardhat": "^2.22.19"
   }
 }
