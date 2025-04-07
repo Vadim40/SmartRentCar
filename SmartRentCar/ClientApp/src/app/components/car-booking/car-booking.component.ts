@@ -3,6 +3,7 @@ import { Russian } from "flatpickr/dist/l10n/ru.js";
 import { Component, OnInit, Input } from '@angular/core';
 import { Car, CarBooking } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
+import { RentContractService } from 'src/app/services/contract.service';
 
 @Component({
   selector: 'app-car-booking',
@@ -18,7 +19,10 @@ export class CarBookingComponent implements OnInit {
   isPopupOpen: boolean = false;
   selectedDateRange: string = ''; 
 
-  constructor(private carService: CarService){
+  constructor(
+    private carService: CarService,
+    private rentContractService: RentContractService
+  ){
 
   }
   ngOnInit(): void {
@@ -105,7 +109,7 @@ export class CarBookingComponent implements OnInit {
 
   private calculateCost(startDate: Date, endDate: Date): void {
     const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-    this.totalCost = days * this.car.costPerDay + this.car.depositAmount;
+    this.totalCost = days * this.car.costPerDay;
     this.canProceed = true;
   }
 
@@ -138,8 +142,25 @@ export class CarBookingComponent implements OnInit {
   }
 
   confirmBooking() {
-    alert('Бронирование подтверждено!');
-    this.isPopupOpen = false;
-
+    if (this.selectedDateRange) {
+      const [startDate, endDate] = this.selectedDateRange.split(" - ").map(date => {
+        const [day, month, year] = date.split(".").map(Number);
+        return new Date(year, month - 1, day);
+      });
+  
+      alert("Бронирование подтверждено!");
+      this.isPopupOpen = false;
+  
+      this.rentContractService.createRentContract(
+        this.car.depositAmount,
+        this.totalCost,
+        Math.floor(startDate.getTime() / 1000), // Время в секундах
+        Math.floor(endDate.getTime() / 1000),
+        48 // Задержка перед разблокировкой
+      );
+    } else {
+      alert("Пожалуйста, выберите даты!");
+    }
   }
+  
 }

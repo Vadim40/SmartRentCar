@@ -4,6 +4,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { RentContract } from '../models/rentContract';
+import { BrowserProvider, Contract, ethers, JsonRpcProvider, Signer } from 'ethers';
+import { abi, contractAddress } from '../models/contractInfo';
+
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +19,66 @@ import { RentContract } from '../models/rentContract';
 export class RentContractService extends HttpService {
   private apiUrl = environment.apiUrl + "/RentContract";
 
+  private provider!: BrowserProvider;
+  private signer!: Signer;
+  private contract!: Contract;
+  private abi = abi;
+  private contractAddress = contractAddress;
+  companyAddress = 'biba';
+  
+
   constructor(private httpClient: HttpClient) {
     super(httpClient);
+  
+    if (typeof window.ethereum !== "undefined") {
+      this.provider = new ethers.BrowserProvider(window.ethereum);
+    } else {
+      console.error("❌ MetaMask не найден!");
+      this.initializeSigner();
+      return;
+    }
+  
+
   }
+  
+  private async initializeSigner() {
+    try {
+      this.signer = await this.provider.getSigner();
+      this.contract = new ethers.Contract(this.contractAddress, this.abi, this.signer);
+      console.log(" Подписант и контракт успешно инициализированы");
+    } catch (error) {
+      console.error(" Ошибка при инициализации подписанта:", error);
+    }
+  }
+  
+  async connectWallet() {
+    try {
+      if (window.ethereum) {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        console.log(" MetaMask подключен!");
+      } else {
+        console.error(" MetaMask не найден!");
+      }
+    } catch (error) {
+      console.error(" Ошибка при подключении кошелька:", error);
+    }
+  }
+  
+  async createRentContract(deposit: number, rentAmount: number, startTime: number, endTime: number, unlockDelayHours: number) {
+    try {
+      const renter = await this.signer.getAddress(); // Берем адрес арендатора из MetaMask
+      const tx = await this.contract['createRentContract'](
+        renter, this.companyAddress, deposit, rentAmount, startTime, endTime, unlockDelayHours,
+        { value: deposit + rentAmount }
+      );
+  
+      await tx.wait();
+      console.log(" Контракт создан:", tx);
+    } catch (error) {
+      console.error(" Ошибка при создании контракта:", error);
+    }
+  }
+  
 
   getRentContractsByStatus(statusId: number): Observable<RentContract[]> {
     const url = `${this.apiUrl}/status/${statusId}`;
