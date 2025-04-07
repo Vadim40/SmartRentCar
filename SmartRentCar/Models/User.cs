@@ -17,10 +17,6 @@ namespace SmartRentCar.Models
         public string NameI { get; set; }
 
         [Required]
-        [MinLength(8)]
-        public string Pass { get; set; }
-
-        [Required]
         [EmailAddress]
         public string Email { get; set; }
 

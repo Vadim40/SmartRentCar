@@ -141,26 +141,35 @@ export class CarBookingComponent implements OnInit {
     this.isPopupOpen = false;
   }
 
-  confirmBooking() {
-    if (this.selectedDateRange) {
-      const [startDate, endDate] = this.selectedDateRange.split(" - ").map(date => {
-        const [day, month, year] = date.split(".").map(Number);
-        return new Date(year, month - 1, day);
-      });
+  async confirmBooking() {
+    if (!this.selectedDateRange) {
+      alert("Пожалуйста, выберите даты!");
+      return;
+    }
   
-      alert("Бронирование подтверждено!");
-      this.isPopupOpen = false;
+    const [startDate, endDate] = this.selectedDateRange.split(" - ").map(date => {
+      const [day, month, year] = date.split(".").map(Number);
+      return new Date(year, month - 1, day);
+    });
   
-      this.rentContractService.createRentContract(
+    try {
+      await this.rentContractService.connectWallet();
+  
+      await this.rentContractService.createRentContract(
         this.car.depositAmount,
         this.totalCost,
-        Math.floor(startDate.getTime() / 1000), // Время в секундах
+        Math.floor(startDate.getTime() / 1000),
         Math.floor(endDate.getTime() / 1000),
-        48 // Задержка перед разблокировкой
+        48
       );
-    } else {
-      alert("Пожалуйста, выберите даты!");
+  
+      alert("✅ Бронирование подтверждено!");
+      this.isPopupOpen = false;
+    } catch (error) {
+      console.error("❌ Ошибка при создании контракта:", error);
+      alert("❌ Ошибка при бронировании. Проверьте подключение MetaMask.");
     }
   }
+  
   
 }

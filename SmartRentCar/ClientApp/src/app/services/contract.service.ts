@@ -24,7 +24,7 @@ export class RentContractService extends HttpService {
   private contract!: Contract;
   private abi = abi;
   private contractAddress = contractAddress;
-  companyAddress = 'biba';
+  companyAddress = '0xb885A33C4cbe8E4F25dFa7e99b079eD3E6992b6D';
   
 
   constructor(private httpClient: HttpClient) {
@@ -32,22 +32,21 @@ export class RentContractService extends HttpService {
   
     if (typeof window.ethereum !== "undefined") {
       this.provider = new ethers.BrowserProvider(window.ethereum);
-    } else {
+    } else {  
       console.error("❌ MetaMask не найден!");
-      this.initializeSigner();
-      return;
     }
-  
-
   }
+  
   
   private async initializeSigner() {
     try {
       this.signer = await this.provider.getSigner();
       this.contract = new ethers.Contract(this.contractAddress, this.abi, this.signer);
-      console.log(" Подписант и контракт успешно инициализированы");
+  
+      const address = await this.signer.getAddress();
+      console.log("👛 Адрес подключенного кошелька:", address);
     } catch (error) {
-      console.error(" Ошибка при инициализации подписанта:", error);
+      console.error("❌ Ошибка при инициализации подписанта:", error);
     }
   }
   
@@ -55,14 +54,17 @@ export class RentContractService extends HttpService {
     try {
       if (window.ethereum) {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-        console.log(" MetaMask подключен!");
+        this.provider = new ethers.BrowserProvider(window.ethereum); // безопаснее повторно проинициализировать
+        await this.initializeSigner();
+        console.log("✅ MetaMask подключен!");
       } else {
-        console.error(" MetaMask не найден!");
+        console.error("❌ MetaMask не найден!");
       }
     } catch (error) {
-      console.error(" Ошибка при подключении кошелька:", error);
+      console.error("❌ Ошибка при подключении кошелька:", error);
     }
   }
+  
   
   async createRentContract(deposit: number, rentAmount: number, startTime: number, endTime: number, unlockDelayHours: number) {
     try {
