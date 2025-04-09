@@ -2,21 +2,26 @@
 pragma solidity ^0.8.20;
 
 import "./RentContract.sol";
+import "@openzeppelin/contracts/proxy/Clones.sol";
 
 contract RentContractFactory {
     address public owner;
+    address public implementation;
 
-    // Все созданные контракты
     RentContract[] public allContracts;
-
-    // Индексы контрактов по арендатору и компании
     mapping(address => RentContract[]) public contractsByRenter;
     mapping(address => RentContract[]) public contractsByCompany;
 
     event ContractCreated(address contractAddress, address renter, address company);
+    event FactoryDeployed(address deployer, address implementationAddress);
+    event CloneCreated(address cloneAddress);
+    event InitCalled(bool success);
 
-    constructor() {
+    constructor(address _implementation) {
         owner = msg.sender;
+        implementation = _implementation;
+
+        emit FactoryDeployed(owner, implementation);
     }
 
     function createRentContract(
@@ -30,22 +35,31 @@ contract RentContractFactory {
     ) external payable returns (address) {
         require(msg.value == _deposit + _rentAmount, "Incorrect value");
 
-        RentContract rentContract = (new RentContract){value: msg.value}(
-            _renter,
-            _company,
-            _deposit,
-            _rentAmount,
-            _startTime,
-            _endTime,
-            _unlockDelayHours
-        );
+        address clone = Clones.clone(implementation);
+        emit CloneCreated(clone);
 
+        (bool success, ) = clone.call{value: msg.value}(
+            abi.encodeWithSignature(
+                "initialize(address,address,uint256,uint256,uint256,uint256,uint256)",
+                _renter,
+                _company,
+                _deposit,
+                _rentAmount,
+                _startTime,
+                _endTime,
+                _unlockDelayHours
+            )
+        );
+        emit InitCalled(success);
+        require(success, "Init failed");
+
+        RentContract rentContract = RentContract(clone);
         allContracts.push(rentContract);
         contractsByRenter[_renter].push(rentContract);
         contractsByCompany[_company].push(rentContract);
 
-        emit ContractCreated(address(rentContract), _renter, _company);
-        return address(rentContract);
+        emit ContractCreated(clone, _renter, _company);
+        return clone;
     }
 
     function getContractsByRenter(address renter) external view returns (RentContract[] memory) {

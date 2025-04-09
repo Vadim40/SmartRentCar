@@ -21,7 +21,7 @@ import type {
   TypedLogDescription,
   TypedListener,
   TypedContractMethod,
-} from "./common";
+} from "../common";
 
 export interface RentContractFactoryInterface extends Interface {
   getFunction(
@@ -33,10 +33,17 @@ export interface RentContractFactoryInterface extends Interface {
       | "getAllContracts"
       | "getContractsByCompany"
       | "getContractsByRenter"
+      | "implementation"
       | "owner"
   ): FunctionFragment;
 
-  getEvent(nameOrSignatureOrTopic: "ContractCreated"): EventFragment;
+  getEvent(
+    nameOrSignatureOrTopic:
+      | "CloneCreated"
+      | "ContractCreated"
+      | "FactoryDeployed"
+      | "InitCalled"
+  ): EventFragment;
 
   encodeFunctionData(
     functionFragment: "allContracts",
@@ -74,6 +81,10 @@ export interface RentContractFactoryInterface extends Interface {
     functionFragment: "getContractsByRenter",
     values: [AddressLike]
   ): string;
+  encodeFunctionData(
+    functionFragment: "implementation",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
 
   decodeFunctionResult(
@@ -104,7 +115,23 @@ export interface RentContractFactoryInterface extends Interface {
     functionFragment: "getContractsByRenter",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "implementation",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
+}
+
+export namespace CloneCreatedEvent {
+  export type InputTuple = [cloneAddress: AddressLike];
+  export type OutputTuple = [cloneAddress: string];
+  export interface OutputObject {
+    cloneAddress: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
 }
 
 export namespace ContractCreatedEvent {
@@ -122,6 +149,34 @@ export namespace ContractCreatedEvent {
     contractAddress: string;
     renter: string;
     company: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace FactoryDeployedEvent {
+  export type InputTuple = [
+    deployer: AddressLike,
+    implementationAddress: AddressLike
+  ];
+  export type OutputTuple = [deployer: string, implementationAddress: string];
+  export interface OutputObject {
+    deployer: string;
+    implementationAddress: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace InitCalledEvent {
+  export type InputTuple = [success: boolean];
+  export type OutputTuple = [success: boolean];
+  export interface OutputObject {
+    success: boolean;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -214,6 +269,8 @@ export interface RentContractFactory extends BaseContract {
     "view"
   >;
 
+  implementation: TypedContractMethod<[], [string], "view">;
+
   owner: TypedContractMethod<[], [string], "view">;
 
   getFunction<T extends ContractMethod = ContractMethod>(
@@ -262,9 +319,19 @@ export interface RentContractFactory extends BaseContract {
     nameOrSignature: "getContractsByRenter"
   ): TypedContractMethod<[renter: AddressLike], [string[]], "view">;
   getFunction(
+    nameOrSignature: "implementation"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "owner"
   ): TypedContractMethod<[], [string], "view">;
 
+  getEvent(
+    key: "CloneCreated"
+  ): TypedContractEvent<
+    CloneCreatedEvent.InputTuple,
+    CloneCreatedEvent.OutputTuple,
+    CloneCreatedEvent.OutputObject
+  >;
   getEvent(
     key: "ContractCreated"
   ): TypedContractEvent<
@@ -272,8 +339,33 @@ export interface RentContractFactory extends BaseContract {
     ContractCreatedEvent.OutputTuple,
     ContractCreatedEvent.OutputObject
   >;
+  getEvent(
+    key: "FactoryDeployed"
+  ): TypedContractEvent<
+    FactoryDeployedEvent.InputTuple,
+    FactoryDeployedEvent.OutputTuple,
+    FactoryDeployedEvent.OutputObject
+  >;
+  getEvent(
+    key: "InitCalled"
+  ): TypedContractEvent<
+    InitCalledEvent.InputTuple,
+    InitCalledEvent.OutputTuple,
+    InitCalledEvent.OutputObject
+  >;
 
   filters: {
+    "CloneCreated(address)": TypedContractEvent<
+      CloneCreatedEvent.InputTuple,
+      CloneCreatedEvent.OutputTuple,
+      CloneCreatedEvent.OutputObject
+    >;
+    CloneCreated: TypedContractEvent<
+      CloneCreatedEvent.InputTuple,
+      CloneCreatedEvent.OutputTuple,
+      CloneCreatedEvent.OutputObject
+    >;
+
     "ContractCreated(address,address,address)": TypedContractEvent<
       ContractCreatedEvent.InputTuple,
       ContractCreatedEvent.OutputTuple,
@@ -283,6 +375,28 @@ export interface RentContractFactory extends BaseContract {
       ContractCreatedEvent.InputTuple,
       ContractCreatedEvent.OutputTuple,
       ContractCreatedEvent.OutputObject
+    >;
+
+    "FactoryDeployed(address,address)": TypedContractEvent<
+      FactoryDeployedEvent.InputTuple,
+      FactoryDeployedEvent.OutputTuple,
+      FactoryDeployedEvent.OutputObject
+    >;
+    FactoryDeployed: TypedContractEvent<
+      FactoryDeployedEvent.InputTuple,
+      FactoryDeployedEvent.OutputTuple,
+      FactoryDeployedEvent.OutputObject
+    >;
+
+    "InitCalled(bool)": TypedContractEvent<
+      InitCalledEvent.InputTuple,
+      InitCalledEvent.OutputTuple,
+      InitCalledEvent.OutputObject
+    >;
+    InitCalled: TypedContractEvent<
+      InitCalledEvent.InputTuple,
+      InitCalledEvent.OutputTuple,
+      InitCalledEvent.OutputObject
     >;
   };
 }

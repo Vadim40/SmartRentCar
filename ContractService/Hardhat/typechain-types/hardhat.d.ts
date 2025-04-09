@@ -14,9 +14,17 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "Lock",
+      name: "Clones",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Lock__factory>;
+    ): Promise<Contracts.Clones__factory>;
+    getContractFactory(
+      name: "Create2",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Create2__factory>;
+    getContractFactory(
+      name: "Errors",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Errors__factory>;
     getContractFactory(
       name: "RentContract",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -27,10 +35,20 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.RentContractFactory__factory>;
 
     getContractAt(
-      name: "Lock",
+      name: "Clones",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Lock>;
+    ): Promise<Contracts.Clones>;
+    getContractAt(
+      name: "Create2",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Create2>;
+    getContractAt(
+      name: "Errors",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Errors>;
     getContractAt(
       name: "RentContract",
       address: string | ethers.Addressable,
@@ -43,9 +61,17 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.RentContractFactory>;
 
     deployContract(
-      name: "Lock",
+      name: "Clones",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Lock>;
+    ): Promise<Contracts.Clones>;
+    deployContract(
+      name: "Create2",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Create2>;
+    deployContract(
+      name: "Errors",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Errors>;
     deployContract(
       name: "RentContract",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -56,10 +82,20 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.RentContractFactory>;
 
     deployContract(
-      name: "Lock",
+      name: "Clones",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Lock>;
+    ): Promise<Contracts.Clones>;
+    deployContract(
+      name: "Create2",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Create2>;
+    deployContract(
+      name: "Errors",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Errors>;
     deployContract(
       name: "RentContract",
       args: any[],
