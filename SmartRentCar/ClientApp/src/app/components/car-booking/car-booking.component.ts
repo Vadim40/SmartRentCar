@@ -4,6 +4,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Car, CarBooking } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
 import { RentContractService } from 'src/app/services/contract.service';
+import { RentContract, RentContractStatus, RentContractUpdate, RentContractСreate } from 'src/app/models/rentContract';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-car-booking',
@@ -11,34 +13,35 @@ import { RentContractService } from 'src/app/services/contract.service';
   styleUrls: ['./car-booking.component.css']
 })
 export class CarBookingComponent implements OnInit {
-  @Input() car!: Car; 
+  @Input() car!: Car;
 
   private flatpickrInstance: flatpickr.Instance | undefined;
   totalCost: number = 0;
-  canProceed: boolean = false; 
+  canProceed: boolean = false;
   isPopupOpen: boolean = false;
-  selectedDateRange: string = ''; 
-
+  selectedDateRange: string = '';
+  startDate!: Date; 
+  endDate!: Date; 
+  rentId: number =0;
   constructor(
     private carService: CarService,
     private rentContractService: RentContractService
-  ){
+  ) {
 
   }
   ngOnInit(): void {
     this.getCarBookings();
   }
-  
+
   getCarBookings() {
     this.carService.getCarBookings(this.car.carId).subscribe({
       next: (carBookings: CarBooking[]) => {
         this.car.bookings = carBookings;
         console.log(carBookings);
-  
-        // Инициализируем flatpickr после загрузки данных
+
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-  
+
         this.flatpickrInstance = flatpickr('#dateRangePicker', {
           mode: 'range',
           locale: Russian,
@@ -53,14 +56,14 @@ export class CarBookingComponent implements OnInit {
       }
     });
   }
-  
+
   private generateDisabledDates(): Date[] {
     const disabledDates: Date[] = [];
     if (this.car.bookings) {
       this.car.bookings.forEach(booking => {
-        let currentDate = new Date(booking.startDate); 
+        let currentDate = new Date(booking.startDate);
         let endDate = new Date(booking.endDate);
-  
+
         while (currentDate <= endDate) {
           disabledDates.push(new Date(currentDate));
           currentDate.setDate(currentDate.getDate() + 1);
@@ -69,7 +72,7 @@ export class CarBookingComponent implements OnInit {
     }
     return disabledDates;
   }
-  
+
 
   private handleDateSelection(selectedDates: Date[]): void {
     if (selectedDates.length === 1) {
@@ -88,11 +91,11 @@ export class CarBookingComponent implements OnInit {
         console.log('Выбранная дата:', selectedDate);
       }
     } else if (selectedDates.length === 2) {
-      const [startDate, endDate] = selectedDates;
+       [this.startDate, this.endDate] = selectedDates;
       let hasConflict = false;
       if (this.car.bookings) {
         hasConflict = this.car.bookings.some(booking =>
-          startDate <= booking.endDate && endDate >= booking.startDate
+          this.startDate <= booking.endDate && this.endDate >= booking.startDate
         );
       }
 
@@ -100,9 +103,9 @@ export class CarBookingComponent implements OnInit {
         alert('Выбранный диапазон пересекается с занятыми периодами.');
         this.resetPicker();
       } else {
-        this.calculateCost(startDate, endDate);
-        this.selectedDateRange = `${this.formatDate(startDate)} - ${this.formatDate(endDate)}`; 
-        console.log('Выбранный диапазон:', startDate, endDate);
+        this.calculateCost(this.startDate, this.endDate);
+        this.selectedDateRange = `${this.formatDate(this.startDate)} - ${this.formatDate(this.endDate)}`;
+        console.log('Выбранный диапазон:', this.startDate, this.endDate);
       }
     }
   }
@@ -122,18 +125,22 @@ export class CarBookingComponent implements OnInit {
 
   resetPicker(): void {
     if (this.flatpickrInstance) {
-      this.flatpickrInstance.clear(); 
+      this.flatpickrInstance.clear();
     }
     const datePicker = document.querySelector('#dateRangePicker') as HTMLInputElement;
     if (datePicker) {
-      datePicker.value = ''; 
+      datePicker.value = '';
     }
-    this.totalCost = 0; 
-    this.canProceed = false; 
-    this.selectedDateRange = ''; 
+    this.totalCost = 0;
+    this.canProceed = false;
+    this.selectedDateRange = '';
   }
 
   openPopup() {
+    if (!this.selectedDateRange) {
+      alert(" Пожалуйста, выберите даты!");
+      return;
+    }
     this.isPopupOpen = true;
   }
 
@@ -142,34 +149,65 @@ export class CarBookingComponent implements OnInit {
   }
 
   async confirmBooking() {
-    if (!this.selectedDateRange) {
-      alert("Пожалуйста, выберите даты!");
-      return;
-    }
-  
-    const [startDate, endDate] = this.selectedDateRange.split(" - ").map(date => {
-      const [day, month, year] = date.split(".").map(Number);
-      return new Date(year, month - 1, day);
-    });
   
     try {
+
+      this.createRentContract();
+
       await this.rentContractService.connectWallet();
-  
       await this.rentContractService.createRentContract(
         this.car.depositAmount,
         this.totalCost,
-        Math.floor(startDate.getTime() / 1000),
-        Math.floor(endDate.getTime() / 1000),
+        Math.floor(this.startDate.getTime() / 1000),
+        Math.floor(this.endDate.getTime() / 1000),
         48
       );
-  
-      alert("✅ Бронирование подтверждено!");
+
+      alert(" Бронирование подтверждено!");
       this.isPopupOpen = false;
-    } catch (error) {
-      console.error("❌ Ошибка при создании контракта:", error);
-      alert("❌ Ошибка при бронировании. Проверьте подключение MetaMask.");
+      this.approveRentContract();
+      
+
+    } catch (error: any) {
+      console.error(" Ошибка при создании контракта:", error);
+
+      if (error.code == 'ACTION_REJECTED') {
+        alert(" Вы отменили подписание транзакции.");
+      } else {
+        alert(" Ошибка при бронировании");
+      }
     }
+
   }
-  
-  
+
+  async createRentContract() {
+    const rent: RentContractСreate = {
+        carId: this.car.carId,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        totalCost: this.totalCost,
+        deposit: this.car.depositAmount,
+    };
+
+    try {
+        this.rentId = await firstValueFrom(this.rentContractService.saveRentContract(rent));
+    } catch (error) {
+        console.error(" Ошибка при сохранении контракта:", error);
+        throw error; 
+    }
+}
+
+async approveRentContract() {
+    const rentUpdate: RentContractUpdate = {
+        rentId: this.rentId,
+        contractStatusId: RentContractStatus.Active,
+    };
+
+    try {
+        await firstValueFrom(this.rentContractService.updateRentContract(rentUpdate)); 
+    } catch (error) {
+        console.error("Ошибка при подтверждении аренды:", error);
+    }
+
+}
 }

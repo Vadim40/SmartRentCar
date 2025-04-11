@@ -12,7 +12,7 @@
   <span *ngIf="totalCost > 0">Общая стоимость: {{ totalCost }} ₽</span>
 </div>
 
-<button [disabled]="!canProceed" class="action-button proceed-button" (click)="openPopup()">Продолжить бронирование</button>
+<button  class="action-button proceed-button" (click)="openPopup()">Продолжить бронирование</button>
 
 <!-- Popup -->
 <div class="popup-overlay" *ngIf="isPopupOpen">

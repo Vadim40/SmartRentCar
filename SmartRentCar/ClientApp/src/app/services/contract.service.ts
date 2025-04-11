@@ -3,8 +3,8 @@ import { HttpService } from './config/http.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { RentContract } from '../models/rentContract';
-import { BrowserProvider, Contract, ethers, JsonRpcProvider, Signer } from 'ethers';
+import { RentContract, RentContractUpdate, RentContractСreate } from '../models/rentContract';
+import { BrowserProvider, Contract, ethers, formatEther, JsonRpcProvider, Signer, TransactionResponse } from 'ethers';
 import { abi, contractAddress } from '../models/contractInfo';
 
 declare global {
@@ -33,7 +33,7 @@ export class RentContractService extends HttpService {
     if (typeof window.ethereum !== "undefined") {
       this.provider = new ethers.BrowserProvider(window.ethereum);
     } else {  
-      console.error("❌ MetaMask не найден!");
+      console.error(" MetaMask не найден!");
     }
   }
   
@@ -44,9 +44,9 @@ export class RentContractService extends HttpService {
       this.contract = new ethers.Contract(this.contractAddress, this.abi, this.signer);
   
       const address = await this.signer.getAddress();
-      console.log("👛 Адрес подключенного кошелька:", address);
+      console.log(" Адрес подключенного кошелька:", address);
     } catch (error) {
-      console.error("❌ Ошибка при инициализации подписанта:", error);
+      console.error(" Ошибка при инициализации подписанта:", error);
     }
   }
   
@@ -54,45 +54,46 @@ export class RentContractService extends HttpService {
     try {
       if (window.ethereum) {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-        this.provider = new ethers.BrowserProvider(window.ethereum); // безопаснее повторно проинициализировать
+        this.provider = new ethers.BrowserProvider(window.ethereum); 
         await this.initializeSigner();
-        console.log("✅ MetaMask подключен!");
+        console.log(" MetaMask подключен!");
       } else {
-        console.error("❌ MetaMask не найден!");
+        console.error(" MetaMask не найден!");
       }
     } catch (error) {
-      console.error("❌ Ошибка при подключении кошелька:", error);
+      console.error(" Ошибка при подключении кошелька:", error);
     }
   }
   
   
-  async createRentContract(deposit: number, rentAmount: number, startTime: number, endTime: number, unlockDelayHours: number) {
+  async createRentContract(deposit: number, rentAmount: number, startTime: number, endTime: number, unlockDelayHours: number){
     try {
-      const renter = await this.signer.getAddress(); // Берем адрес арендатора из MetaMask
-      const tx = await this.contract['createRentContract'](
+      const renter = await this.signer.getAddress(); 
+      deposit= deposit*10000000000;
+       await this.contract['createRentContract'](
         renter, this.companyAddress, deposit, rentAmount, startTime, endTime, unlockDelayHours,
         { value: deposit + rentAmount }
       );
-  
-      await tx.wait();
-      console.log(" Контракт создан:", tx);
+      
     } catch (error) {
       console.error(" Ошибка при создании контракта:", error);
+      throw error;
     }
   }
   
+
 
   getRentContractsByStatus(statusId: number): Observable<RentContract[]> {
     const url = `${this.apiUrl}/status/${statusId}`;
     return this.sendRequest(url, 'GET');
   }
 
-  saveRentContract(contract: RentContract): Observable<number> {
+  saveRentContract(contract: RentContractСreate): Observable<number> {
     const url = `${this.apiUrl}`;
     return this.sendRequest(url, 'POST', contract);
   }
 
-  updateRentContract(contract: RentContract): Observable<void> {
+  updateRentContract(contract: RentContractUpdate): Observable<void> {
     const url = `${this.apiUrl}`;
     return this.sendRequest(url, 'PUT', contract);
   }
