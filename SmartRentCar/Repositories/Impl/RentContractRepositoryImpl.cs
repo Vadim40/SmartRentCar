@@ -25,6 +25,7 @@ namespace SmartRentCar.Repositories.Impl
         public Task<List<RentContract>> GetRentContractsByStatus(int userId, int statusId)
         {
             return _context.RentContracts
+                .Include(r => r.ContractStatus)
                 .Where(contract =>
                     contract.UserId == userId &&
                     contract.ContractStatusId == statusId)

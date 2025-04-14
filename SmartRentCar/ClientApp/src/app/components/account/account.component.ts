@@ -26,6 +26,7 @@ export class AccountComponent {
   rentActive: RentContract [] = [];
 
   rentHistory: RentContract [] = [];
+  rentContractStatus = RentContractStatus;
 
 activeTab: string = 'activeRents';
 
@@ -86,4 +87,6 @@ editUser() {
 cancelRent(rent: RentContract) {
   console.log(`Бронирование ${rent.rentId} отменено`);
 }
+
+CancelBooking(){}
 }

@@ -24,49 +24,55 @@
                 История аренды
             </button>
         </div>
-        <div style="width: 100%;" >
+        <div style="width: 100%;">
             <!-- Вкладка текущих аренд -->
             <div class="tab-content" *ngIf="activeTab === 'activeRents'">
                 <div *ngIf="rentActive.length === 0" class="no-items">
                     <p>Нет активных аренд.</p>
                 </div>
-            
+
                 <div class="car-item" *ngFor="let rent of rentActive">
                     <img [src]="rent.car.carImages[0].imageData" alt="{{ rent.car.carName }}" class="car-image" />
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">
-                            <span> {{ rent.startDate | date:'dd.MM.yyyy' }} - {{ rent.endDate | date:'dd.MM.yyyy' }}</span>
+                            <span> {{ rent.startDate | date:'dd.MM.yyyy' }} - {{ rent.endDate | date:'dd.MM.yyyy'
+                                }}</span>
                             <div class="cost-container">
                                 <span>Итоговая стоимость : {{rent.totalCost}}</span>
                                 <span>Сумма залога: {{rent.deposit}}</span>
                             </div>
+                            <span>Статус: {{rent.statusName}}</span>
+                            <button *ngIf="rent.contractStatusId == 1" class="action-button" style="margin-top: 0px;" (click)="CancelBooking()"> Отменить
+                                бронирование</button>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Вкладка истории аренд -->
             <div class="tab-content" *ngIf="activeTab === 'rentHistory'">
                 <div *ngIf="rentHistory.length === 0" class="no-items">
                     <p>Нет завершённых аренд.</p>
                 </div>
-            
+
                 <div class="car-item" *ngFor="let rent of rentHistory">
                     <img [src]="rent.car.carImages[0].imageData" alt="{{ rent.car.carName }}" class="car-image" />
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">
-                            <span> {{ rent.startDate | date:'dd.MM.yyyy' }} - {{ rent.endDate | date:'dd.MM.yyyy' }}</span>
+                            <span> {{ rent.startDate | date:'dd.MM.yyyy' }} - {{ rent.endDate | date:'dd.MM.yyyy'
+                                }}</span>
                             <div class="cost-container">
                                 <span>Итоговая стоимость : {{rent.totalCost}}</span>
                                 <span>Сумма залога: {{rent.deposit}}</span>
                             </div>
+                            <span>Статус: {{rent.statusName}}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>

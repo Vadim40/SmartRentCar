@@ -24,7 +24,10 @@ namespace SmartRentCar.Config
             CreateMap<CarBrand, CarBrandDTO>();
             CreateMap<CarFuelType, CarFuelTypeDTO>();
             CreateMap<CarTransmission, CarTransmissionDTO>();
-            CreateMap<RentContract, RentContractDTO>();
+            
+            CreateMap<RentContract, RentContractDTO>()
+            .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.ContractStatus.Name));
+
             
         }
     }

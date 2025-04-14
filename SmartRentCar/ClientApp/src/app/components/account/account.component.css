@@ -7,8 +7,8 @@
 
 
 .info-container {
-    width: 30%; 
-    background-color: #dbd4c5;
+    width: 25%; 
+    background-color: #f2eadd;
     padding: 15px;
     border-radius: 8px;
     display: flex;
@@ -16,15 +16,16 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.edit-button {
+.action-button {
     margin-top: 20px;
-    background-color: #dbd4c5;
+    background-color: inherit ;
     color: #232323;
-    width: 35%;
+    width: fit-content;
     font-size: 15px;
     font-weight: 400;
     border: 1px solid #232323;
 }
+
 .rent-container {
     flex: 2; /* Две трети */
     display: flex;
@@ -96,7 +97,7 @@
 
 
 .tab-content {
-    height: 540px;
+    height: 550px;
     display: flex;
     flex-wrap: wrap; 
     align-items: flex-start; 
@@ -157,9 +158,10 @@
     gap: 10px;
 }
 .car-details span {
-    font-size: 16px;
-    color: #555;
-    display: block; 
+    font-size: 15px;
+    font-weight: 400;
+    color: #232323;
+    display: block;
 }
 
 .cost-container{

@@ -7,7 +7,8 @@ namespace SmartRentCar.DTO
       
         public int RentContractId { get; set; }
         public int CarId {get; set;}
-
+        public string StatusName {get; set;}
+        public int ContractStatusId { get; set; }
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
@@ -17,7 +18,7 @@ namespace SmartRentCar.DTO
 
         public decimal Deposit { get; set; }
 
-
+        
         public DateTime CreatedAt { get; set; }
 
 
