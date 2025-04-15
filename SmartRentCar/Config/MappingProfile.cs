@@ -28,6 +28,7 @@ namespace SmartRentCar.Config
             CreateMap<RentContract, RentContractDTO>()
             .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.ContractStatus.Name));
 
+            CreateMap<RentContract, RentContractUpateDTO>();
             
         }
     }
