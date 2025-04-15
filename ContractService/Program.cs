@@ -14,17 +14,22 @@ var web3 = new Web3(infuraUrl);
 
 var contractDeploymentService = new ContractDeploymentService(account, infuraUrl);
 
-
-// Деплой контракта фабрики RentContractFactory, передаем адрес реализации
-var path = "Hardhat/artifacts/contracts/RentContractFactory.sol/RentContractFactory.json";
-var rentContractAddress = "0xa3e451f5462b4484b99d1bdac5a1a73518b435a1";  // Адрес контракта RentContract
-var factoryContractAddress = await contractDeploymentService.DeployContractAsync(path, rentContractAddress);
-Console.WriteLine($"Deployed RentContractFactory at: {factoryContractAddress}");
-
-
 var balanceWei = await web3.Eth.GetBalance.SendRequestAsync(account.Address);
 var balanceEther = Web3.Convert.FromWei(balanceWei.Value);
 Console.WriteLine($"Current balance: {balanceEther} ETH");
+
+// Деплой контракта фабрики RentContractFactory, передаем адрес реализации
+var rentContractImplPath = "Hardhat/artifacts/contracts/RentContract.sol/RentContract.json";
+var factoryPath = "Hardhat/artifacts/contracts/RentContractFactory.sol/RentContractFactory.json";
+
+var rentImplAddress = await contractDeploymentService.DeployContractAsync(rentContractImplPath);
+var factoryAddress = await contractDeploymentService.DeployContractAsync(factoryPath, rentImplAddress);
+
+Console.WriteLine($"Rent Implementation Address: {rentImplAddress}");
+Console.WriteLine($"Factory Address: {factoryAddress}");
+
+
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllersWithViews();

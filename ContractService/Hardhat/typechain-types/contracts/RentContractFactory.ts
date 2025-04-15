@@ -252,7 +252,7 @@ export interface RentContractFactory extends BaseContract {
       _unlockDelayHours: BigNumberish
     ],
     [string],
-    "payable"
+    "nonpayable"
   >;
 
   getAllContracts: TypedContractMethod<[], [string[]], "view">;
@@ -307,7 +307,7 @@ export interface RentContractFactory extends BaseContract {
       _unlockDelayHours: BigNumberish
     ],
     [string],
-    "payable"
+    "nonpayable"
   >;
   getFunction(
     nameOrSignature: "getAllContracts"

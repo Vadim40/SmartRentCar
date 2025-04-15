@@ -32,13 +32,11 @@ contract RentContractFactory {
         uint _startTime,
         uint _endTime,
         uint _unlockDelayHours
-    ) external payable returns (address) {
-        require(msg.value == _deposit + _rentAmount, "Incorrect value");
-
+    ) external returns (address) {
         address clone = Clones.clone(implementation);
         emit CloneCreated(clone);
 
-        (bool success, ) = clone.call{value: msg.value}(
+        (bool success, ) = clone.call(
             abi.encodeWithSignature(
                 "initialize(address,address,uint256,uint256,uint256,uint256,uint256)",
                 _renter,
@@ -50,8 +48,9 @@ contract RentContractFactory {
                 _unlockDelayHours
             )
         );
+
         emit InitCalled(success);
-        require(success, "Init failed");
+        require(success, "Initialization failed");
 
         RentContract rentContract = RentContract(clone);
         allContracts.push(rentContract);
