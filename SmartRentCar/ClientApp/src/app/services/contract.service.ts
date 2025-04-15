@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { RentContract, RentContractUpdate, RentContractСreate } from '../models/rentContract';
-import { BrowserProvider, Contract, ethers, formatEther, JsonRpcProvider, Signer, TransactionResponse } from 'ethers';
+import { BrowserProvider, Contract, ethers, formatEther, JsonRpcProvider, LogDescription, Signer, TransactionResponse } from 'ethers';
 import { abi, contractAddress } from '../models/contractInfo';
 
 declare global {
@@ -24,7 +24,7 @@ export class RentContractService extends HttpService {
   private contract!: Contract;
   private abi = abi;
   private contractAddress = contractAddress;
-  companyAddress = '0xb885A33C4cbe8E4F25dFa7e99b079eD3E6992b6D';
+  companyAddress = '0x7462A2FBF684f72AA35b89e72618Cc8622EB94a1';
   
 
   constructor(private httpClient: HttpClient) {
@@ -65,21 +65,55 @@ export class RentContractService extends HttpService {
     }
   }
   
-  
-  async createRentContract(deposit: number, rentAmount: number, startTime: number, endTime: number, unlockDelayHours: number){
+  async createRentContract(
+    deposit: number,
+    rentAmount: number,
+    startTime: number,
+    endTime: number,
+    unlockDelayHours: number
+  ) {
     try {
-      const renter = await this.signer.getAddress(); 
-      deposit= deposit*10000000000;
-       await this.contract['createRentContract'](
-        renter, this.companyAddress, deposit, rentAmount, startTime, endTime, unlockDelayHours,
-        { value: deposit + rentAmount }
+      if (!this.signer || !this.contract) {
+        await this.connectWallet();
+      }
+  
+      const renter = await this.signer.getAddress();
+  
+      const depositSmall = deposit / 10000;
+    const rentAmountSmall = rentAmount / 10000;
+
+    // Переводим уменьшенные суммы в wei (для использования в контракте)
+    const depositWei = ethers.parseEther(depositSmall.toString());
+    const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());
+  
+      // Вызываем метод БЕЗ передачи value
+      const tx = await this.contract['createRentContract'](
+        renter,
+        this.companyAddress,
+        depositWei,
+        rentAmountWei,
+        startTime,
+        endTime,
+        unlockDelayHours
       );
-      
+  
+      console.log(" ⏳ Транзакция отправлена:", tx.hash);
+      const receipt = await tx.wait();
+      console.log(" ✅ Контракт создан! Хеш:", receipt?.hash);
+  
+      const event = receipt?.logs?.find((log: LogDescription) => log.fragment?.name === "ContractCreated");
+      const newContractAddress = event?.args?.contractAddress;
+      if (newContractAddress) {
+        console.log(" 📝 Новый контракт создан по адресу:", newContractAddress);
+      }
+  
+      return receipt;
     } catch (error) {
-      console.error(" Ошибка при создании контракта:", error);
+      console.error(" ❌ Ошибка при создании контракта:", error);
       throw error;
     }
   }
+  
   
 
 

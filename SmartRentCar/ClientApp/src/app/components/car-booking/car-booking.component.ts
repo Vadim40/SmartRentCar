@@ -152,7 +152,7 @@ export class CarBookingComponent implements OnInit {
   
     try {
 
-      this.createRentContract();
+      //this.createRentContract();
 
       await this.rentContractService.connectWallet();
       await this.rentContractService.createRentContract(
@@ -165,7 +165,7 @@ export class CarBookingComponent implements OnInit {
 
       alert(" Бронирование подтверждено!");
       this.isPopupOpen = false;
-      this.approveRentContract();
+      //this.approveRentContract();
       
 
     } catch (error: any) {
