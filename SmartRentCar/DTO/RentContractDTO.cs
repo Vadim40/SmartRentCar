@@ -21,6 +21,6 @@ namespace SmartRentCar.DTO
         
         public DateTime CreatedAt { get; set; }
 
-
+        public string ContractAddress {get; set; }
     }
 }

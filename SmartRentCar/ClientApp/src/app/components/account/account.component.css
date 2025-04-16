@@ -1,13 +1,13 @@
 .account-component {
     display: flex;
-    flex-direction: row; 
-    gap: 20px;  
+    flex-direction: row;
+    gap: 20px;
     padding: 30px 60px;
 }
 
 
 .info-container {
-    width: 25%; 
+    width: 25%;
     background-color: #f2eadd;
     padding: 15px;
     border-radius: 8px;
@@ -18,7 +18,7 @@
 
 .action-button {
     margin-top: 20px;
-    background-color: inherit ;
+    background-color: inherit;
     color: #232323;
     width: fit-content;
     font-size: 15px;
@@ -27,10 +27,12 @@
 }
 
 .rent-container {
-    flex: 2; /* Две трети */
+    flex: 2;
+    /* Две трети */
     display: flex;
     flex-direction: column;
 }
+
 .info-container span {
     font-size: 22px;
     font-weight: 500;
@@ -50,6 +52,7 @@
     flex-direction: column;
 
 }
+
 .user-info span {
     margin-top: 10px;
     font-size: 15px;
@@ -69,17 +72,17 @@
     font-size: 22px;
     font-weight: 500;
     color: #555;
-    position: relative; 
+    position: relative;
     outline: none;
     transition: color 0.3s ease;
 }
 
 .tab-button:hover {
-    color:#232323;  
+    color: #232323;
 }
 
 .tab-button.active {
-    color: #232323;  
+    color: #232323;
 }
 
 .tab-button.active::after {
@@ -89,7 +92,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #232323; 
+    background-color: #232323;
 }
 
 
@@ -99,29 +102,29 @@
 .tab-content {
     height: 550px;
     display: flex;
-    flex-wrap: wrap; 
-    align-items: flex-start; 
+    flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: flex-start;
     gap: 20px;
     background-color: #dbd4c5;
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 .tab-content.no-items {
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
 
 }
 
 
 .car-item {
-    flex: 0 1 calc(50% - 40px); 
+    flex: 0 1 calc(50% - 40px);
     display: flex;
     flex-direction: row;
-    align-items: flex-start; 
+    align-items: flex-start;
     margin-bottom: 15px;
     padding: 10px;
     border-radius: 5px;
@@ -132,15 +135,15 @@
 .car-image {
     width: 300px;
     height: 225px;
-    object-fit: cover; 
-    margin-right: 15px; 
-    border-radius: 4px; 
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 4px;
 }
 
 .car-info {
     display: flex;
     flex-direction: column;
-    
+
 
 }
 
@@ -148,8 +151,9 @@
     margin-left: 20px;
     font-size: 22px;
     font-weight: 500;
-    
+
 }
+
 .car-details {
     display: flex;
     flex-direction: column;
@@ -157,6 +161,7 @@
     margin: 20px;
     gap: 10px;
 }
+
 .car-details span {
     font-size: 15px;
     font-weight: 400;
@@ -164,10 +169,115 @@
     display: block;
 }
 
-.cost-container{
+.cost-container {
     gap: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  
+
+}
+
+.popup {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background-color: #f2eadd;
+    border-radius: 5px;
+    border: 1px solid  #232323;
+}
+
+.car-container {
+    max-width: fit-content;
+    width: auto; /* Разрешает сужение размера по контенту */
+}
+
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+.car-details {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.car-images {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.car-images .main-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.car-images .thumbnail-images {
+    display: flex;
+    gap: 10px;
+}
+
+.car-images .thumbnail-images img {
+    width: calc(50% - 5px);
+    /* Фотографии вдвое меньше главной */
+    height: auto;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.car-info-2 {
+    display: inline-block;
+    flex-shrink: 0;
+
+}
+
+.car-info-2 span {
+
+    color: #232323;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.car-info-2 table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.car-info-2 table tr:nth-child(odd) {
+    background-color: #f2eadd;
+}
+
+.car-info-2 table tr:nth-child(even) {
+    background-color: #dbd4c5;
+}
+
+.car-info-2 table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #232323;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+
+.car-info-2 table td strong {
+    color: #232323;
 }

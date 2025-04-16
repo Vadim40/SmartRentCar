@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { RentContract, RentContractUpdate, RentContractСreate } from '../models/rentContract';
-import { BrowserProvider, Contract, ethers, formatEther, JsonRpcProvider, LogDescription, Signer, TransactionResponse } from 'ethers';
+import { BrowserProvider, Contract, ethers, formatEther, JsonRpcProvider, LogDescription, parseUnits, Signer, TransactionResponse } from 'ethers';
 import { abi, contractAddress } from '../models/contractInfo';
 
 declare global {
@@ -65,13 +65,13 @@ export class RentContractService extends HttpService {
     }
   }
   
-  async createRentContract(
+  async createRentContract (
     deposit: number,
     rentAmount: number,
     startTime: number,
     endTime: number,
     unlockDelayHours: number
-  ) {
+  ): Promise<string> {
     try {
       if (!this.signer || !this.contract) {
         await this.connectWallet();
@@ -94,7 +94,8 @@ export class RentContractService extends HttpService {
         rentAmountWei,
         startTime,
         endTime,
-        unlockDelayHours
+        unlockDelayHours,
+        { gasLimit: parseUnits("50000", "wei") }
       );
   
       console.log(" ⏳ Транзакция отправлена:", tx.hash);
@@ -107,7 +108,7 @@ export class RentContractService extends HttpService {
         console.log(" 📝 Новый контракт создан по адресу:", newContractAddress);
       }
   
-      return receipt;
+      return newContractAddress;
     } catch (error) {
       console.error(" ❌ Ошибка при создании контракта:", error);
       throw error;

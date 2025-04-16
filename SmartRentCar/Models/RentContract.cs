@@ -33,6 +33,7 @@ namespace SmartRentCar.Models
 
         [Required]
         public DateTime CreatedAt { get; set; }
+        public string? ContractAddress {get; set;}
 
         public ContractStatus ContractStatus { get; set; }
         public User User { get; set; }

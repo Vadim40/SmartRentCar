@@ -152,10 +152,10 @@ export class CarBookingComponent implements OnInit {
   
     try {
 
-      //this.createRentContract();
+      await this.createRentContract();
 
       await this.rentContractService.connectWallet();
-      await this.rentContractService.createRentContract(
+      const contractAddress = await this.rentContractService.createRentContract(
         this.car.depositAmount,
         this.totalCost,
         Math.floor(this.startDate.getTime() / 1000),
@@ -165,13 +165,15 @@ export class CarBookingComponent implements OnInit {
 
       alert(" Бронирование подтверждено!");
       this.isPopupOpen = false;
-      //this.approveRentContract();
+      await this.UpdateRentContract(contractAddress);
       
 
     } catch (error: any) {
       console.error(" Ошибка при создании контракта:", error);
 
       if (error.code == 'ACTION_REJECTED') {
+        console.log(this.rentId)
+      this.rentContractService.deleteRentContractById(this.rentId).subscribe();
         alert(" Вы отменили подписание транзакции.");
       } else {
         alert(" Ошибка при бронировании");
@@ -193,18 +195,19 @@ export class CarBookingComponent implements OnInit {
         this.rentId = await firstValueFrom(this.rentContractService.saveRentContract(rent));
     } catch (error) {
         console.error(" Ошибка при сохранении контракта:", error);
+        console.log(rent)
         throw error; 
     }
 }
 
-async approveRentContract() {
+async UpdateRentContract( contractAddress: string) {
     const rentUpdate: RentContractUpdate = {
         rentId: this.rentId,
-        contractStatusId: RentContractStatus.Active,
+        
     };
 
     try {
-        await firstValueFrom(this.rentContractService.updateRentContract(rentUpdate)); 
+        await this.rentContractService.updateRentContract(rentUpdate); 
     } catch (error) {
         console.error("Ошибка при подтверждении аренды:", error);
     }

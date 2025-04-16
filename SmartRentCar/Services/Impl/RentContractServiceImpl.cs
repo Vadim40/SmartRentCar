@@ -14,67 +14,69 @@ namespace SmartRentCar.Services.Impl
 
         public RentContractServiceImpl(IRentContractRepository rentContractRepository, IMapper mapper, ApplicationContext context)
         {
-
             _rentContractRepository = rentContractRepository;
             _mapper = mapper;
             _context = context;
         }
+
         public async Task DeleteRentContractById(int contractId)
         {
-            try
-            {
-                await _rentContractRepository.DeleteRentContractById(contractId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            await _rentContractRepository.DeleteRentContractById(contractId);
         }
 
-        public async Task<List<RentContractDTO>> GetRentContractsByStatus(int userId, int statusId)
+        public async Task<List<RentContractDTO>> GetRentContractsCompleted()
         {
-            try
-            {
-                var rentContracts = await _rentContractRepository.GetRentContractsByStatus(userId, statusId);
-                return _mapper.Map<List<RentContractDTO>>(rentContracts);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            //TODO  заменить
+            var rentContracts = await _rentContractRepository.GetRentContracts(1);
+            rentContracts = rentContracts.Where(r => r.ContractStatusId == (int)RentContractStatus.Completed).ToList();
+            return _mapper.Map<List<RentContractDTO>>(rentContracts);
         }
 
-        public Task<int> SaveRentContract(RentContractDTO contractDTO)
+        public async Task<List<RentContractDTO>> GetRentContractsActive()
         {
-            try
-            {
-                bool isCarInRent = _context.RentContracts.
-                                    Where(r => contractDTO.StartDate<=r.EndDate
-                                    && contractDTO.EndDate>= r.StartDate)
-                                    .Any();
-                if (isCarInRent)
-                    throw new Exception("This car is already in rent on the days you chose.");
+            var rentContracts = await _rentContractRepository.GetRentContracts(1);
+            rentContracts = rentContracts.Where(r => r.ContractStatusId != (int)RentContractStatus.Completed
+                                                 && r.ContractStatusId != (int)RentContractStatus.Canceled).ToList();
+            return _mapper.Map<List<RentContractDTO>>(rentContracts);
+        }
 
-                var rentContract = _mapper.Map<RentContract>(contractDTO);
-                return _rentContractRepository.SaveRentContract(rentContract);
-            }
-            catch (Exception ex)
+        public async Task<List<RentContractDTO>> GetRentContractsByStatus(int statusId)
+        {
+            // TODO заменить на реальный UserId
+            var rentContracts = await _rentContractRepository.GetRentContractsByStatus(1, statusId);
+            return _mapper.Map<List<RentContractDTO>>(rentContracts);
+        }
+
+        public async Task<int> SaveRentContract(RentContractCreateDTO contractDTO)
+        {
+            bool isCarInRent = await _rentContractRepository.IsCarInRent(contractDTO.CarId, contractDTO.StartDate, contractDTO.EndDate);
+
+            if (isCarInRent)
             {
-                throw new Exception(ex.Message);
+                throw new InvalidOperationException("This car is already rented on the chosen dates.");
             }
+
+            var rentContract = _mapper.Map<RentContract>(contractDTO);
+            // TODO заменить на реальный UserID
+            rentContract.UserId = 1;
+            rentContract.CreatedAt = DateTime.Now;
+            rentContract.ContractStatusId = (int)RentContractStatus.PendingConfirmation;
+
+            return await _rentContractRepository.SaveRentContract(rentContract);
         }
 
         public async Task UpdateRentContract(RentContractUpateDTO contractDTO)
         {
-            try
+            //TODO заменить на реальный UserId и кастомную ошибку
+            var contract = await _rentContractRepository.GetRentContract(contractDTO.RentContractId);
+
+            if (contract.UserId != 1)
             {
-                var rentContract = _mapper.Map<RentContract>(contractDTO);
-                await _rentContractRepository.UpdateRentContract(rentContract);
+                throw new UnauthorizedAccessException("Not enough rights to update this rent.");
             }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+
+            var rentContract = _mapper.Map<RentContract>(contractDTO);
+            await _rentContractRepository.UpdateRentContract(rentContract);
         }
     }
 }

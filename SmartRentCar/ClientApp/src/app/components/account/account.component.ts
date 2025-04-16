@@ -28,6 +28,9 @@ export class AccountComponent {
   rentHistory: RentContract [] = [];
   rentContractStatus = RentContractStatus;
 
+  selectedRent?: RentContract;
+
+
 activeTab: string = 'activeRents';
 
 constructor(private contractService: RentContractService,
@@ -56,14 +59,14 @@ getRents() {
         this.carService.getCar(rent.carId).pipe(
           switchMap(car => {
             rent.car = car;
-            return this.carService.getFirstCarImage(car.carId);
+            return this.carService.getCarImages(car.carId);
           })
         ).subscribe({
-          next: (carImage: CarImage) => {
+          next: (carImage: CarImage []) => {
             if (!rent.car.carImages) {
               rent.car.carImages = [];
             }
-            rent.car.carImages.push(carImage);
+            rent.car.carImages.push(...carImage);
           },
           error: error => console.error("Ошибка загрузки автомобиля или изображения", error)
         });
@@ -89,4 +92,12 @@ cancelRent(rent: RentContract) {
 }
 
 CancelBooking(){}
+
+openPopup(rent: any) {
+  this.selectedRent = rent;
+}
+
+closePopup() {
+  this.selectedRent = undefined;
+}
 }

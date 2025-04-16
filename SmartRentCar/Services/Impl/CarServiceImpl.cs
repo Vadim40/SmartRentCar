@@ -12,174 +12,90 @@ namespace SmartRentCar.Services.Impl
         private readonly ICarRepository _carRepository;
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
+
         public CarServiceImpl(ICarRepository carRepository, IMapper mapper, ApplicationContext context)
         {
             _carRepository = carRepository;
             _mapper = mapper;
             _context = context;
-
         }
+
         public async Task DeleteCarById(int carId)
         {
-            try
-            {
-                await _carRepository.DeleteCarById(carId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            await _carRepository.DeleteCarById(carId);
         }
 
         public async Task<List<CarBookingDTO>> GetCarBookings(int carId)
         {
-            try
-            {
-                return await _context.RentContracts
-                       .Where(r => r.CarId == carId && r.EndDate > DateTime.Now)
-                        .Select(r => new CarBookingDTO
-                        {
-                            StartDate = r.StartDate,
-                            EndDate = r.EndDate
-                        })
-                        .ToListAsync();
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            // TODO поменять
+            return await _context.RentContracts
+                .Where(r => r.CarId == carId && r.EndDate > DateTime.Now)
+                .Select(r => new CarBookingDTO
+                {
+                    StartDate = r.StartDate,
+                    EndDate = r.EndDate
+                })
+                .ToListAsync();
         }
 
         public async Task<List<CarBrandDTO>> GetCarBrands()
         {
-            try
-            {
-                var carBrands = await _carRepository.GetCarBrands();
-                return _mapper.Map<List<CarBrandDTO>>(carBrands);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var carBrands = await _carRepository.GetCarBrands();
+            return _mapper.Map<List<CarBrandDTO>>(carBrands);
         }
 
         public async Task<CarDTO> GetCarById(int carId)
         {
-            try
-            {
-                var car = await _carRepository.GetCarById(carId);
-                return _mapper.Map<CarDTO>(car);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var car = await _carRepository.GetCarById(carId);
+            return _mapper.Map<CarDTO>(car);
         }
 
         public async Task<List<CarClassDTO>> GetCarClasses()
         {
-            try
-            {
-                var carClasses = await _carRepository.GetCarClasses();
-                return _mapper.Map<List<CarClassDTO>>(carClasses);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var carClasses = await _carRepository.GetCarClasses();
+            return _mapper.Map<List<CarClassDTO>>(carClasses);
         }
 
         public async Task<List<CarFuelTypeDTO>> GetCarFuelTypes()
         {
-            try
-            {
-                var carFuelTypes = await _carRepository.GetCarFuelTypes();
-                return _mapper.Map<List<CarFuelTypeDTO>>(carFuelTypes);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var carFuelTypes = await _carRepository.GetCarFuelTypes();
+            return _mapper.Map<List<CarFuelTypeDTO>>(carFuelTypes);
         }
 
         public async Task<CarImageDTO> GetCarImageById(int carId)
         {
-            try
-            {
-                var carImage = await _carRepository.GetFirstCarImageById(carId);
-                return _mapper.Map<CarImageDTO>(carImage);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var carImage = await _carRepository.GetFirstCarImageById(carId);
+            return _mapper.Map<CarImageDTO>(carImage);
         }
-
 
         public async Task<List<CarImageDTO>> GetCarImagesById(int carId)
         {
-            try
-            {
-                var carImages = await _carRepository.GetCarImagesById(carId);
-                return _mapper.Map<List<CarImageDTO>>(carImages);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var carImages = await _carRepository.GetCarImagesById(carId);
+            return _mapper.Map<List<CarImageDTO>>(carImages);
         }
 
         public async Task<List<CarDTO>> GetCarsByFilter(FilterToCars filter)
         {
-            try
-            {
-                var cars = await _carRepository.GetCarsByFilter(filter);
-                return _mapper.Map<List<CarDTO>>(cars);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var cars = await _carRepository.GetCarsByFilter(filter);
+            return _mapper.Map<List<CarDTO>>(cars);
         }
 
         public async Task<List<CarTransmissionDTO>> GetCarTransmissions()
         {
-            try
-            {
-                var carTransmissions = await _carRepository.GetCarTransmissions();
-                return _mapper.Map<List<CarTransmissionDTO>>(carTransmissions);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var carTransmissions = await _carRepository.GetCarTransmissions();
+            return _mapper.Map<List<CarTransmissionDTO>>(carTransmissions);
         }
 
-        public Task<int> SaveCar(CarDTO carDTO)
+        public async Task<int> SaveCar(CarDTO carDTO)
         {
-            try
-            {
-                var car = _mapper.Map<Car>(carDTO);
-                return _carRepository.SaveCar(car);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var car = _mapper.Map<Car>(carDTO);
+            return await _carRepository.SaveCar(car);
         }
 
         public async Task UpdateCar(CarDTO carDTO)
         {
-            try
-            {
-                var car = _mapper.Map<Car>(carDTO);
-                await _carRepository.UpdateCar(car);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var car = _mapper.Map<Car>(carDTO);
+            await _carRepository.UpdateCar(car);
         }
     }
 }

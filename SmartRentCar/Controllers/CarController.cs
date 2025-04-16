@@ -145,7 +145,7 @@ namespace SmartRentCar.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteCarById(int id)
+        public async Task<ActionResult> DeleteCarById([FromRoute]int id)
         {
             try
             {

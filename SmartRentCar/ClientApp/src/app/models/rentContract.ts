@@ -33,6 +33,8 @@ export enum RentContractStatus {
 
 export interface RentContractUpdate {
     rentId: number;
-    contractStatusId: number;
+    contractStatusId?: number;
+    contractAddress?: string;
+    
 }
 

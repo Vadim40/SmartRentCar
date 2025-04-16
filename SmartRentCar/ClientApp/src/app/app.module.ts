@@ -18,7 +18,8 @@ import { AccountComponent } from './components/account/account.component';
 import { CarComponent } from './components/car/car.component';
 import { CarBookingComponent } from './components/car-booking/car-booking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DateInterceptor } from './services/config/date.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatFormFieldModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

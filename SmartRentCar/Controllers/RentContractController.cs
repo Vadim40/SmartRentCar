@@ -16,7 +16,7 @@ namespace SmartRentCar.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRentContractById(int id)
+        public async Task<IActionResult> DeleteRentContractById([FromRoute] int id)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace SmartRentCar.Controllers
         }
 
         [HttpGet("status/{statusId}")]
-        public async Task<IActionResult> GetRentContractsByStatus(int userId, int statusId)
+        public async Task<IActionResult> GetRentContractsByStatus([FromRoute] int statusId)
         {
             //TODO заменить на реальный id из токена
             try
@@ -45,7 +45,7 @@ namespace SmartRentCar.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveRentContract([FromBody] RentContractDTO contractDTO)
+        public async Task<IActionResult> SaveRentContract([FromBody] RentContractCreateDTO contractDTO)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace SmartRentCar.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateRentContract([FromBody] RentContractDTO contractDTO)
+        public async Task<IActionResult> UpdateRentContract([FromBody] RentContractUpateDTO contractDTO)
         {
             try
             {

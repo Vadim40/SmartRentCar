@@ -31,19 +31,20 @@
                     <p>Нет активных аренд.</p>
                 </div>
 
-                <div class="car-item" *ngFor="let rent of rentActive">
+                <div class="car-item" *ngFor="let rent of rentActive" (click)="openPopup(rent)">
                     <img [src]="rent.car.carImages[0].imageData" alt="{{ rent.car.carName }}" class="car-image" />
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
                         <div class="car-details">
                             <span> {{ rent.startDate | date:'dd.MM.yyyy' }} - {{ rent.endDate | date:'dd.MM.yyyy'
                                 }}</span>
-                            <div class="cost-container">
+                            <!-- <div class="cost-container">
                                 <span>Итоговая стоимость : {{rent.totalCost}}</span>
                                 <span>Сумма залога: {{rent.deposit}}</span>
-                            </div>
+                            </div> -->
                             <span>Статус: {{rent.statusName}}</span>
-                            <button *ngIf="rent.contractStatusId == 1" class="action-button" style="margin-top: 0px;" (click)="CancelBooking()"> Отменить
+                            <button *ngIf="rent.contractStatusId == 1" class="action-button" style="margin-top: 0px;"
+                                (click)="CancelBooking()"> Отменить
                                 бронирование</button>
                         </div>
                     </div>
@@ -56,7 +57,7 @@
                     <p>Нет завершённых аренд.</p>
                 </div>
 
-                <div class="car-item" *ngFor="let rent of rentHistory">
+                <div class="car-item" *ngFor="let rent of rentHistory" (click)="openPopup(rent)">
                     <img [src]="rent.car.carImages[0].imageData" alt="{{ rent.car.carName }}" class="car-image" />
                     <div class="car-info">
                         <div class="car-title">{{ rent.car.carName }}</div>
@@ -72,6 +73,73 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="popup" *ngIf="selectedRent">
+                <div class="car-container">
+                    <span class="close" (click)="closePopup()">&times;</span>
+                    <div class="car-details">
+                        <div class="car-images">
+                            <div class="main-image">
+                                <img [src]="selectedRent.car.carImages[0].imageData" [alt]="selectedRent.car.carName" />
+                            </div>
+                            <div class="thumbnail-images">
+                                <img *ngFor="let img of selectedRent.car.carImages.slice(1, 3)" [src]="img.imageData" [alt]="selectedRent.car.carName" />
+                            </div>
+                            <!-- <div *ngIf="selectedRent.car.carImages.length > 3" class="additional-images">
+                                <button class="action-button" (click)="viewMoreImages()">
+                                    Посмотреть больше
+                                </button>
+                            </div> -->
+                        </div>
+            
+                        <!-- Правый блок: информация об автомобиле -->
+                        <div class="car-info-2">
+                            <span>{{ selectedRent.car.carName }}</span>
+                            <table>
+                                <tr>
+                                    <td>Год выпуска</td>
+                                    <td>{{ selectedRent.car.modelYear }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Тип топлива</td>
+                                    <td>{{ selectedRent.car.fuelTypeName }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Класс</td>
+                                    <td>{{ selectedRent.car.className }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Трансмиссия</td>
+                                    <td>{{ selectedRent.car.transmissionTypeName }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Цена за день</td>
+                                    <td>{{ selectedRent.car.costPerDay }} ₽</td>
+                                </tr>
+                                <tr>
+                                    <td>Залог</td>
+                                    <td>{{ selectedRent.car.depositAmount }} ₽</td>
+                                </tr>
+                                <tr>
+                                    <td>Количество мест</td>
+                                    <td>{{ selectedRent.car.seats }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Кондиционер</td>
+                                    <td>{{ selectedRent.car.airConditioning ? 'Есть' : 'Нет' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>GPS</td>
+                                    <td>{{ selectedRent.car.gps ? 'Есть' : 'Нет' }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
 
         </div>
 

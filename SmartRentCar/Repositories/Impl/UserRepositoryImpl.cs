@@ -1,5 +1,8 @@
 ﻿using SmartRentCar.Config;
 using SmartRentCar.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SmartRentCar.Repositories.Impl
 {
@@ -12,45 +15,69 @@ namespace SmartRentCar.Repositories.Impl
             _context = context;
         }
 
-
         public async Task<User> GetUserById(int userId)
         {
-
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null)
+            try
             {
-                throw new KeyNotFoundException($"Car with Id {userId} not found");
+                var user = await _context.Users.FindAsync(userId);
+                if (user == null)
+                {
+                    throw new KeyNotFoundException($"User with Id {userId} not found.");
+                }
+                return user;
             }
-            return user;
-
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                throw;
+            }
         }
 
- 
         public async Task<int> SaveUser(User user)
         {
-            await _context.Users.AddAsync(user); 
-            await _context.SaveChangesAsync();
-            return user.UserId;
+            try
+            {
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+                return user.UserId;
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                throw;
+            }
         }
 
-        
         public async Task UpdateUser(User user)
         {
-            _context.Users.Update(user);       
-            await _context.SaveChangesAsync();
-
+            try
+            {
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                throw;
+            }
         }
 
-       
         public async Task DeleteUserById(int userId)
         {
-            var user = await GetUserById(userId);    
-            if (user != null)
+            try
             {
-                _context.Users.Remove(user);    
-                await _context.SaveChangesAsync(); 
+                var user = await GetUserById(userId);
+                if (user != null)
+                {
+                    _context.Users.Remove(user);
+                    await _context.SaveChangesAsync();
+                }
             }
-        
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                throw;
+            }
         }
     }
 }
