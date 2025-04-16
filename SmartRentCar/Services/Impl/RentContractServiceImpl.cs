@@ -28,7 +28,8 @@ namespace SmartRentCar.Services.Impl
         {
             //TODO  заменить
             var rentContracts = await _rentContractRepository.GetRentContracts(1);
-            rentContracts = rentContracts.Where(r => r.ContractStatusId == (int)RentContractStatus.Completed).ToList();
+            rentContracts = rentContracts.Where(r => r.ContractStatusId == (int)RentContractStatus.Completed
+                                                && r.ContractStatusId == (int)RentContractStatus.Canceled).ToList();
             return _mapper.Map<List<RentContractDTO>>(rentContracts);
         }
 

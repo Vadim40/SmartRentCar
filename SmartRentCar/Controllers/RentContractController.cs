@@ -29,13 +29,27 @@ namespace SmartRentCar.Controllers
             }
         }
 
-        [HttpGet("status/{statusId}")]
-        public async Task<IActionResult> GetRentContractsByStatus([FromRoute] int statusId)
+        [HttpGet("active")]
+        public async Task<IActionResult> GetRentContractsActive([FromRoute] int statusId)
         {
-            //TODO заменить на реальный id из токена
+            
             try
             {
-                var rentContracts = await _rentContractService.GetRentContractsByStatus(1, statusId);
+                var rentContracts = await _rentContractService.GetRentContractsActive();
+                return Ok(rentContracts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+          [HttpGet("completed")]
+        public async Task<IActionResult> GetRentContractsCompleted([FromRoute] int statusId)
+        {
+            
+            try
+            {
+                var rentContracts = await _rentContractService.GetRentContractsCompleted();
                 return Ok(rentContracts);
             }
             catch (Exception ex)

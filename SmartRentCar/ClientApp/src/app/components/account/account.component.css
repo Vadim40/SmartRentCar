@@ -133,7 +133,7 @@
 
 
 .car-image {
-    width: 300px;
+    max-width: 60%;
     height: 225px;
     object-fit: cover;
     margin-right: 15px;
@@ -177,6 +177,18 @@
 
 }
 
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); /* затемнение фона */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
 .popup {
     display: flex;
     flex-direction: row;
@@ -184,7 +196,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 10px;
+    padding: 20px;
     background-color: #f2eadd;
     border-radius: 5px;
     border: 1px solid  #232323;
@@ -202,10 +214,11 @@
     top: 10px;
     cursor: pointer;
     font-size: 20px;
+    font-size: 2rem;
 }
 
 
-.car-details {
+.car-details-2 {
     display: flex;
     flex-direction: row;
     gap: 20px;
@@ -281,3 +294,23 @@
 .car-info-2 table td strong {
     color: #232323;
 }
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.contract {
+    margin-top: 20px;
+}
+.etherscan-link {
+    color: #3f51b5;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .etherscan-link:hover {
+    text-decoration: underline;
+    color: #1a237e;
+  }
+  

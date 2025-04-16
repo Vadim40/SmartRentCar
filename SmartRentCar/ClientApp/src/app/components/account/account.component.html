@@ -43,9 +43,9 @@
                                 <span>Сумма залога: {{rent.deposit}}</span>
                             </div> -->
                             <span>Статус: {{rent.statusName}}</span>
-                            <button *ngIf="rent.contractStatusId == 1" class="action-button" style="margin-top: 0px;"
+                            <!-- <button *ngIf="rent.contractStatusId == 1" class="action-button" style="margin-top: 0px;"
                                 (click)="CancelBooking()"> Отменить
-                                бронирование</button>
+                                бронирование</button> -->
                         </div>
                     </div>
                 </div>
@@ -74,17 +74,18 @@
                 </div>
             </div>
 
-
-            <div class="popup" *ngIf="selectedRent">
+            <div class="popup-overlay" (click)="closePopup()" *ngIf="selectedRent">
+            <div class="popup" *ngIf="selectedRent" (click)="stopPropagation($event)">
                 <div class="car-container">
                     <span class="close" (click)="closePopup()">&times;</span>
-                    <div class="car-details">
+                    <div class="car-details-2">
                         <div class="car-images">
                             <div class="main-image">
                                 <img [src]="selectedRent.car.carImages[0].imageData" [alt]="selectedRent.car.carName" />
                             </div>
                             <div class="thumbnail-images">
-                                <img *ngFor="let img of selectedRent.car.carImages.slice(1, 3)" [src]="img.imageData" [alt]="selectedRent.car.carName" />
+                                <img *ngFor="let img of selectedRent.car.carImages.slice(1, 3)" [src]="img.imageData"
+                                    [alt]="selectedRent.car.carName" />
                             </div>
                             <!-- <div *ngIf="selectedRent.car.carImages.length > 3" class="additional-images">
                                 <button class="action-button" (click)="viewMoreImages()">
@@ -92,7 +93,7 @@
                                 </button>
                             </div> -->
                         </div>
-            
+
                         <!-- Правый блок: информация об автомобиле -->
                         <div class="car-info-2">
                             <span>{{ selectedRent.car.carName }}</span>
@@ -136,9 +137,35 @@
                             </table>
                         </div>
                     </div>
+                    <div class="contract">
+                        <span>Адрес контракта:
+                          <a 
+                            href="#" 
+                            (click)="confirmAndOpen($event, 'https://sepolia.etherscan.io/address/0x9b8C9cC7D875376BE211100600E19561E67162af')"
+                            title="Открыть в Etherscan"
+                            class="etherscan-link"
+                          >
+                            0x9b8C9cC7D875376BE211100600E19561E67162af
+                          </a>
+                        </span>
+                      </div>
+                      
+
+                    <div class="actions" *ngIf="selectedRent.contractStatusId">
+                        <button *ngIf="selectedRent.contractStatusId === rentContractStatus.PendingConfirmation"
+                            class="action-button" (click)="payContract()">Оплатить</button>
+
+                        <button
+                            *ngIf="selectedRent.contractStatusId === rentContractStatus.PendingConfirmation || selectedRent.contractStatusId === rentContractStatus.PendingStart"
+                            class="action-button danger" (click)="cancelContract()">Отменить</button>
+
+                        <button *ngIf="selectedRent.contractStatusId === rentContractStatus.Active"
+                            class="action-button warning" (click)="endContractEarly()">Завершить досрочно</button>
+                    </div>
                 </div>
             </div>
-            
+            </div>
+
 
 
         </div>

@@ -82,11 +82,10 @@ export class RentContractService extends HttpService {
       const depositSmall = deposit / 10000;
     const rentAmountSmall = rentAmount / 10000;
 
-    // Переводим уменьшенные суммы в wei (для использования в контракте)
     const depositWei = ethers.parseEther(depositSmall.toString());
     const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());
   
-      // Вызываем метод БЕЗ передачи value
+      //  метод БЕЗ передачи value
       const tx = await this.contract['createRentContract'](
         renter,
         this.companyAddress,
@@ -98,19 +97,19 @@ export class RentContractService extends HttpService {
         { gasLimit: parseUnits("50000", "wei") }
       );
   
-      console.log(" ⏳ Транзакция отправлена:", tx.hash);
+      console.log("  Транзакция отправлена:", tx.hash);
       const receipt = await tx.wait();
-      console.log(" ✅ Контракт создан! Хеш:", receipt?.hash);
+      console.log(" Хеш:", receipt?.hash);
   
       const event = receipt?.logs?.find((log: LogDescription) => log.fragment?.name === "ContractCreated");
       const newContractAddress = event?.args?.contractAddress;
       if (newContractAddress) {
-        console.log(" 📝 Новый контракт создан по адресу:", newContractAddress);
+        console.log("  Адрес:", newContractAddress);
       }
   
       return newContractAddress;
     } catch (error) {
-      console.error(" ❌ Ошибка при создании контракта:", error);
+      console.error("  Ошибка при создании контракта:", error);
       throw error;
     }
   }
@@ -118,11 +117,14 @@ export class RentContractService extends HttpService {
   
 
 
-  getRentContractsByStatus(statusId: number): Observable<RentContract[]> {
-    const url = `${this.apiUrl}/status/${statusId}`;
+  getRentContractsActive(): Observable<RentContract[]> {
+    const url = `${this.apiUrl}/active`;
     return this.sendRequest(url, 'GET');
   }
-
+  getRentContractsCompleted(): Observable<RentContract[]> {
+    const url = `${this.apiUrl}/completed`;
+    return this.sendRequest(url, 'GET');
+  }
   saveRentContract(contract: RentContractСreate): Observable<number> {
     const url = `${this.apiUrl}`;
     return this.sendRequest(url, 'POST', contract);

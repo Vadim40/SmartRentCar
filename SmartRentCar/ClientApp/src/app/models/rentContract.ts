@@ -10,6 +10,7 @@ export interface RentContract {
     endDate: Date;
     totalCost: number;
     deposit: number;
+    contractAddress?: string;
 }
 
 export interface RentContractСreate {

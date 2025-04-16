@@ -47,8 +47,8 @@ ngOnInit() {
 getRents() {
   // Получаем активные и завершенные контракты параллельно
   forkJoin({
-    rentActive: this.contractService.getRentContractsByStatus(RentContractStatus.Active),
-    rentHistory: this.contractService.getRentContractsByStatus(RentContractStatus.Completed)
+    rentActive: this.contractService.getRentContractsActive(),
+    rentHistory: this.contractService.getRentContractsCompleted()
   }).subscribe({
     next: ({ rentActive, rentHistory }) => {
       this.rentActive = rentActive;
@@ -100,4 +100,30 @@ openPopup(rent: any) {
 closePopup() {
   this.selectedRent = undefined;
 }
+
+cancelContract() {
+  console.log('Отменить контракт');
+
+}
+
+payContract() {
+  console.log('Оплатить контракт');
+
+}
+
+endContractEarly() {
+  console.log('Завершить аренду досрочно');
+
+}
+confirmAndOpen(event: MouseEvent, url: string): void {
+  event.preventDefault(); 
+  const confirmed = confirm(`Перейти по ссылке?\n\n${url}`);
+  if (confirmed) {
+    window.open(url, '_blank');
+  }
+}
+stopPropagation(event: Event) {
+  event.stopPropagation(); 
+}
+
 }
