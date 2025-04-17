@@ -29,7 +29,7 @@ namespace SmartRentCar.Services.Impl
             //TODO  заменить
             var rentContracts = await _rentContractRepository.GetRentContracts(1);
             rentContracts = rentContracts.Where(r => r.ContractStatusId == (int)RentContractStatus.Completed
-                                                && r.ContractStatusId == (int)RentContractStatus.Canceled).ToList();
+                                                || r.ContractStatusId == (int)RentContractStatus.Canceled).ToList();
             return _mapper.Map<List<RentContractDTO>>(rentContracts);
         }
 
@@ -75,9 +75,11 @@ namespace SmartRentCar.Services.Impl
             {
                 throw new UnauthorizedAccessException("Not enough rights to update this rent.");
             }
-
-            var rentContract = _mapper.Map<RentContract>(contractDTO);
-            await _rentContractRepository.UpdateRentContract(rentContract);
+            if(contractDTO.ContractStatusId != null)
+            contract.ContractStatusId = (int)contractDTO.ContractStatusId; 
+            if(contractDTO.ContractAddress != null)
+            contract.ContractAddress = contractDTO.ContractAddress;
+            await _rentContractRepository.UpdateRentContract(contract);
         }
     }
 }

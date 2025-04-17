@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './config/http.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { RentContract, RentContractUpdate, RentContractСreate } from '../models/rentContract';
 import { BrowserProvider, Contract, ethers, formatEther, JsonRpcProvider, LogDescription, parseUnits, Signer, TransactionResponse } from 'ethers';
-import { abi, contractAddress } from '../models/contractInfo';
+import { COMPANY_ADDRESS, CONTRACT_ABI, CONTRACT_FACTORY_ABI, CONTRACT_FACTORY_ADDRESS } from '../models/contractInfo';
 
 declare global {
   interface Window {
@@ -21,41 +21,43 @@ export class RentContractService extends HttpService {
 
   private provider!: BrowserProvider;
   private signer!: Signer;
+  private contractFactory!: Contract;
+  private contractFactoryAbi = CONTRACT_FACTORY_ABI;
+  private contractFactoryAddress = CONTRACT_FACTORY_ADDRESS;
   private contract!: Contract;
-  private abi = abi;
-  private contractAddress = contractAddress;
-  companyAddress = '0x7462A2FBF684f72AA35b89e72618Cc8622EB94a1';
-  
+  private contractAbi = CONTRACT_ABI;
+  private contractAddress = '';
+
+  private companyAddress = COMPANY_ADDRESS;
+
 
   constructor(private httpClient: HttpClient) {
     super(httpClient);
-  
+
     if (typeof window.ethereum !== "undefined") {
       this.provider = new ethers.BrowserProvider(window.ethereum);
-    } else {  
+    } else {
       console.error(" MetaMask не найден!");
     }
   }
-  
-  
+
+
   private async initializeSigner() {
     try {
       this.signer = await this.provider.getSigner();
-      this.contract = new ethers.Contract(this.contractAddress, this.abi, this.signer);
-  
       const address = await this.signer.getAddress();
       console.log(" Адрес подключенного кошелька:", address);
     } catch (error) {
       console.error(" Ошибка при инициализации подписанта:", error);
     }
   }
-  
+
+
   async connectWallet() {
     try {
       if (window.ethereum) {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-        this.provider = new ethers.BrowserProvider(window.ethereum); 
-        await this.initializeSigner();
+        this.provider = new ethers.BrowserProvider(window.ethereum);
         console.log(" MetaMask подключен!");
       } else {
         console.error(" MetaMask не найден!");
@@ -64,8 +66,8 @@ export class RentContractService extends HttpService {
       console.error(" Ошибка при подключении кошелька:", error);
     }
   }
-  
-  async createRentContract (
+
+  async createRentContract(
     deposit: number,
     rentAmount: number,
     startTime: number,
@@ -73,20 +75,22 @@ export class RentContractService extends HttpService {
     unlockDelayHours: number
   ): Promise<string> {
     try {
-      if (!this.signer || !this.contract) {
+      if (!this.contractFactory) {
         await this.connectWallet();
+        await this.initializeSigner();
+        this.contractFactory = new ethers.Contract(this.contractFactoryAddress, this.contractFactoryAbi, this.signer);
       }
-  
-      const renter = await this.signer.getAddress();
-  
-      const depositSmall = deposit / 10000;
-    const rentAmountSmall = rentAmount / 10000;
 
-    const depositWei = ethers.parseEther(depositSmall.toString());
-    const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());
-  
+      const renter = await this.signer.getAddress();
+
+      const depositSmall = deposit / 10000000;
+      const rentAmountSmall = rentAmount / 10000000;
+
+      const depositWei = ethers.parseEther(depositSmall.toString());
+      const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());
+
       //  метод БЕЗ передачи value
-      const tx = await this.contract['createRentContract'](
+      const tx = await this.contractFactory['createRentContract'](
         renter,
         this.companyAddress,
         depositWei,
@@ -94,27 +98,72 @@ export class RentContractService extends HttpService {
         startTime,
         endTime,
         unlockDelayHours,
-        { gasLimit: parseUnits("50000", "wei") }
+        {gasLimit: 500000 }
       );
-  
+
       console.log("  Транзакция отправлена:", tx.hash);
       const receipt = await tx.wait();
       console.log(" Хеш:", receipt?.hash);
-  
+
       const event = receipt?.logs?.find((log: LogDescription) => log.fragment?.name === "ContractCreated");
+      console.log(event?.args)
       const newContractAddress = event?.args?.contractAddress;
       if (newContractAddress) {
         console.log("  Адрес:", newContractAddress);
       }
-  
+
       return newContractAddress;
     } catch (error) {
       console.error("  Ошибка при создании контракта:", error);
       throw error;
     }
   }
-  
-  
+
+
+  async depositFunds(contractAddress: string, deposit: number, rentAmount: number) {
+    try {
+      this.contractAddress = contractAddress;
+      if (!this.contract) {
+        await this.connectWallet();
+        await this.initializeSigner();
+        this.contract = new ethers.Contract(this.contractAddress, this.contractAbi, this.signer);
+      }
+
+
+      const depositSmall = deposit / 10000000;
+      const rentAmountSmall = rentAmount / 10000000;
+
+      const depositWei = ethers.parseEther(depositSmall.toString());
+      const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());
+      console.log(depositWei + rentAmountWei);
+      const tx = await this.contract['depositFunds']({
+        value: depositWei + rentAmountWei, 
+        gasLimit: 500000 
+    });
+
+    } catch (error) {
+      console.error("  Ошибка при создании контракта:", error);
+      throw error;
+    }
+
+  }
+
+  async cancelRent(contractAddress: string){
+    try {
+      this.contractAddress = contractAddress;
+      if (!this.contract) {
+        await this.connectWallet();
+        await this.initializeSigner();
+        this.contract = new ethers.Contract(this.contractAddress, this.contractAbi, this.signer);
+      }
+      const tx = await this.contract['cancelRental']({
+        gasLimit: 500000 
+    });
+    } catch (error) {
+      console.error("  Ошибка при создании контракта:", error);
+      throw error;
+    }
+  }
 
 
   getRentContractsActive(): Observable<RentContract[]> {
@@ -125,14 +174,16 @@ export class RentContractService extends HttpService {
     const url = `${this.apiUrl}/completed`;
     return this.sendRequest(url, 'GET');
   }
-  saveRentContract(contract: RentContractСreate): Observable<number> {
+  saveRentContract(rentContract: RentContractСreate): Observable<number> {
     const url = `${this.apiUrl}`;
-    return this.sendRequest(url, 'POST', contract);
+    return this.sendRequest<{ rentId: number }>(url, 'POST', rentContract).pipe(
+      map(response => response.rentId)
+    );
   }
 
-  updateRentContract(contract: RentContractUpdate): Observable<void> {
+  updateRentContract(rentContract: RentContractUpdate): Observable<void> {
     const url = `${this.apiUrl}`;
-    return this.sendRequest(url, 'PUT', contract);
+    return this.sendRequest(url, 'PUT', rentContract);
   }
 
   deleteRentContractById(contractId: number): Observable<void> {

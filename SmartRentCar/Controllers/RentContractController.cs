@@ -63,8 +63,8 @@ namespace SmartRentCar.Controllers
         {
             try
             {
-                var contractId = await _rentContractService.SaveRentContract(contractDTO);
-                return Ok(new { ContractId = contractId });
+                var rentId = await _rentContractService.SaveRentContract(contractDTO);
+                return Ok(new { rentId = rentId });
             }
             catch (Exception ex)
             {

@@ -1,7 +1,7 @@
 import { Car } from "./car";
 
 export interface RentContract {
-    rentId?: number;
+    rentContractId?: number;
     carId: number;
     contractStatusId: number;
     statusName: string;
@@ -33,7 +33,7 @@ export enum RentContractStatus {
 
 
 export interface RentContractUpdate {
-    rentId: number;
+    rentContractId: number;
     contractStatusId?: number;
     contractAddress?: string;
     

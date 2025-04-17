@@ -20,9 +20,9 @@ export class CarBookingComponent implements OnInit {
   canProceed: boolean = false;
   isPopupOpen: boolean = false;
   selectedDateRange: string = '';
-  startDate!: Date; 
-  endDate!: Date; 
-  rentId: number =0;
+  startDate!: Date;
+  endDate!: Date;
+  rentContractId: number = 0;
   constructor(
     private carService: CarService,
     private rentContractService: RentContractService
@@ -91,7 +91,7 @@ export class CarBookingComponent implements OnInit {
         console.log('Выбранная дата:', selectedDate);
       }
     } else if (selectedDates.length === 2) {
-       [this.startDate, this.endDate] = selectedDates;
+      [this.startDate, this.endDate] = selectedDates;
       let hasConflict = false;
       if (this.car.bookings) {
         hasConflict = this.car.bookings.some(booking =>
@@ -149,12 +149,10 @@ export class CarBookingComponent implements OnInit {
   }
 
   async confirmBooking() {
-  
+
     try {
 
       await this.createRentContract();
-
-      await this.rentContractService.connectWallet();
       const contractAddress = await this.rentContractService.createRentContract(
         this.car.depositAmount,
         this.totalCost,
@@ -166,14 +164,14 @@ export class CarBookingComponent implements OnInit {
       alert(" Бронирование подтверждено!");
       this.isPopupOpen = false;
       await this.UpdateRentContract(contractAddress);
-      
+
 
     } catch (error: any) {
       console.error(" Ошибка при создании контракта:", error);
 
       if (error.code == 'ACTION_REJECTED') {
-        console.log(this.rentId)
-      this.rentContractService.deleteRentContractById(this.rentId).subscribe();
+        console.log(this.rentContractId)
+        //this.rentContractService.deleteRentContractById(this.rentContractId).subscribe();
         alert(" Вы отменили подписание транзакции.");
       } else {
         alert(" Ошибка при бронировании");
@@ -182,35 +180,46 @@ export class CarBookingComponent implements OnInit {
 
   }
 
-  async createRentContract() {
+  async createRentContract(): Promise<number> {
     const rent: RentContractСreate = {
-        carId: this.car.carId,
-        startDate: this.startDate,
-        endDate: this.endDate,
-        totalCost: this.totalCost,
-        deposit: this.car.depositAmount,
+      carId: this.car.carId,
+      startDate: this.startDate,
+      endDate: this.endDate,
+      totalCost: this.totalCost,
+      deposit: this.car.depositAmount,
     };
 
     try {
-        this.rentId = await firstValueFrom(this.rentContractService.saveRentContract(rent));
+      return new Promise((resolve, reject) => {
+        this.rentContractService.saveRentContract(rent).subscribe({
+          next: (rentContractId: number) => {
+            this.rentContractId = rentContractId;
+            resolve(rentContractId);
+          },
+          error: (err) => {
+            console.error(" Ошибка при сохранении контракта:", err);
+            reject(err);
+          }
+        });
+      });
     } catch (error) {
-        console.error(" Ошибка при сохранении контракта:", error);
-        console.log(rent)
-        throw error; 
+      console.error(" Ошибка при сохранении контракта:", error);
+      throw error;
     }
-}
+  }
 
-async UpdateRentContract( contractAddress: string) {
+
+  async UpdateRentContract(contractAddress: string) {
     const rentUpdate: RentContractUpdate = {
-        rentId: this.rentId,
-        
+      rentContractId: this.rentContractId,
+      contractAddress: contractAddress
     };
-
+    console.log(rentUpdate)
     try {
-        await this.rentContractService.updateRentContract(rentUpdate); 
+      this.rentContractService.updateRentContract(rentUpdate).subscribe();
     } catch (error) {
-        console.error("Ошибка при подтверждении аренды:", error);
+      console.error("Ошибка при подтверждении аренды:", error);
     }
 
-}
+  }
 }

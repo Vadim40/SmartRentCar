@@ -99,6 +99,22 @@
                             <span>{{ selectedRent.car.carName }}</span>
                             <table>
                                 <tr>
+                                    <td>Дата аренды</td>
+                                    <td>{{ selectedRent.startDate | date:'dd.MM.yyyy' }} - {{ selectedRent.endDate | date:'dd.MM.yyyy' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Итоговая стоимость</td>
+                                    <td>{{ selectedRent.totalCost }} ₽</td>
+                                </tr>
+                                <tr>
+                                    <td>Сумма залога</td>
+                                    <td>{{ selectedRent.deposit }} ₽</td>
+                                </tr>
+                                <tr>
+                                    <td>Статус</td>
+                                    <td>{{ selectedRent.statusName }}</td>
+                                </tr>
+                                <tr>
                                     <td>Год выпуска</td>
                                     <td>{{ selectedRent.car.modelYear }}</td>
                                 </tr>
@@ -135,25 +151,30 @@
                                     <td>{{ selectedRent.car.gps ? 'Есть' : 'Нет' }}</td>
                                 </tr>
                             </table>
+                            
                         </div>
                     </div>
                     <div class="contract">
-                        <span>Адрес контракта:
+                        <button *ngIf="!selectedRent.contractAddress"
+                        class="action-button" (click)="payContract()">Развернуть контракт</button>
+                        <span *ngIf="selectedRent.contractAddress" >Адрес контракта:
                           <a 
                             href="#" 
-                            (click)="confirmAndOpen($event, 'https://sepolia.etherscan.io/address/0x9b8C9cC7D875376BE211100600E19561E67162af')"
+                            (click)="confirmAndOpen($event, 'https://sepolia.etherscan.io/address/'+ selectedRent.contractAddress)"
                             title="Открыть в Etherscan"
                             class="etherscan-link"
                           >
-                            0x9b8C9cC7D875376BE211100600E19561E67162af
+                            {{selectedRent.contractAddress}}
                           </a>
                         </span>
                       </div>
                       
 
-                    <div class="actions" *ngIf="selectedRent.contractStatusId">
+                    <div class="actions" *ngIf="selectedRent.contractAddress">
+
+
                         <button *ngIf="selectedRent.contractStatusId === rentContractStatus.PendingConfirmation"
-                            class="action-button" (click)="payContract()">Оплатить</button>
+                            class="action-button" (click)="depositFunds()">Оплатить</button>
 
                         <button
                             *ngIf="selectedRent.contractStatusId === rentContractStatus.PendingConfirmation || selectedRent.contractStatusId === rentContractStatus.PendingStart"

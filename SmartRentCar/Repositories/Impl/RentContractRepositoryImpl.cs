@@ -41,7 +41,7 @@ namespace SmartRentCar.Repositories.Impl
             try
             {
                 var contract = await _context.RentContracts
-                     .FirstOrDefaultAsync(c => c.RentContractId == contractId);
+                    .FirstOrDefaultAsync(c => c.RentContractId == contractId);
 
                 if (contract == null)
                 {
