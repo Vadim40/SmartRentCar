@@ -157,6 +157,7 @@
                     <div class="contract">
                         <button *ngIf="!selectedRent.contractAddress"
                         class="action-button" (click)="payContract()">Развернуть контракт</button>
+                        <button class="action-button danger" (click)="cancelContract()">Отменить</button>
                         <span *ngIf="selectedRent.contractAddress" >Адрес контракта:
                           <a 
                             href="#" 

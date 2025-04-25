@@ -23,13 +23,13 @@ export class CarListComponent {
     carFuel: 0,
     carTransmission: 0
   };
-  carBrands: CarBrand [] = [];
-  carClasses: CarClass [] = [];
-  carFuelTypes: CarFuelType [] = [];
-  carTransmissionTypes: CarTransmissionType [] = []
+  carBrands: CarBrand[] = [];
+  carClasses: CarClass[] = [];
+  carFuelTypes: CarFuelType[] = [];
+  carTransmissionTypes: CarTransmissionType[] = []
 
-  selectedCarClasses: number [] = [];
-  selectedCarBrands: number [] = [];
+  selectedCarClasses: number[] = [];
+  selectedCarBrands: number[] = [];
   startDate: Date | undefined = undefined;
   endDate: Date | undefined = undefined;
 
@@ -38,7 +38,7 @@ export class CarListComponent {
     private router: Router,
     private carService: CarService
   ) {
-   
+
   }
   private filterSubscription!: Subscription;
 
@@ -59,7 +59,7 @@ export class CarListComponent {
   ngOnDestroy(): void {
     this.filterSubscription.unsubscribe();
   }
-  
+
   getFirstCarImage(car: Car): string | null {
     if (car.carImages && car.carImages.length > 0 && car.carImages[0]?.imageData) {
       return car.carImages[0].imageData;
@@ -101,12 +101,12 @@ export class CarListComponent {
     })
   }
 
-  getCarBrands(){
+  getCarBrands() {
     this.carService.getBrands().subscribe({
-      next: (carBrands: CarBrand []) =>{
+      next: (carBrands: CarBrand[]) => {
         this.carBrands = carBrands
       },
-      error : (error) =>{
+      error: (error) => {
         console.error('Ошибка получения брендов', error)
       }
     })
@@ -121,7 +121,7 @@ export class CarListComponent {
       }
     });
   }
-  
+
   getCarFuelTypes() {
     this.carService.getFuelTypes().subscribe({
       next: (carFuelTypes: CarFuelType[]) => {
@@ -132,7 +132,7 @@ export class CarListComponent {
       }
     });
   }
-  
+
   getCarTransmissionTypes() {
     this.carService.getTransmissionTypes().subscribe({
       next: (carTransmissionTypes: CarTransmissionType[]) => {
@@ -143,30 +143,30 @@ export class CarListComponent {
       }
     });
   }
-  
+
   updateFilter() {
     this.filterSubject.next(this.filter);
   }
- 
+
   onCarClassSelectionChange(event: any) {
-    if (this.filter.carClasses?.includes(0) && this.selectedCarClasses.length>0 && !this.selectedCarClasses.includes(0)) {
-      this.filter.carClasses = [0]; 
+    if (this.filter.carClasses?.includes(0) && this.selectedCarClasses.length > 0 && !this.selectedCarClasses.includes(0)) {
+      this.filter.carClasses = [0];
       this.selectedCarClasses = [0];
     } else {
-      this.filter.carClasses = this.filter.carClasses?.filter((value: number) => value !== 0); 
+      this.filter.carClasses = this.filter.carClasses?.filter((value: number) => value !== 0);
       this.selectedCarClasses = this.filter.carClasses || []
+    }
+    this.updateFilter();
   }
-  this.updateFilter();
-}
-  
+
   onCarBrandSelectionChange(event: any) {
 
-    if ( this.filter.carBrands?.includes(0) && this.selectedCarBrands.length>0 && !this.selectedCarBrands.includes(0)) {
+    if (this.filter.carBrands?.includes(0) && this.selectedCarBrands.length > 0 && !this.selectedCarBrands.includes(0)) {
       this.filter.carBrands = [0];
       this.selectedCarBrands = [0];
-    } 
+    }
     else {
-      this.filter.carBrands = this.filter.carBrands?.filter((value: number) => value !== 0); 
+      this.filter.carBrands = this.filter.carBrands?.filter((value: number) => value !== 0);
       this.selectedCarBrands = this.filter.carBrands || []
     }
     this.updateFilter();
@@ -179,30 +179,30 @@ export class CarListComponent {
     this.filter.carTransmission = event.value;
     this.updateFilter();
   }
-  
+
   onFuelTypeChange(event: any) {
-    this.filter.carFuel= event.value;
+    this.filter.carFuel = event.value;
     this.updateFilter();
   }
   onCostMinChange(event: any) {
     this.filter.costMin = event.value
     this.updateFilter();
   }
-  
+
   onCostMaxChange(event: any) {
     this.filter.costMax = event.value
     this.updateFilter();
   }
-  
+
   onDepositMinChange(event: any) {
-    this.filter.depositMin = event.value ;
-    this.updateFilter(); 
+    this.filter.depositMin = event.value;
+    this.updateFilter();
   }
-  
+
   onDepositMaxChange(event: any) {
 
     this.filter.depositMax = event.value;
-    this.updateFilter(); 
+    this.updateFilter();
   }
 
   onStartDateChange(event: Date) {
@@ -216,13 +216,13 @@ export class CarListComponent {
     this.checkDateAndUpdateFilter();
 
   }
-private checkDateAndUpdateFilter() {
-  if (this.startDate != null && this.endDate != null) { 
-    this.filter.startDate = this.startDate;
-    this.filter.endDate = this.endDate;
-    console.log(this.filter);
-    this.updateFilter(); 
+  private checkDateAndUpdateFilter() {
+    if (this.startDate != null && this.endDate != null) {
+      this.filter.startDate = this.startDate;
+      this.filter.endDate = this.endDate;
+      console.log(this.filter);
+      this.updateFilter();
+    }
   }
-}
 
 }

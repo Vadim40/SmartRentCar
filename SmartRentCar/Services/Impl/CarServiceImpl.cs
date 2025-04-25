@@ -29,7 +29,7 @@ namespace SmartRentCar.Services.Impl
         {
             // TODO поменять
             return await _context.RentContracts
-                .Where(r => r.CarId == carId && r.EndDate > DateTime.Now)
+                .Where(r => r.ContractStatusId != (int)RentContractStatus.Canceled && r.CarId == carId && r.EndDate > DateTime.Now)
                 .Select(r => new CarBookingDTO
                 {
                     StartDate = r.StartDate,

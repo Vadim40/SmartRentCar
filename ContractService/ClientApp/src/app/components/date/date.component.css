@@ -1,0 +1,21 @@
+::ng-deep dx-date-box {
+    background-color: #dbd4c5 !important; 
+    border-radius: 4px; 
+}
+
+::ng-deep dx-date-box .dx-dropdowneditor-button {
+    background-color: #dbd4c5 !important; 
+    border-radius: 4px;
+    box-shadow: none; 
+}
+
+::ng-deep dx-date-box .dx-dropdowneditor-icon {
+    background-color: transparent !important; 
+    color: #232323; 
+}
+
+::ng-deep dx-date-box .dx-texteditor-input {
+    background-color: #dbd4c5 !important; 
+    border-radius: 4px;
+    box-shadow: none;
+}

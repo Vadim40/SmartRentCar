@@ -1,0 +1,40 @@
+<div class="filters_container">
+    <div class="date-box">
+        <label>Дата с</label>
+        <date-component [date]="startDate" (dateChange)="onStartDateChange($event)"></date-component>
+    </div>
+    <div class="date-box">
+        <label>Дата по</label>
+        <date-component [date]="endDate" (dateChange)="onEndDateChange($event)"></date-component>
+    </div>
+    <div class="filters">
+        <label>Категории</label>
+        <mat-select [(value)]="filter.carClasses" multiple (selectionChange)="onCarClassSelectionChange($event)">
+            <mat-option [value]="0">Все</mat-option>
+            <mat-option *ngFor="let classType of carClasses" [value]="classType.carClassId">
+                {{ classType.name }}
+            </mat-option>
+        </mat-select>
+    </div>
+
+
+    <div class="filters">
+        <label>Статус аренды </label>
+        <mat-select [(value)]="filter.rentStatuses" multiple (selectionChange)="onRentStatusSelectionChange($event)">
+            <mat-option [value]="0">Все</mat-option>
+            <mat-option *ngFor="let brand of carBrands" [value]="brand.brandId">
+                {{ brand.name }}
+            </mat-option>
+        </mat-select>
+    </div>
+    <div class="text-box">
+        <label>Цена от</label>
+        <dx-text-box 
+        placeholder="Поиск автомобиля" 
+        [showClearButton]="true" 
+        [value]="filter.carName !== undefined ? filter.carName : ''" 
+        (onValueChanged)="onSearchChange($event)">
+      </dx-text-box>
+      
+    </div>
+</div>
