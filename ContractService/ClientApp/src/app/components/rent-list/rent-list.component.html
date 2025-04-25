@@ -1,0 +1,99 @@
+<div class="rent-list-component">
+    <div class="filters-container">
+        <div class="date-box">
+            <label>Дата с</label>
+            <date-component [date]="startDate" (dateChange)="onStartDateChange($event)"></date-component>
+        </div>
+        <div class="date-box">
+            <label>Дата по</label>
+            <date-component [date]="endDate" (dateChange)="onEndDateChange($event)"></date-component>
+        </div>
+        <div class="filters">
+            <label>Статус аренды </label>
+            <mat-select [(value)]="filter.rentStatuses" multiple
+                (selectionChange)="onRentStatusSelectionChange($event)">
+                <mat-option [value]="0">Все</mat-option>
+                <mat-option *ngFor="let brand of carBrands" [value]="brand.brandId">
+                    {{ brand.name }}
+                </mat-option>
+            </mat-select>
+        </div>
+        <div class="filters">
+            <label>Статус залога</label>
+            <mat-select [(value)]="filter.carClasses" multiple (selectionChange)="onCarClassSelectionChange($event)">
+                <mat-option [value]="0">Все</mat-option>
+                <mat-option *ngFor="let classType of carClasses" [value]="classType.carClassId">
+                    {{ classType.name }}
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <div class="text-box">
+            <label>Модель автомобиля</label>
+            <dx-text-box placeholder="Поиск автомобиля" [showClearButton]="true"
+                [value]="filter.carName !== undefined ? filter.carName : ''" (onValueChanged)="onSearchChange($event)">
+            </dx-text-box>
+        </div>
+    </div>
+    <div class="rent-list-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Номер аренды</th>
+                    <th>Модель машины</th>
+                    <th>Даты аренды</th>
+                    <th>Статус аренды</th>
+                    <th>Статус залога</th>
+                    <!-- <th>Адрес контракта</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contract of rentContracts"  (click)="openPopup(contract)">
+                    <td>{{ contract.rentContractId }}</td>
+                    <td>{{ contract.carName }}</td>
+                    <td>{{ contract.startDate | date:'dd.MM.yyyy' }} - {{ contract.endDate | date:'dd.MM.yyyy' }}</td>
+                    <td>{{ contract.contractStatusName }}</td>
+                    <td>{{ contract.depostitStatusName }}</td>
+                    <!-- <td>{{ contract.contractAddress }}</td> -->
+                </tr>
+            </tbody>
+        </table>
+        <div class="popup-overlay" (click)="closePopup()" *ngIf="selectedContract">
+        <div *ngIf="selectedContract" class="popup" (click)="stopPropagation($event)">
+            <div class="popup-content">
+                <h2>Детали аренды {{ selectedContract.rentContractId }}</h2>
+                <p>Модель: {{ selectedContract.carName }}</p>
+                <p>Статус аренды: {{ selectedContract.contractStatusName }}</p>
+                <p>Статус залога: {{ selectedContract.depostitStatusName }}</p>
+                <p>Адрес контракта: 
+                    <a *ngIf="selectedContract.contractAddress" 
+                       [href]="'https://etherscan.io/address/' + selectedContract.contractAddress" 
+                       target="_blank">
+                       {{ selectedContract.contractAddress }}
+                    </a>
+                </p>
+        
+                <div *ngIf="selectedContract.contractStatusName === 'Ожидание инспекции'">
+                    <button (click)="approveInspection()">Подтвердить инспекцию</button>
+                    <button (click)="startDepositIssue()">Начать разбирательство</button>
+                </div>
+        
+                <div *ngIf="1">
+                    <label>Причина отказа:</label>
+                    <textarea ></textarea>
+                    <button (click)="sendMessage()">Отправить сообщение пользователю</button>
+                </div>
+        
+                <div *ngIf="1">
+                    <label>Количество возвращаемого залога:</label>
+                    <input type="number">
+                    <button (click)="refundDeposit()">Вернуть залог</button>
+                </div>
+        
+                <button class="close-btn" (click)="closePopup()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+        
+    </div>
+</div>

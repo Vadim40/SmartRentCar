@@ -42,7 +42,7 @@ export class RentContractService extends HttpService {
   }
 
 
-  private async initializeSigner() {
+   async initializeSigner() {
     try {
       this.signer = await this.provider.getSigner();
       const address = await this.signer.getAddress();
@@ -58,7 +58,6 @@ export class RentContractService extends HttpService {
       if (window.ethereum) {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         this.provider = new ethers.BrowserProvider(window.ethereum);
-        console.log(" MetaMask подключен!");
       } else {
         console.error(" MetaMask не найден!");
       }

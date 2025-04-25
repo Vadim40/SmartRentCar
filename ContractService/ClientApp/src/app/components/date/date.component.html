@@ -1,0 +1,14 @@
+<div style="box-sizing: border-box;   height: 40px; display: flex; align-items: center; margin: 0px;  border-radius: 4px; ;  border: 1px solid #232323;">
+    <dx-date-box
+      type="date"
+    
+      width="120"
+      displayFormat="dd.MM.yyyy"
+      [value]="date || ''" 
+      (valueChange)="setDate($event)"
+      (onValueChanged)="dateBox_valueChanged()"
+      [useMaskBehavior]="true"
+      valueChangeEvent="keyup">
+    </dx-date-box>
+  </div>
+  
