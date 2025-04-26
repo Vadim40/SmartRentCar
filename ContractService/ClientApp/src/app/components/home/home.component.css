@@ -2,7 +2,6 @@
     padding: 0px;
     margin: 0px;
 }
-
 .header {
     height: 70px;
     display: flex;
@@ -11,19 +10,16 @@
     padding: 20px;
 
 }
-
 .logo img {
 
     max-height: 100%;
     border-radius: 50%;
 }
-
 .logo {
     align-items: center;
     display: flex;
     margin-left: 85px;
 }
-
 .logo span {
     margin-left: 15px;
     font-size: 32px;
@@ -45,7 +41,6 @@ button {
     align-items: center;
     justify-content: space-between;
     margin-right: 40px;
-
 }
 
 .content-wrapper {

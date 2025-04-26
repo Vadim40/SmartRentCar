@@ -13,7 +13,6 @@ import { RentContract, rentContracts } from 'src/app/models/rentContract';
 })
 export class RentListComponent {
 
-
   private filterSubject = new Subject<FilterToRents>();
   filter: FilterToRents = {
     carClasses: [0],
