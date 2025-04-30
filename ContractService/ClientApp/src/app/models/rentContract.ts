@@ -7,12 +7,14 @@ export interface RentContract {
     contractStatusId: number;
     contractStatusName: string;
     depositStatusId: number;
-    depostitStatusName: string;
+    depositStatusName: string;
     startDate: Date;
     endDate: Date;
     totalCost: number;
     deposit: number;
     contractAddress?: string;
+    userMessage?: string ;
+    userFiles? : any [];
 }
 
 export interface RentContractСreate {
@@ -28,11 +30,19 @@ export enum RentContractStatus {
     PendingStart = 2,         // Ожидание начала аренды (оплачено, но не началось)
     Active = 3,               // Активный
     PendingInspection = 4,     // Ожидание инспекции (проверка автомобиля после возврата)
-    PendingResolution = 5,     // Ожидание решения по возврату (обнаружены проблемы)
-    Canceled = 6,             // Отменённый
-    Completed = 7             // Завершенный
+    PendingUserResponse = 5,   // Ожидание ответа от клиента (новый статус)
+    PendingResolution = 6,     // Ожидание решения по возврату (обнаружены проблемы)
+    Canceled = 7,             // Отменённый
+    Completed = 8             // Завершенный
 }
 
+export enum DepositStatus {
+  PendingResolution = 1, // Ожидание решения 
+  DepositRefunded = 2,   // Залог возвращен полностью
+  PartialRefunded = 3,   // Залог возвращен частично
+  DepositWithheld = 4,   // Залог удержан
+  DepositDeficit = 5     // Залога недостаточно
+}
 
 export interface RentContractUpdate {
     rentContractId: number;
@@ -49,7 +59,7 @@ export const rentContracts: RentContract[] = [
       contractStatusId: 1,
       contractStatusName: "Ожидание подтверждения",
       depositStatusId: 1,
-      depostitStatusName: "Ожидание оплаты",
+      depositStatusName: "Ожидание оплаты",
       startDate: new Date("2025-04-01"),
       endDate: new Date("2025-04-10"),
       totalCost: 500,
@@ -63,7 +73,7 @@ export const rentContracts: RentContract[] = [
       contractStatusId: 2,
       contractStatusName: "Ожидание начала аренды",
       depositStatusId: 2,
-      depostitStatusName: "Оплачено",
+      depositStatusName: "Оплачено",
       startDate: new Date("2025-05-01"),
       endDate: new Date("2025-05-15"),
       totalCost: 800,
@@ -77,7 +87,7 @@ export const rentContracts: RentContract[] = [
       contractStatusId: 3,
       contractStatusName: "Активный",
       depositStatusId: 3,
-      depostitStatusName: "Возвращён",
+      depositStatusName: "Возвращён",
       startDate: new Date("2025-03-10"),
       endDate: new Date("2025-03-20"),
       totalCost: 700,
@@ -91,7 +101,7 @@ export const rentContracts: RentContract[] = [
       contractStatusId: 4,
       contractStatusName: "Ожидание инспекции",
       depositStatusId: 4,
-      depostitStatusName: "На проверке",
+      depositStatusName: "На проверке",
       startDate: new Date("2025-02-15"),
       endDate: new Date("2025-02-25"),
       totalCost: 900,
@@ -105,11 +115,12 @@ export const rentContracts: RentContract[] = [
       contractStatusId: 5,
       contractStatusName: "Ожидание решения по возврату",
       depositStatusId: 5,
-      depostitStatusName: "Не подлежит возврату",
+      depositStatusName: "Не подлежит возврату",
       startDate: new Date("2025-01-05"),
       endDate: new Date("2025-01-20"),
       totalCost: 600,
       deposit: 120,
-      contractAddress: "0x5E6F7890ABCDEF1234567890abcdef90"
+      contractAddress: "0x5E6F7890ABCDEF1234567890abcdef90",
+      userMessage: "я не согласен, дайте денег"
     }
 ];

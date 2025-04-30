@@ -1,6 +1,8 @@
 ::ng-deep dx-date-box {
     background-color: #dbd4c5 !important; 
     border-radius: 4px; 
+    height: 100%;
+    border: none !important; 
 }
 
 ::ng-deep dx-date-box .dx-dropdowneditor-button {

@@ -8,6 +8,8 @@ import { RentListComponent } from './components/rent-list/rent-list.component';
 import { DateComponent } from './components/date/date.component';
 import { DxDateBoxModule, DxTextBoxModule } from 'devextreme-angular';
 import { MatSelectModule } from '@angular/material/select';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     DxTextBoxModule,
     BrowserAnimationsModule,
+    ScrollingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

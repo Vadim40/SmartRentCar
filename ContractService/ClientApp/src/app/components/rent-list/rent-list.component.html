@@ -36,64 +36,105 @@
         </div>
     </div>
     <div class="rent-list-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Номер аренды</th>
-                    <th>Модель машины</th>
-                    <th>Даты аренды</th>
-                    <th>Статус аренды</th>
-                    <th>Статус залога</th>
-                    <!-- <th>Адрес контракта</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let contract of rentContracts"  (click)="openPopup(contract)">
-                    <td>{{ contract.rentContractId }}</td>
-                    <td>{{ contract.carName }}</td>
-                    <td>{{ contract.startDate | date:'dd.MM.yyyy' }} - {{ contract.endDate | date:'dd.MM.yyyy' }}</td>
-                    <td>{{ contract.contractStatusName }}</td>
-                    <td>{{ contract.depostitStatusName }}</td>
-                    <!-- <td>{{ contract.contractAddress }}</td> -->
-                </tr>
-            </tbody>
-        </table>
+        <cdk-virtual-scroll-viewport itemSize="30" class="viewport">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Номер аренды</th>
+                        <th>Модель машины</th>
+                        <th>Даты аренды</th>
+                        <th>Статус аренды</th>
+                        <th>Статус залога</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *cdkVirtualFor="let contract of rentContracts" (click)="openPopup(contract)">
+                        <td>{{ contract.rentContractId }}</td>
+                        <td>{{ contract.carName }}</td>
+                        <td>{{ contract.startDate | date:'dd.MM.yyyy' }} - {{ contract.endDate | date:'dd.MM.yyyy' }}
+                        </td>
+                        <td>{{ contract.contractStatusName }}</td>
+                        <td>{{ contract.depostitStatusName }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </cdk-virtual-scroll-viewport>
+
         <div class="popup-overlay" (click)="closePopup()" *ngIf="selectedContract">
-        <div *ngIf="selectedContract" class="popup" (click)="stopPropagation($event)">
-            <div class="popup-content">
-                <h2>Детали аренды {{ selectedContract.rentContractId }}</h2>
-                <p>Модель: {{ selectedContract.carName }}</p>
-                <p>Статус аренды: {{ selectedContract.contractStatusName }}</p>
-                <p>Статус залога: {{ selectedContract.depostitStatusName }}</p>
-                <p>Адрес контракта: 
-                    <a *ngIf="selectedContract.contractAddress" 
-                       [href]="'https://etherscan.io/address/' + selectedContract.contractAddress" 
-                       target="_blank">
-                       {{ selectedContract.contractAddress }}
-                    </a>
-                </p>
-        
-                <div *ngIf="selectedContract.contractStatusName === 'Ожидание инспекции'">
-                    <button (click)="approveInspection()">Подтвердить инспекцию</button>
-                    <button (click)="startDepositIssue()">Начать разбирательство</button>
+            <div *ngIf="selectedContract" class="popup" (click)="stopPropagation($event)">
+                <div class="popup-content">
+                    <span class="close" (click)="closePopup()">&times;</span>
+                    <div class="car-info-2">
+                        <span>{{ selectedContract.carName }}</span>
+                        <table>
+                            <tr>
+                                <td>Дата аренды</td>
+                                <td>{{ selectedContract.startDate | date:'dd.MM.yyyy' }} - {{ selectedContract.endDate |
+                                    date:'dd.MM.yyyy' }}</td>
+                            </tr>
+                            <tr>
+                                <td>Статус аренды</td>
+                                <td>{{ selectedContract.contractStatusName }}</td>
+                            </tr>
+                            <tr>
+                                <td>Статус залога</td>
+                                <td>{{ selectedContract.depositStatusName }}</td>
+                            </tr>
+                            <tr>
+                                <td>Адрес контракта</td>
+                                <td>
+                                    <a *ngIf="selectedContract.contractAddress"
+                                        [href]="'https://etherscan.io/address/' + selectedContract.contractAddress"
+                                        target="_blank">
+                                        {{ selectedContract.contractAddress }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="actions">
+                        <div class="button-container" *ngIf="selectedContract.contractStatusId == 4">
+                            <button class="action-button" (click)="approveInspection()">Подтвердить инспекцию и закончить контракт</button>
+                            <button class="action-button" (click)="startDepositIssue()">Начать разбирательство</button>
+                        </div>
+                        <div class="button-container" *ngIf="selectedContract.userMessage">
+                            <label>Сообщение пользователя:</label>
+                            <textarea [(ngModel)]="selectedContract.userMessage" readonly></textarea>
+                        </div>
+
+                        <div class="button-container" *ngIf="selectedContract.userFiles?.length">
+                            <label>Файлы пользователя:</label>
+                            <ul>
+                                <li *ngFor="let file of selectedContract.userFiles">
+                                    <a [href]="file.url" target="_blank">{{ file.name }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div  class="button-container" *ngIf="selectedContract.contractStatusId == 5 && !isDepositHoldProcessing">
+                            <button *ngIf="!isDepositHoldProcessing" class="action-button" (click)="approveInspection()"> Вернуть залог пользователю </button>
+                            <button *ngIf="!isDepositHoldProcessing" class="action-button" (click)="holdDeposit()"> Задержать залог </button>
+                        </div>
+                        
+                        <div class="button-container" *ngIf="isDepositHoldProcessing">
+                            <label>Количество задержимаевого залога:</label>
+                            <div class="input-wrapper">
+                                <input type="number" [(ngModel)]="depositToHold">
+                                <span class="currency">ETH</span>
+                            </div>
+                            <label>Причина задержки:</label>
+                            <textarea [(ngModel)]="messageToPerson"> </textarea>
+                            <button class="action-button" (click)="sendMessage()">Отправить сообщение
+                                пользователю</button>
+                        </div>
+
+
+
+                    </div>
                 </div>
-        
-                <div *ngIf="1">
-                    <label>Причина отказа:</label>
-                    <textarea ></textarea>
-                    <button (click)="sendMessage()">Отправить сообщение пользователю</button>
-                </div>
-        
-                <div *ngIf="1">
-                    <label>Количество возвращаемого залога:</label>
-                    <input type="number">
-                    <button (click)="refundDeposit()">Вернуть залог</button>
-                </div>
-        
-                <button class="close-btn" (click)="closePopup()">Закрыть</button>
             </div>
+
         </div>
-    </div>
-        
+
     </div>
 </div>

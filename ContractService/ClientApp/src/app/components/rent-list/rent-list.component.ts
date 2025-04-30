@@ -25,8 +25,11 @@ export class RentListComponent {
   selectedCarBrands: number[] = [];
   startDate: Date | undefined = undefined;
   endDate: Date | undefined = undefined;
-  rentContracts = rentContracts
+  rentContracts : any
   selectedContract: RentContract | null = null;
+  depositToHold: number = 0;
+  messageToPerson: string= 'причина ' ;
+  isDepositHoldProcessing = 0;
   constructor(
     private router: Router
   ) {
@@ -40,29 +43,39 @@ export class RentListComponent {
     this.filterSubscription = this.filterSubject.pipe(
       debounceTime(1000)
     ).subscribe(updatedFilter => {
-
+    
     });
+    this.getRents()
+  }
+  getRents(){
+    this.rentContracts = rentContracts;
 
   }
   ngOnDestroy(): void {
     this.filterSubscription.unsubscribe();
   }
 
+  holdDeposit(){
+    this.isDepositHoldProcessing =1;
+  }
   updateFilter() {
     this.filterSubject.next(this.filter);
   }
 
   openPopup(contract: RentContract) {
+    console.log(contract)
     this.selectedContract = contract;
   }
 
   closePopup() {
     this.selectedContract = null;
+    this.isDepositHoldProcessing = 0;
     
   }
 
   approveInspection() {
-  
+    if(this.selectedContract)
+    this.selectedContract.contractStatusId = 7;
   }
 
   startDepositIssue() {
