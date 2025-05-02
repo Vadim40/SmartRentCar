@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Car, CarBooking } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
 import { RentContractService } from 'src/app/services/contract.service';
-import { RentContract, RentContractStatus, RentContractUpdate, RentContractСreate } from 'src/app/models/rentContract';
+import { RentContract, RentContractStatus, RentContractUpdate, RentContractCreate } from 'src/app/models/rentContract';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -181,7 +181,7 @@ export class CarBookingComponent implements OnInit {
   }
 
   async createRentContract(): Promise<number> {
-    const rent: RentContractСreate = {
+    const rent: RentContractCreate = {
       carId: this.car.carId,
       startDate: this.startDate,
       endDate: this.endDate,

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './config/http.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map, Observable } from 'rxjs';
-import { RentContract, RentContractUpdate, RentContractСreate } from '../models/rentContract';
-import { BrowserProvider, Contract, ethers, formatEther, JsonRpcProvider, LogDescription, parseUnits, Signer, TransactionResponse } from 'ethers';
+import { RentContract, RentContractUpdate, RentContractCreate } from '../models/rentContract';
+import { BrowserProvider, Contract, ethers, LogDescription, Signer } from 'ethers';
 import { COMPANY_ADDRESS, CONTRACT_ABI, CONTRACT_FACTORY_ABI, CONTRACT_FACTORY_ADDRESS } from '../models/contractInfo';
 
 declare global {
@@ -42,7 +42,7 @@ export class RentContractService extends HttpService {
   }
 
 
-   async initializeSigner() {
+  async initializeSigner() {
     try {
       this.signer = await this.provider.getSigner();
       const address = await this.signer.getAddress();
@@ -97,7 +97,7 @@ export class RentContractService extends HttpService {
         startTime,
         endTime,
         unlockDelayHours,
-        {gasLimit: 500000 }
+        { gasLimit: 500000 }
       );
 
       console.log("  Транзакция отправлена:", tx.hash);
@@ -136,9 +136,9 @@ export class RentContractService extends HttpService {
       const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());
       console.log(depositWei + rentAmountWei);
       const tx = await this.contract['depositFunds']({
-        value: depositWei + rentAmountWei, 
-        gasLimit: 500000 
-    });
+        value: depositWei + rentAmountWei,
+        gasLimit: 500000
+      });
 
     } catch (error) {
       console.error("  Ошибка при создании контракта:", error);
@@ -147,7 +147,7 @@ export class RentContractService extends HttpService {
 
   }
 
-  async cancelRent(contractAddress: string){
+  async cancelRent(contractAddress: string) {
     try {
       this.contractAddress = contractAddress;
       if (!this.contract) {
@@ -156,8 +156,8 @@ export class RentContractService extends HttpService {
         this.contract = new ethers.Contract(this.contractAddress, this.contractAbi, this.signer);
       }
       const tx = await this.contract['cancelRental']({
-        gasLimit: 500000 
-    });
+        gasLimit: 500000
+      });
     } catch (error) {
       console.error("  Ошибка при создании контракта:", error);
       throw error;
@@ -173,7 +173,7 @@ export class RentContractService extends HttpService {
     const url = `${this.apiUrl}/completed`;
     return this.sendRequest(url, 'GET');
   }
-  saveRentContract(rentContract: RentContractСreate): Observable<number> {
+  saveRentContract(rentContract: RentContractCreate): Observable<number> {
     const url = `${this.apiUrl}`;
     return this.sendRequest<{ rentId: number }>(url, 'POST', rentContract).pipe(
       map(response => response.rentId)

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ContractService.Models;
 
 namespace SmartRentCar.Models
 {
-    public class RentContract
+    public class Rental
     {
         [Key]
-        public int RentContractId { get; set; }
+        public int RentalId { get; set; }
 
-        [ForeignKey("ContractStatus")]
-        public int ContractStatusId { get; set; }
+        [ForeignKey("RentalStatus")]
+        public int RentalStatusId { get; set; }
 
         [ForeignKey("User")]
         public int UserId { get; set; }
@@ -34,6 +35,6 @@ namespace SmartRentCar.Models
         [Required]
         public DateTime CreatedAt { get; set; }
 
-
+        public RentalStatus RentalStatus { get; set; }
     }
 }

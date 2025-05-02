@@ -18,8 +18,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 
 
-builder.Services.AddDistributedMemoryCache();
-
 builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlite("Data Source=smartRentCar.db"));
 builder.Services.AddAutoMapper(typeof(Program));

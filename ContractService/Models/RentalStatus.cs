@@ -1,8 +1,8 @@
 ﻿namespace ContractService.Models
 {
-    public class ContractStatus
+    public class RentalStatus
     {
-        public int ContractStatusId { get; set; }
+        public int RentalStatusId { get; set; }
         public string Name { get; set; }
     }
 }

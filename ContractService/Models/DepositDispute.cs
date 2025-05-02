@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContractService.Models
 {
-    public class DepositProcessing
+    public class DepositDispute
     {
         [Key]
        public int DepositProcessingId { get; set; }
@@ -13,7 +13,7 @@ namespace ContractService.Models
        public int ProcessingStatusId { get; set; }
        public string EvidenceDocument { get; set; }
 
-        public BlockchainContract BlockchainContract { get; set; }
-        public ProcessingStatus ProcessingStatus { get; set; }
+        public Contract BlockchainContract { get; set; }
+        public DisputeStatus ProcessingStatus { get; set; }
     }
 }

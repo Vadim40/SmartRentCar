@@ -28,10 +28,9 @@ export class RentListComponent {
   rentContracts : any
   selectedContract: RentContract | null = null;
   depositToHold: number = 0;
-  messageToPerson: string= 'причина ' ;
-  isDepositHoldProcessing = 0;
+  holdReasonMessage: string= 'причина ' ;
+  isHoldingDeposit = 0;
   constructor(
-    private router: Router
   ) {
 
   }
@@ -56,7 +55,7 @@ export class RentListComponent {
   }
 
   holdDeposit(){
-    this.isDepositHoldProcessing =1;
+    this.isHoldingDeposit =1;
   }
   updateFilter() {
     this.filterSubject.next(this.filter);
@@ -69,7 +68,7 @@ export class RentListComponent {
 
   closePopup() {
     this.selectedContract = null;
-    this.isDepositHoldProcessing = 0;
+    this.isHoldingDeposit = 0;
     
   }
 
@@ -78,7 +77,7 @@ export class RentListComponent {
     this.selectedContract.contractStatusId = 7;
   }
 
-  startDepositIssue() {
+  initiateDepositDispute() {
   
   }
 
@@ -135,9 +134,8 @@ export class RentListComponent {
     }
   }
   onSearchChange(event: any) {
-
+    this.filter.carName = event.value
+    this.updateFilter();
   }
-  redirectToRentContract() {
 
-  }
 }

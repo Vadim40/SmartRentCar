@@ -13,7 +13,7 @@ export interface RentContract {
     contractAddress?: string;
 }
 
-export interface RentContractСreate {
+export interface RentContractCreate {
     carId: number;
     startDate: Date;
     endDate: Date;

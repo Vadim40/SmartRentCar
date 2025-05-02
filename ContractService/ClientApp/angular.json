@@ -65,10 +65,14 @@
               "browserTarget": "ClientApp:build:production"
             },
             "development": {
-              "browserTarget": "ClientApp:build:development"
+              "browserTarget": "ClientApp:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "proxy.conf.js"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

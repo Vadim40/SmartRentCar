@@ -1,8 +1,8 @@
 ﻿namespace ContractService.Models
 {
-    public class ProcessingStatus
+    public class DisputeStatus
     {
-        public int ProcessingStatusId { get; set; }
+        public int DisputeStatusId { get; set; }
         public string Name { get; set; }
     }
 }

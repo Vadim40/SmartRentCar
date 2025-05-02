@@ -8,10 +8,10 @@ namespace ContractService.Config
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }
-        public DbSet<BlockchainContract> BlockchainContracts => Set<BlockchainContract>();
-        public DbSet<ContractStatus> ContractStatuses => Set<ContractStatus>();
-        public DbSet<DepositProcessing> DepositProcessings => Set<DepositProcessing>();
-        public DbSet<ProcessingStatus> ProcessingStatuses => Set<ProcessingStatus>();
+        public DbSet<Contract> BlockchainContracts => Set<Contract>();
+        public DbSet<RentalStatus> ContractStatuses => Set<RentalStatus>();
+        public DbSet<DepositDispute> DepositProcessings => Set<DepositDispute>();
+        public DbSet<DisputeStatus> ProcessingStatuses => Set<DisputeStatus>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

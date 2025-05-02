@@ -10,7 +10,7 @@
         </div>
         <div class="filters">
             <label>Статус аренды </label>
-            <mat-select [(value)]="filter.rentStatuses" multiple
+            <mat-select [(value)]="filter.rentalStatuses" multiple
                 (selectionChange)="onRentStatusSelectionChange($event)">
                 <mat-option [value]="0">Все</mat-option>
                 <mat-option *ngFor="let brand of carBrands" [value]="brand.brandId">
@@ -18,15 +18,15 @@
                 </mat-option>
             </mat-select>
         </div>
-        <div class="filters">
+        <!-- <div class="filters">
             <label>Статус залога</label>
-            <mat-select [(value)]="filter.carClasses" multiple (selectionChange)="onCarClassSelectionChange($event)">
+            <mat-select [(value)]="filter.rentStatuses" multiple (selectionChange)="onCarClassSelectionChange($event)">
                 <mat-option [value]="0">Все</mat-option>
                 <mat-option *ngFor="let classType of carClasses" [value]="classType.carClassId">
                     {{ classType.name }}
                 </mat-option>
             </mat-select>
-        </div>
+        </div> -->
 
         <div class="text-box">
             <label>Модель автомобиля</label>
@@ -60,7 +60,7 @@
             </table>
         </cdk-virtual-scroll-viewport>
 
-        <div class="popup-overlay" (click)="closePopup()" *ngIf="selectedContract">
+        <div class="popup-overlay"  *ngIf="selectedContract">
             <div *ngIf="selectedContract" class="popup" (click)="stopPropagation($event)">
                 <div class="popup-content">
                     <span class="close" (click)="closePopup()">&times;</span>
@@ -75,6 +75,10 @@
                             <tr>
                                 <td>Статус аренды</td>
                                 <td>{{ selectedContract.contractStatusName }}</td>
+                            </tr>
+                            <tr>
+                                <td>Количество залога</td>
+                                <td>{{ selectedContract.deposit }} ETH</td>
                             </tr>
                             <tr>
                                 <td>Статус залога</td>
@@ -95,11 +99,11 @@
 
                     <div class="actions">
                         <div class="button-container" *ngIf="selectedContract.contractStatusId == 4">
-                            <button class="action-button" (click)="approveInspection()">Подтвердить инспекцию и закончить контракт</button>
-                            <button class="action-button" (click)="startDepositIssue()">Начать разбирательство</button>
+                            <button class="action-button" (click)="approveInspection()">Подтвердить инспекцию и закрыть контракт</button>
+                            <button class="action-button" (click)="initiateDepositDispute()">Начать разбирательство по залогу</button>
                         </div>
                         <div class="button-container" *ngIf="selectedContract.userMessage">
-                            <label>Сообщение пользователя:</label>
+                            <span>Сообщение пользователя:</span>
                             <textarea [(ngModel)]="selectedContract.userMessage" readonly></textarea>
                         </div>
 
@@ -111,19 +115,19 @@
                                 </li>
                             </ul>
                         </div>
-                        <div  class="button-container" *ngIf="selectedContract.contractStatusId == 5 && !isDepositHoldProcessing">
-                            <button *ngIf="!isDepositHoldProcessing" class="action-button" (click)="approveInspection()"> Вернуть залог пользователю </button>
-                            <button *ngIf="!isDepositHoldProcessing" class="action-button" (click)="holdDeposit()"> Задержать залог </button>
+                        <div  class="button-container" *ngIf="selectedContract.contractStatusId == 5 && !isHoldingDeposit">
+                            <button *ngIf="!isHoldingDeposit" class="action-button" (click)="approveInspection()"> Вернуть залог пользователю </button>
+                            <button *ngIf="!isHoldingDeposit" class="action-button" (click)="holdDeposit()"> Задержать залог </button>
                         </div>
                         
-                        <div class="button-container" *ngIf="isDepositHoldProcessing">
-                            <label>Количество задержимаевого залога:</label>
+                        <div class="button-container" *ngIf="isHoldingDeposit">
+                            <span>Количество задержимаевого залога:</span>
                             <div class="input-wrapper">
                                 <input type="number" [(ngModel)]="depositToHold">
                                 <span class="currency">ETH</span>
                             </div>
-                            <label>Причина задержки:</label>
-                            <textarea [(ngModel)]="messageToPerson"> </textarea>
+                            <span>Причина задержки:</span>
+                            <textarea [(ngModel)]="holdReasonMessage"> </textarea>
                             <button class="action-button" (click)="sendMessage()">Отправить сообщение
                                 пользователю</button>
                         </div>

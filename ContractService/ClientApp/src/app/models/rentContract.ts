@@ -17,7 +17,7 @@ export interface RentContract {
     userFiles? : any [];
 }
 
-export interface RentContractСreate {
+export interface RentContractCreate {
     carId: number;
     startDate: Date;
     endDate: Date;
@@ -49,6 +49,12 @@ export interface RentContractUpdate {
     contractStatusId?: number;
     contractAddress?: string;
     
+}
+
+export interface MesssageToUser {
+  rentContractId: number;
+  message: number;
+  
 }
 
 export const rentContracts: RentContract[] = [
