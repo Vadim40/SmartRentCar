@@ -6,14 +6,13 @@ namespace ContractService.Models
     public class DepositDispute
     {
         [Key]
-       public int DepositProcessingId { get; set; }
-        [ForeignKey("BlockchainContract")]
-        public int BlockainContractId { get; set; }
-        [ForeignKey("ProcessingStatus")]
-       public int ProcessingStatusId { get; set; }
-       public string EvidenceDocument { get; set; }
+       public int DepositDisputeId { get; set; }
+        [ForeignKey("Contract")]
+        public int ContractId { get; set; }
+        [ForeignKey("DisputeStatus")]
+       public int DisputeStatusId { get; set; }
 
-        public Contract BlockchainContract { get; set; }
-        public DisputeStatus ProcessingStatus { get; set; }
+        public Contract Contract { get; set; }
+        public DisputeStatus DisputeStatus { get; set; }
     }
 }

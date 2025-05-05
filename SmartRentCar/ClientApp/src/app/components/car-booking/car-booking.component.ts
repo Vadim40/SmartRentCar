@@ -171,8 +171,9 @@ export class CarBookingComponent implements OnInit {
 
       if (error.code == 'ACTION_REJECTED') {
         console.log(this.rentContractId)
-        //this.rentContractService.deleteRentContractById(this.rentContractId).subscribe();
+        this.rentContractService.deleteRentContractById(this.rentContractId).subscribe();
         alert(" Вы отменили подписание транзакции.");
+        this.isPopupOpen = false;
       } else {
         alert(" Ошибка при бронировании");
       }

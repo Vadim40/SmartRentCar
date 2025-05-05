@@ -15,8 +15,7 @@ export class RentListComponent {
 
   private filterSubject = new Subject<FilterToRents>();
   filter: FilterToRents = {
-    carClasses: [0],
-    rentStatuses: [0]
+    rentalStatuses: [0]
   };
   carBrands: CarBrand[] = [];
   carClasses: CarClass[] = [];
@@ -91,26 +90,17 @@ export class RentListComponent {
   stopPropagation(event: Event) {
     event.stopPropagation();
   }
-  onCarClassSelectionChange(event: any) {
-    if (this.filter.carClasses?.includes(0) && this.selectedCarClasses.length > 0 && !this.selectedCarClasses.includes(0)) {
-      this.filter.carClasses = [0];
-      this.selectedCarClasses = [0];
-    } else {
-      this.filter.carClasses = this.filter.carClasses?.filter((value: number) => value !== 0);
-      this.selectedCarClasses = this.filter.carClasses || []
-    }
-    this.updateFilter();
-  }
+
 
   onRentStatusSelectionChange(event: any) {
 
-    if (this.filter.rentStatuses?.includes(0) && this.selectedCarBrands.length > 0 && !this.selectedCarBrands.includes(0)) {
-      this.filter.rentStatuses = [0];
+    if (this.filter.rentalStatuses?.includes(0) && this.selectedCarBrands.length > 0 && !this.selectedCarBrands.includes(0)) {
+      this.filter.rentalStatuses = [0];
       this.selectedCarBrands = [0];
     }
     else {
-      this.filter.rentStatuses = this.filter.rentStatuses?.filter((value: number) => value !== 0);
-      this.selectedCarBrands = this.filter.rentStatuses || []
+      this.filter.rentalStatuses = this.filter.rentalStatuses?.filter((value: number) => value !== 0);
+      this.selectedCarBrands = this.filter.rentalStatuses || []
     }
     this.updateFilter();
   }

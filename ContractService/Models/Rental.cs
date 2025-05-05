@@ -36,5 +36,6 @@ namespace SmartRentCar.Models
         public DateTime CreatedAt { get; set; }
 
         public RentalStatus RentalStatus { get; set; }
+        public Car Car {get; set;}
     }
 }
