@@ -17,9 +17,5 @@ namespace ContractService.Config
         public DbSet<RentalDocument> RentalDocuments => Set<RentalDocument>();
         public DbSet<Car> Cars => Set<Car>();
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=contracts.db");
-        }
     }
 }

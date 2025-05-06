@@ -1,8 +1,5 @@
 using ContractService.Config;
 using Microsoft.EntityFrameworkCore;
-using Nethereum.Web3;
-using Nethereum.Web3.Accounts;
-using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +18,8 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlite("Data Source=contracts.db"));
+
+    
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

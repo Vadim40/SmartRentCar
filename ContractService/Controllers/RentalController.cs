@@ -20,18 +20,11 @@ namespace ContractService.Controllers
         [HttpGet("{rentalId}")]
         public async Task<ActionResult<RentalDTO>> GetRental(int rentalId)
         {
-            try
-            {
                 var rental = await _rentalService.GetRental(rentalId);
                 if (rental == null)
                     return NotFound();
 
                 return Ok(rental);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal Server Error");
-            }
         }
 
         [HttpGet("statuses")]
@@ -51,43 +44,26 @@ namespace ContractService.Controllers
         [HttpPost("approve/{rentalId}")]
         public async Task<IActionResult> ApproveRental(int rentalId)
         {
-            try
-            {
-                await _rentalService.ApproveRental(rentalId);
-                return Ok();
-            }
-            catch
-            {
-                return StatusCode(500, "Internal Server Error");
-            }
-        }
+            await _rentalService.ApproveRental(rentalId);
+            return Ok();
 
+        }
         [HttpPost("dispute/{rentalId}")]
         public async Task<IActionResult> InitiateDispute(int rentalId)
         {
-            try
-            {
-                await _rentalService.InitiateDispute(rentalId);
-                return Ok();
-            }
-            catch
-            {
-                return StatusCode(500, "Internal Server Error");
-            }
+
+            await _rentalService.InitiateDispute(rentalId);
+            return Ok();
+
         }
 
         [HttpPost("filter")]
         public async Task<ActionResult<List<RentalDTO>>> GetRentals([FromBody] FilterToRents filter)
         {
-            try
-            {
-                var rentals = await _rentalService.GetRentals(filter);
-                return Ok(rentals);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal Server Error");
-            }
+
+            var rentals = await _rentalService.GetRentals(filter);
+            return Ok(rentals);
+
         }
     }
 }
