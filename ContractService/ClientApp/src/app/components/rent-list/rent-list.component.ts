@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { debounceTime, Subject, Subscription } from 'rxjs';
 import { CarBrand, CarClass } from 'src/app/models/carInfo';
+import { DepositDispute } from 'src/app/models/depositDispute';
 import { FilterToRents } from 'src/app/models/filtetToCars';
-import { RentContract, rentContracts } from 'src/app/models/rentContract';
+import { Rental} from 'src/app/models/rental';
+import { ContractService } from 'src/app/services/contract.service';
+import { DepositService } from 'src/app/services/deposit.service';
 
 
 @Component({
@@ -24,12 +27,16 @@ export class RentListComponent {
   selectedCarBrands: number[] = [];
   startDate: Date | undefined = undefined;
   endDate: Date | undefined = undefined;
-  rentContracts : any
-  selectedContract: RentContract | null = null;
+  rentals: Rental [] = []
+  selectedContract: Rental | null = null;
   depositToHold: number = 0;
-  holdReasonMessage: string= 'причина ' ;
+  holdReasonMessage: string = 'причина ';
   isHoldingDeposit = 0;
-  constructor(
+
+  constructor
+  (
+    private contractService: ContractService,
+    private depositService: DepositService
   ) {
 
   }
@@ -41,26 +48,41 @@ export class RentListComponent {
     this.filterSubscription = this.filterSubject.pipe(
       debounceTime(1000)
     ).subscribe(updatedFilter => {
-    
+
     });
     this.getRents()
   }
-  getRents(){
-    this.rentContracts = rentContracts;
+  getRents() {
+    this.contractService.getRentals(this.filter).subscribe({
+      next: (rentals: Rental[]) => {
+        this.rentals = rentals;
+        this.rentals.forEach(rental => {
+          this.depositService.getDepositDisputeByRenalId(rental.rentalId).subscribe({
+            next: (dispute: DepositDispute) =>{
+                rental.depositDispute = dispute;
+            }
+          })
+          
+        });
+      },
+      error: (error ) =>{
+        console.error('Ошибка загрузки аренд', error)
+      }
+    })
 
   }
   ngOnDestroy(): void {
     this.filterSubscription.unsubscribe();
   }
 
-  holdDeposit(){
-    this.isHoldingDeposit =1;
+  holdDeposit() {
+    this.isHoldingDeposit = 1;
   }
   updateFilter() {
     this.filterSubject.next(this.filter);
   }
 
-  openPopup(contract: RentContract) {
+  openPopup(contract: Rental) {
     console.log(contract)
     this.selectedContract = contract;
   }
@@ -68,24 +90,24 @@ export class RentListComponent {
   closePopup() {
     this.selectedContract = null;
     this.isHoldingDeposit = 0;
-    
+
   }
 
   approveInspection() {
-    if(this.selectedContract)
-    this.selectedContract.contractStatusId = 7;
+    if (this.selectedContract)
+      this.selectedContract.rentalStatusId = 7;
   }
 
   initiateDepositDispute() {
-  
+
   }
 
   sendMessage() {
-    
+
   }
 
   refundDeposit() {
-   
+
   }
   stopPropagation(event: Event) {
     event.stopPropagation();

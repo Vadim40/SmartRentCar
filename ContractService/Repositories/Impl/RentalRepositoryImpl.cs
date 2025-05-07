@@ -6,13 +6,27 @@ using SmartRentCar.Models;
 
 namespace ContractService.Repositories.Impl
 {
-    public class RentalRepository : IRentalRepository
+    public class RentalRepositoryImpl : IRentalRepository
     {
         private readonly ApplicationContext _context;
-        public RentalRepository(ApplicationContext context)
+        public RentalRepositoryImpl(ApplicationContext context)
         {
             _context = context;
         }
+
+        public async Task<string> GetContractAddress(int rentalId)
+        {
+            var address = await _context.Contracts
+                            .Where(c => c.RentalId == rentalId)
+                            .Select( c => c.ContractAddress)
+                            .FirstOrDefaultAsync();
+            if (address == null)
+            {
+                throw new KeyNotFoundException($"Address not found");
+            }
+            return address;
+        }
+
         public async Task<Rental> GetRental(int rentalId)
         {
             var rental = await _context.Rentals.FirstOrDefaultAsync(r => r.RentalId == rentalId);
@@ -41,7 +55,7 @@ namespace ContractService.Repositories.Impl
                 .ToListAsync();
         }
 
-        public async Task<List<RentalStatus>> GetRentalStatuses()
+        public async Task<List<Models.RentalStatus>> GetRentalStatuses()
         {
             return await _context.RentalStatuses.ToListAsync();
         }

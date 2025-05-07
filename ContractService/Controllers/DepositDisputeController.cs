@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ContractService.DTOs;
 using ContractService.Services;
+using ContractService.Models;
 
 
 namespace ContractService.Controllers
@@ -17,7 +18,7 @@ namespace ContractService.Controllers
         }
 
         [HttpGet("{depositDisputeId}")]
-        public async Task<ActionResult<DepositDisputeDTO>> GetDepositDispute(int depositDisputeId)
+        public async Task<ActionResult<DepositDisputeDTO>> GetDepositDispute([FromRoute] int depositDisputeId)
         {
             var dispute = await _depositDisputeService.GetDepositDispute(depositDisputeId);
             if (dispute == null)
@@ -26,11 +27,21 @@ namespace ContractService.Controllers
             return Ok(dispute);
         }
 
-        [HttpPost("update/{depositDisputeId}")]
-        public async Task<IActionResult> UpdateDisputeStatus(int depositDisputeId, [FromBody] int disputeStatusId)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateDispute([FromBody] DisputeUpdateDTO disputeUpdate)
         {
-            await _depositDisputeService.UpdateDisputeStatus(depositDisputeId, disputeStatusId);
+            await _depositDisputeService.UpdateDispute(disputeUpdate);
             return Ok();
+        }
+
+        [HttpGet("/rental/{rentalId}")]
+        public async Task<ActionResult<DepositDisputeDTO>> GetDepositDisputeByRentalId([FromRoute] int rentalId)
+        {
+            var dispute = await _depositDisputeService.GetDepositDisputeByRentalId(rentalId);
+            if (dispute == null)
+                return NotFound();
+
+            return Ok(dispute);
         }
     }
 }

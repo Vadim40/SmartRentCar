@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractService.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250506134156_Initialize")]
-    partial class Initialize
+    [Migration("20250507070638_AddDepositFieldsToDepositDispute")]
+    partial class AddDepositFieldsToDepositDispute
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,15 +64,16 @@ namespace ContractService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ContractId")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("Deposit")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal?>("DepositWithheld")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("DisputeStatusId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("DepositDisputeId");
-
-                    b.HasIndex("ContractId");
 
                     b.HasIndex("DisputeStatusId");
 
@@ -190,19 +191,11 @@ namespace ContractService.Migrations
 
             modelBuilder.Entity("ContractService.Models.DepositDispute", b =>
                 {
-                    b.HasOne("ContractService.Models.Contract", "Contract")
-                        .WithMany()
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ContractService.Models.DisputeStatus", "DisputeStatus")
                         .WithMany()
                         .HasForeignKey("DisputeStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Contract");
 
                     b.Navigation("DisputeStatus");
                 });

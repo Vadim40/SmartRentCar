@@ -10,6 +10,7 @@ import { DxDateBoxModule, DxTextBoxModule } from 'devextreme-angular';
 import { MatSelectModule } from '@angular/material/select';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     DxDateBoxModule,
     MatSelectModule,
     DxTextBoxModule,

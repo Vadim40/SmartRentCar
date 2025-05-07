@@ -1,6 +1,6 @@
 ﻿namespace ContractService.DTOs
 {
-    public enum RentContractStatus
+    public enum RentalStatus
     {
         PendingConfirmation = 1,  // Ожидание подтверждения
         PendingStart = 2,         // Ожидание начала аренды (оплачено, но не началось)

@@ -18,7 +18,7 @@ namespace ContractService.Controllers
         }
 
         [HttpGet("{rentalId}")]
-        public async Task<ActionResult<RentalDTO>> GetRental(int rentalId)
+        public async Task<ActionResult<RentalDTO>> GetRental( [FromRoute] int rentalId)
         {
                 var rental = await _rentalService.GetRental(rentalId);
                 if (rental == null)
@@ -41,15 +41,15 @@ namespace ContractService.Controllers
             }
         }
 
-        [HttpPost("approve/{rentalId}")]
-        public async Task<IActionResult> ApproveRental(int rentalId)
+        [HttpPut("approve/{rentalId}")]
+        public async Task<IActionResult> ApproveRental([FromRoute] int rentalId)
         {
             await _rentalService.ApproveRental(rentalId);
             return Ok();
 
         }
-        [HttpPost("dispute/{rentalId}")]
-        public async Task<IActionResult> InitiateDispute(int rentalId)
+        [HttpPut("dispute/{rentalId}")]
+        public async Task<IActionResult> InitiateDispute([FromRoute] int rentalId)
         {
 
             await _rentalService.InitiateDispute(rentalId);
@@ -57,7 +57,7 @@ namespace ContractService.Controllers
 
         }
 
-        [HttpPost("filter")]
+        [HttpGet("filter")]
         public async Task<ActionResult<List<RentalDTO>>> GetRentals([FromBody] FilterToRents filter)
         {
 

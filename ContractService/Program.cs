@@ -1,4 +1,8 @@
 using ContractService.Config;
+using ContractService.Repositories;
+using ContractService.Repositories.Impl;
+using ContractService.Services;
+using ContractService.Services.Impl;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,11 +19,16 @@ builder.Services.AddHttpContextAccessor();
 
 
 
-
 builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlite("Data Source=contracts.db"));
 
-    
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddScoped<IRentalRepository, RentalRepositoryImpl>();
+builder.Services.AddScoped<IDepositDisputeRepository, DepositDisputeRepositoryImpl>();
+
+builder.Services.AddScoped<IRentalService, RentalServiceImpl>();
+builder.Services.AddScoped<IDepositDisputeService, DepositDisputeServiceImpl>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

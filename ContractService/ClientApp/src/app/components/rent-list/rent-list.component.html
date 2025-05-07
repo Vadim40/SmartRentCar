@@ -48,12 +48,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *cdkVirtualFor="let contract of rentContracts" (click)="openPopup(contract)">
-                        <td>{{ contract.rentContractId }}</td>
+                    <tr *cdkVirtualFor="let contract of rentals" (click)="openPopup(contract)">
+                        <td>{{ contract.rentalId }}</td>
                         <td>{{ contract.carName }}</td>
                         <td>{{ contract.startDate | date:'dd.MM.yyyy' }} - {{ contract.endDate | date:'dd.MM.yyyy' }}
                         </td>
-                        <td>{{ contract.contractStatusName }}</td>
+                        <td>{{ contract.rentalStatusName }}</td>
                         <td>{{ contract.depostitStatusName }}</td>
                     </tr>
                 </tbody>
@@ -74,7 +74,7 @@
                             </tr>
                             <tr>
                                 <td>Статус аренды</td>
-                                <td>{{ selectedContract.contractStatusName }}</td>
+                                <td>{{ selectedContract.rentalStatusName }}</td>
                             </tr>
                             <tr>
                                 <td>Количество залога</td>
@@ -82,7 +82,7 @@
                             </tr>
                             <tr>
                                 <td>Статус залога</td>
-                                <td>{{ selectedContract.depositStatusName }}</td>
+                                <td>{{ selectedContract.depositDispute.disputeStatusName }}</td>
                             </tr>
                             <tr>
                                 <td>Адрес контракта</td>
@@ -98,7 +98,7 @@
                     </div>
 
                     <div class="actions">
-                        <div class="button-container" *ngIf="selectedContract.contractStatusId == 4">
+                        <div class="button-container" *ngIf="selectedContract.rentalStatusId == 4">
                             <button class="action-button" (click)="approveInspection()">Подтвердить инспекцию и закрыть контракт</button>
                             <button class="action-button" (click)="initiateDepositDispute()">Начать разбирательство по залогу</button>
                         </div>
@@ -115,7 +115,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div  class="button-container" *ngIf="selectedContract.contractStatusId == 5 && !isHoldingDeposit">
+                        <div  class="button-container" *ngIf="selectedContract.rentalStatusId == 5 && !isHoldingDeposit">
                             <button *ngIf="!isHoldingDeposit" class="action-button" (click)="approveInspection()"> Вернуть залог пользователю </button>
                             <button *ngIf="!isHoldingDeposit" class="action-button" (click)="holdDeposit()"> Задержать залог </button>
                         </div>

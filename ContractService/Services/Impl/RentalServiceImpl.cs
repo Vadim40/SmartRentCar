@@ -16,20 +16,27 @@ namespace ContractService.Services.Impl
 
         public async Task ApproveRental(int rentalId)
         {
-            int statusId = (int) RentContractStatus.Completed;
+            int statusId = (int) RentalStatus.Completed;
             await _rentalRepository.UpdateRentalStatus(rentalId, statusId);
         }
 
         public async Task<RentalDTO> GetRental(int rentalId)
         {
             var rental = await _rentalRepository.GetRental(rentalId);
-            return _mapper.Map<RentalDTO>(rental);
+            var rentalDTO = _mapper.Map<RentalDTO>(rental);
+            rentalDTO.ContractAddress = await _rentalRepository.GetContractAddress(rentalId);
+            return rentalDTO;
         }
 
         public async Task<List<RentalDTO>> GetRentals(FilterToRents filter)
         {
             var rentals = await _rentalRepository.GetRentals(filter);
-            return _mapper.Map<List<RentalDTO>>(rentals);
+            var rentalDTOs = _mapper.Map<List<RentalDTO>>(rentals);
+            foreach (RentalDTO rental in rentalDTOs)
+            {
+                rental.ContractAddress = await _rentalRepository.GetContractAddress(rental.RentalId);
+            }
+            return rentalDTOs;
         }
 
         public async Task<List<RentalStatusDTO>> GetRentalStatuses()
@@ -40,7 +47,7 @@ namespace ContractService.Services.Impl
 
         public async Task InitiateDispute(int rentalId)
         {
-             int statusId = (int) RentContractStatus.PendingResolution;
+             int statusId = (int) RentalStatus.PendingResolution;
             await _rentalRepository.UpdateRentalStatus(rentalId, statusId);
         }
     }

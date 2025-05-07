@@ -1,14 +1,15 @@
 using AutoMapper;
 using ContractService.DTOs;
+using ContractService.Models;
 using ContractService.Repositories;
 
 namespace ContractService.Services.Impl
 {
-    public class DepositDisputeImpl : IDepositDisputeService
+    public class DepositDisputeServiceImpl : IDepositDisputeService
     {
         private readonly IMapper _mapper;
         private readonly IDepositDisputeRepository _depositDisputeRepository;
-        public DepositDisputeImpl (IMapper mapper, IDepositDisputeRepository depositDisputeRepository)
+        public DepositDisputeServiceImpl (IMapper mapper, IDepositDisputeRepository depositDisputeRepository)
         {
             _mapper = mapper;
             _depositDisputeRepository = depositDisputeRepository;
@@ -19,9 +20,32 @@ namespace ContractService.Services.Impl
             return _mapper.Map<DepositDisputeDTO>(depositDispute);
         }
 
-        public async Task UpdateDisputeStatus(int depositDisputeId, int disputeStatusId)
+        public async Task<DepositDisputeDTO> GetDepositDisputeByRentalId(int rentalId)
         {
-            await _depositDisputeRepository.UpdateDisputeStatus(depositDisputeId, disputeStatusId);
+            var depositDispute = await _depositDisputeRepository.GetDepositDisputeByRenalId(rentalId);
+            return _mapper.Map<DepositDisputeDTO>(depositDispute);
+        }
+
+        public async Task UpdateDispute(DisputeUpdateDTO disputeUpdate)
+        {
+            int status = DetermineDisputeStatus(disputeUpdate.Deposit, disputeUpdate.DepositWithheld);
+            var dispute = new DepositDispute
+            {
+                DepositDisputeId = disputeUpdate.DepositDisputeId,
+                Deposit = disputeUpdate.Deposit,
+                DepositWithheld = disputeUpdate.DepositWithheld,
+                DisputeStatusId = status
+            };
+            await _depositDisputeRepository.UpdateDispute(dispute);
+
+        }
+
+        private int  DetermineDisputeStatus(decimal deposit, decimal depositWithheld)
+        {
+            if (depositWithheld == 0) return (int)DepositDisputeStatus.DepositRefunded;
+            if (depositWithheld == deposit) return (int) DepositDisputeStatus.DepositWithheld;
+            else return (int) DepositDisputeStatus.PartialRefunded;
+
         }
     }
 }

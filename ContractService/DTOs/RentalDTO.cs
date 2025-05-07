@@ -19,6 +19,8 @@ namespace ContractService.DTOs
 
         public DateTime CreatedAt { get; set; }
 
+        public string ContractAddress { get; set; }
+
 
     }
 }
