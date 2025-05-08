@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using SmartRentCar.Models;
 
 namespace ContractService.Models
 {

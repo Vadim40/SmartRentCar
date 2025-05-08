@@ -1,6 +1,6 @@
 using ContractService.DTOs;
 using ContractService.Models;
-using SmartRentCar.Models;
+
 
 namespace ContractService.Repositories
 {

@@ -28,6 +28,14 @@ export class ContractService extends HttpService {
       params = params.set('startDate', startLocal);
       params = params.set('endDate', endLocal);
     }
+    if(filter.carName !=null){
+      params = params.set('carName', filter.carName)
+    }
+    if(filter.rentalStatuses && filter.rentalStatuses?.[0] !=0){
+      filter.rentalStatuses.forEach(status =>{
+        params = params.append('rentalStatuses',status )
+      })
+    }
     const url = `${this.apiUrl}/filter`;
     return this.sendRequest(url, 'GET', params);
   }

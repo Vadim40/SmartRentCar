@@ -2,7 +2,7 @@ using ContractService.Config;
 using ContractService.DTOs;
 using ContractService.Models;
 using Microsoft.EntityFrameworkCore;
-using SmartRentCar.Models;
+
 
 namespace ContractService.Repositories.Impl
 {
@@ -22,7 +22,7 @@ namespace ContractService.Repositories.Impl
                             .FirstOrDefaultAsync();
             if (address == null)
             {
-                throw new KeyNotFoundException($"Address not found");
+                address ="not found";
             }
             return address;
         }
@@ -47,12 +47,15 @@ namespace ContractService.Repositories.Impl
         public async Task<List<Rental>> GetRentals(FilterToRents filter)
         {
             return await _context.Rentals
+                .Include(r => r.Car)
+                .Include(r => r.RentalStatus)
                 .Where(r =>
                     (filter.RentalStatuses == null || filter.RentalStatuses.Contains(r.RentalStatusId)) &&
                     (filter.StartDate == null || filter.EndDate == null || (filter.StartDate <= r.EndDate && filter.EndDate >= r.StartDate)) &&
-                    _context.Cars.Any(car => car.CarName.Contains(filter.CarName))
+                    (filter.CarName == null || r.Car.CarName.Contains(filter.CarName))
                 )
                 .ToListAsync();
+
         }
 
         public async Task<List<Models.RentalStatus>> GetRentalStatuses()

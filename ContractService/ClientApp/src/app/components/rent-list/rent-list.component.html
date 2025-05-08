@@ -8,13 +8,13 @@
             <label>Дата по</label>
             <date-component [date]="endDate" (dateChange)="onEndDateChange($event)"></date-component>
         </div>
-        <div class="filters">
+        <div class="filters" style="max-width: 200px;">
             <label>Статус аренды </label>
             <mat-select [(value)]="filter.rentalStatuses" multiple
                 (selectionChange)="onRentStatusSelectionChange($event)">
                 <mat-option [value]="0">Все</mat-option>
-                <mat-option *ngFor="let brand of carBrands" [value]="brand.brandId">
-                    {{ brand.name }}
+                <mat-option *ngFor="let status of rentalStatuses" [value]="status.rentalStatusId">
+                    {{ status.name }}
                 </mat-option>
             </mat-select>
         </div>
@@ -48,49 +48,49 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *cdkVirtualFor="let contract of rentals" (click)="openPopup(contract)">
-                        <td>{{ contract.rentalId }}</td>
-                        <td>{{ contract.carName }}</td>
-                        <td>{{ contract.startDate | date:'dd.MM.yyyy' }} - {{ contract.endDate | date:'dd.MM.yyyy' }}
+                    <tr *cdkVirtualFor="let rental of rentals" (click)="openPopup(rental)">
+                        <td>{{ rental.rentalId }}</td>
+                        <td>{{ rental.carName }}</td>
+                        <td>{{ rental.startDate | date:'dd.MM.yyyy' }} - {{ rental.endDate | date:'dd.MM.yyyy' }}
                         </td>
-                        <td>{{ contract.rentalStatusName }}</td>
-                        <td>{{ contract.depostitStatusName }}</td>
+                        <td>{{ rental.rentalStatusName }}</td>
+                        <td>{{ rental.depositDispute.disputeStatusName  }}</td>
                     </tr>
                 </tbody>
             </table>
         </cdk-virtual-scroll-viewport>
 
-        <div class="popup-overlay"  *ngIf="selectedContract">
-            <div *ngIf="selectedContract" class="popup" (click)="stopPropagation($event)">
+        <div class="popup-overlay"  *ngIf=" selectedRental">
+            <div *ngIf=" selectedRental" class="popup" (click)="stopPropagation($event)">
                 <div class="popup-content">
                     <span class="close" (click)="closePopup()">&times;</span>
                     <div class="car-info-2">
-                        <span>{{ selectedContract.carName }}</span>
+                        <span>{{  selectedRental.carName }}</span>
                         <table>
                             <tr>
                                 <td>Дата аренды</td>
-                                <td>{{ selectedContract.startDate | date:'dd.MM.yyyy' }} - {{ selectedContract.endDate |
+                                <td>{{  selectedRental.startDate | date:'dd.MM.yyyy' }} - {{  selectedRental.endDate |
                                     date:'dd.MM.yyyy' }}</td>
                             </tr>
                             <tr>
                                 <td>Статус аренды</td>
-                                <td>{{ selectedContract.rentalStatusName }}</td>
+                                <td>{{  selectedRental.rentalStatusName }}</td>
                             </tr>
                             <tr>
                                 <td>Количество залога</td>
-                                <td>{{ selectedContract.deposit }} ETH</td>
+                                <td>{{  selectedRental.deposit }} ETH</td>
                             </tr>
                             <tr>
                                 <td>Статус залога</td>
-                                <td>{{ selectedContract.depositDispute.disputeStatusName }}</td>
+                                <td>{{  selectedRental.depositDispute.disputeStatusName }}</td>
                             </tr>
                             <tr>
                                 <td>Адрес контракта</td>
                                 <td>
-                                    <a *ngIf="selectedContract.contractAddress"
-                                        [href]="'https://etherscan.io/address/' + selectedContract.contractAddress"
+                                    <a *ngIf=" selectedRental.contractAddress"
+                                        [href]="'https://etherscan.io/address/' +  selectedRental.contractAddress"
                                         target="_blank">
-                                        {{ selectedContract.contractAddress }}
+                                        {{  selectedRental.contractAddress }}
                                     </a>
                                 </td>
                             </tr>
@@ -98,24 +98,24 @@
                     </div>
 
                     <div class="actions">
-                        <div class="button-container" *ngIf="selectedContract.rentalStatusId == 4">
+                        <div class="button-container" *ngIf=" selectedRental.rentalStatusId == 4">
                             <button class="action-button" (click)="approveInspection()">Подтвердить инспекцию и закрыть контракт</button>
                             <button class="action-button" (click)="initiateDepositDispute()">Начать разбирательство по залогу</button>
                         </div>
-                        <div class="button-container" *ngIf="selectedContract.userMessage">
+                        <div class="button-container" *ngIf=" selectedRental.userMessage">
                             <span>Сообщение пользователя:</span>
-                            <textarea [(ngModel)]="selectedContract.userMessage" readonly></textarea>
+                            <textarea [(ngModel)]=" selectedRental.userMessage" readonly></textarea>
                         </div>
 
-                        <div class="button-container" *ngIf="selectedContract.userFiles?.length">
+                        <div class="button-container" *ngIf=" selectedRental.userFiles?.length">
                             <label>Файлы пользователя:</label>
                             <ul>
-                                <li *ngFor="let file of selectedContract.userFiles">
+                                <li *ngFor="let file of  selectedRental.userFiles">
                                     <a [href]="file.url" target="_blank">{{ file.name }}</a>
                                 </li>
                             </ul>
                         </div>
-                        <div  class="button-container" *ngIf="selectedContract.rentalStatusId == 5 && !isHoldingDeposit">
+                        <div  class="button-container" *ngIf=" selectedRental.rentalStatusId == 5 && !isHoldingDeposit">
                             <button *ngIf="!isHoldingDeposit" class="action-button" (click)="approveInspection()"> Вернуть залог пользователю </button>
                             <button *ngIf="!isHoldingDeposit" class="action-button" (click)="holdDeposit()"> Задержать залог </button>
                         </div>

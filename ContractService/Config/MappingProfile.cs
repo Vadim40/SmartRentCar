@@ -1,7 +1,6 @@
 using AutoMapper;
 using ContractService.DTOs;
 using ContractService.Models;
-using SmartRentCar.Models;
 
 namespace ContractService.Config
 {
@@ -10,7 +9,9 @@ namespace ContractService.Config
         public MappingProfile()
         {
             CreateMap<Rental, RentalDTO>()
-            .ForMember(dest => dest.CarName, opt => opt.MapFrom(src => src.Car.CarName));
+            .ForMember(dest => dest.CarName, opt => opt.MapFrom(src => src.Car.CarName))
+    .       ForMember(dest => dest.RentalStatusName, opt => opt.MapFrom(src => src.RentalStatus.Name));
+
 
              CreateMap<DepositDispute, DepositDisputeDTO>()
             .ForMember(dest => dest.DisputeStatusName, opt => opt.MapFrom(src => src.DisputeStatus.Name));

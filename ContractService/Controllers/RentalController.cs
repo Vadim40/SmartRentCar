@@ -58,7 +58,7 @@ namespace ContractService.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<ActionResult<List<RentalDTO>>> GetRentals([FromBody] FilterToRents filter)
+        public async Task<ActionResult<List<RentalDTO>>> GetRentals([FromQuery] FilterToRents filter)
         {
 
             var rentals = await _rentalService.GetRentals(filter);

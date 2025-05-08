@@ -25,7 +25,12 @@ export interface RentContractCreate {
     deposit: number;
 }
 
-export enum RentalStatus {
+
+export interface RentalStatus {
+  rentalStatusId: number;
+  name: string;
+}
+export enum RentalStatusEnum {
     PendingConfirmation = 1,  // Ожидание подтверждения
     PendingStart = 2,         // Ожидание начала аренды (оплачено, но не началось)
     Active = 3,               // Активный

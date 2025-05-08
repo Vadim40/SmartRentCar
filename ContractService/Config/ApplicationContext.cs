@@ -1,6 +1,5 @@
 ﻿using ContractService.Models;
 using Microsoft.EntityFrameworkCore;
-using SmartRentCar.Models;
 
 namespace ContractService.Config
 {

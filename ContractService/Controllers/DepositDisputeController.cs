@@ -34,7 +34,7 @@ namespace ContractService.Controllers
             return Ok();
         }
 
-        [HttpGet("/rental/{rentalId}")]
+        [HttpGet("rental/{rentalId}")]
         public async Task<ActionResult<DepositDisputeDTO>> GetDepositDisputeByRentalId([FromRoute] int rentalId)
         {
             var dispute = await _depositDisputeService.GetDepositDisputeByRentalId(rentalId);

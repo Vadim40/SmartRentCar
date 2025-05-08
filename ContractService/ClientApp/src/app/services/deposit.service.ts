@@ -11,7 +11,7 @@ import { DepositDispute, DisputeUpdate } from '../models/depositDispute';
 })
 export class DepositService extends HttpService {
 
-  private apiUrl = environment.apiUrl + "/Deposit"
+  private apiUrl = environment.apiUrl + "/DepositDispute"
   
   constructor(private httpClient: HttpClient) {
     super(httpClient);

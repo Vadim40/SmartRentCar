@@ -1,6 +1,6 @@
 export interface DepositDispute {
     depositDisputeId: number;
-    disputeStatusName: number;
+    disputeStatusName: string;
     deposit: number;
     depositWithheld: number;
 }

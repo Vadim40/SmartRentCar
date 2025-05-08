@@ -26,16 +26,16 @@ namespace ContractService.Repositories.Impl
 
         public async Task<DepositDispute> GetDepositDisputeByRenalId(int rentalId)
         {
-           var dispute = await _context.Contracts
+           var contract  = await _context.Contracts
                 .Include(c => c.DepositDispute)
+                    .ThenInclude(d => d.DisputeStatus)
                 .Where(c => c.RentalId == rentalId)
-                .Select(c => c.DepositDispute)
                 .FirstOrDefaultAsync();
-            if (dispute == null)
+            if (contract.DepositDispute == null)
             {
                 throw new KeyNotFoundException($"Deposit dispute  not found.");
             }
-            return dispute;
+            return contract.DepositDispute;
         }
 
         public async Task UpdateDispute(DepositDispute disputeUpdate)

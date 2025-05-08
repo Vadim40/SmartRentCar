@@ -1,9 +1,9 @@
-﻿using System;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ContractService.Models;
 
-namespace SmartRentCar.Models
+
+namespace ContractService.Models
 {
     public class Rental
     {

@@ -4,7 +4,7 @@ import { debounceTime, Subject, Subscription } from 'rxjs';
 import { CarBrand, CarClass } from 'src/app/models/carInfo';
 import { DepositDispute } from 'src/app/models/depositDispute';
 import { FilterToRents } from 'src/app/models/filtetToCars';
-import { Rental} from 'src/app/models/rental';
+import { Rental, RentalStatus} from 'src/app/models/rental';
 import { ContractService } from 'src/app/services/contract.service';
 import { DepositService } from 'src/app/services/deposit.service';
 
@@ -20,15 +20,13 @@ export class RentListComponent {
   filter: FilterToRents = {
     rentalStatuses: [0]
   };
-  carBrands: CarBrand[] = [];
-  carClasses: CarClass[] = [];
 
-  selectedCarClasses: number[] = [];
-  selectedCarBrands: number[] = [];
+  rentalStatuses: RentalStatus [] = []
+  selectedRentalStatuses: number [] = []
   startDate: Date | undefined = undefined;
   endDate: Date | undefined = undefined;
   rentals: Rental [] = []
-  selectedContract: Rental | null = null;
+   selectedRental: Rental | null = null;
   depositToHold: number = 0;
   holdReasonMessage: string = 'причина ';
   isHoldingDeposit = 0;
@@ -48,12 +46,13 @@ export class RentListComponent {
     this.filterSubscription = this.filterSubject.pipe(
       debounceTime(1000)
     ).subscribe(updatedFilter => {
-
+      this.getRents(updatedFilter)
     });
-    this.getRents()
+    this.getRents(this.filter)
+    this.getRentalStatuses()
   }
-  getRents() {
-    this.contractService.getRentals(this.filter).subscribe({
+  getRents(filter: FilterToRents) {
+    this.contractService.getRentals(filter).subscribe({
       next: (rentals: Rental[]) => {
         this.rentals = rentals;
         this.rentals.forEach(rental => {
@@ -71,6 +70,16 @@ export class RentListComponent {
     })
 
   }
+  getRentalStatuses(){
+    this.contractService.getRentalStatuses().subscribe({
+      next: (statuses: RentalStatus[]) =>{
+        this.rentalStatuses = statuses;
+      },
+      error: (error ) =>{
+        console.error('Ошибка загрузки статусов', error)
+      }
+    })
+  }
   ngOnDestroy(): void {
     this.filterSubscription.unsubscribe();
   }
@@ -84,18 +93,18 @@ export class RentListComponent {
 
   openPopup(contract: Rental) {
     console.log(contract)
-    this.selectedContract = contract;
+    this. selectedRental = contract;
   }
 
   closePopup() {
-    this.selectedContract = null;
+    this. selectedRental = null;
     this.isHoldingDeposit = 0;
 
   }
 
   approveInspection() {
-    if (this.selectedContract)
-      this.selectedContract.rentalStatusId = 7;
+    if (this. selectedRental)
+      this. selectedRental.rentalStatusId = 7;
   }
 
   initiateDepositDispute() {
@@ -116,13 +125,13 @@ export class RentListComponent {
 
   onRentStatusSelectionChange(event: any) {
 
-    if (this.filter.rentalStatuses?.includes(0) && this.selectedCarBrands.length > 0 && !this.selectedCarBrands.includes(0)) {
+    if (this.filter.rentalStatuses?.includes(0) && this.rentalStatuses.length > 0 && !this.selectedRentalStatuses.includes(0)) {
       this.filter.rentalStatuses = [0];
-      this.selectedCarBrands = [0];
+      this.selectedRentalStatuses= [0];
     }
     else {
       this.filter.rentalStatuses = this.filter.rentalStatuses?.filter((value: number) => value !== 0);
-      this.selectedCarBrands = this.filter.rentalStatuses || []
+      this.selectedRentalStatuses = this.filter.rentalStatuses || []
     }
     this.updateFilter();
   }
