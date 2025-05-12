@@ -25,12 +25,11 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<ICarRepository, CarRepositoryImpl>();
 builder.Services.AddScoped<IRentContractRepository, RentContractRepositoryImpl>();
 builder.Services.AddScoped<IUserRepository, UserRepositoryImpl>();
-builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryImpl>();
 
 builder.Services.AddScoped<ICarService, CarServiceImpl>();
 builder.Services.AddScoped<IRentContractService, RentContractServiceImpl>();
 builder.Services.AddScoped<IUserService, UserServiceImpl>();
-builder.Services.AddScoped<ICompanyService, CompanyServiceImpl>();
+
 
 
 var app = builder.Build();

@@ -11,7 +11,6 @@ namespace SmartRentCar.Config
         }
         public DbSet<User> Users => Set<User>();
         public DbSet<Car> Cars => Set<Car>();
-        public DbSet<Company> Companys => Set<Company>();
         public DbSet<RentContract> RentContracts => Set<RentContract>();
         public DbSet<ContractStatus> ContractStatuses => Set<ContractStatus>();
         public DbSet<CarBrand> CarBrands => Set<CarBrand>();

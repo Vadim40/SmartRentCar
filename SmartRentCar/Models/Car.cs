@@ -9,9 +9,6 @@ namespace SmartRentCar.Models
         [Key]
         public int CarId { get; set; }
 
-        [ForeignKey("Company")]
-        public int CompanyId { get; set; }
-
         [ForeignKey("CarBrand")]
         public int BrandId { get; set; }
 
@@ -31,7 +28,6 @@ namespace SmartRentCar.Models
         [MaxLength(100)]
         public string CarName { get; set; }
 
-        public Company Company { get; set; }
         public CarBrand CarBrand { get; set; }
         public CarClass CarClass { get; set; }
         public CarFuelType CarFuelType { get; set; }
