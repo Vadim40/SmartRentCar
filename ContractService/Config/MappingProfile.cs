@@ -16,7 +16,11 @@ namespace ContractService.Config
              CreateMap<DepositDispute, DepositDisputeDTO>()
             .ForMember(dest => dest.DisputeStatusName, opt => opt.MapFrom(src => src.DisputeStatus.Name));
 
+            CreateMap<DisputeUpdateDTO, DepositDispute>();
             CreateMap<Models.RentalStatus, RentalStatusDTO>();
+
+            CreateMap<DisputeMessage, DisputeMessageDTO>();
+             CreateMap<DisputeMessageDTO, DisputeMessage>();
         }
     }
 }

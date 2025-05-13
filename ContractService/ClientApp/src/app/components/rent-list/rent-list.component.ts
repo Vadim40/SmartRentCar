@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { debounceTime, Subject, Subscription } from 'rxjs';
 import { CarBrand, CarClass } from 'src/app/models/carInfo';
-import { DepositDispute } from 'src/app/models/depositDispute';
+import { DepositDispute, DisputeMessage, DisputeUpdate } from 'src/app/models/depositDispute';
 import { FilterToRents } from 'src/app/models/filtetToCars';
 import { Rental, RentalStatus} from 'src/app/models/rental';
 import { ContractService } from 'src/app/services/contract.service';
@@ -26,9 +26,9 @@ export class RentListComponent {
   startDate: Date | undefined = undefined;
   endDate: Date | undefined = undefined;
   rentals: Rental [] = []
-   selectedRental: Rental | null = null;
+  selectedRental: Rental | null = null;
   depositToHold: number = 0;
-  holdReasonMessage: string = 'причина ';
+  holdReasonMessage: string = 'причина';
   isHoldingDeposit = 0;
 
   constructor
@@ -97,27 +97,43 @@ export class RentListComponent {
   }
 
   closePopup() {
-    this. selectedRental = null;
+    this.selectedRental = null;
     this.isHoldingDeposit = 0;
 
   }
 
   approveInspection() {
-    if (this. selectedRental)
-      this. selectedRental.rentalStatusId = 7;
+
+    let disputeUpdate : DisputeUpdate = {
+      depositDisputeId: this.selectedRental!.depositDispute.depositDisputeId,
+      deposit: this.selectedRental!.depositDispute.deposit,
+      depositWithheld: 0
+    }
+    this.contractService.approveRental(this.selectedRental!.rentalId).subscribe({
+      next:() =>{
+        this.depositService.updateDepositDispute(disputeUpdate).subscribe();
+      },
+      error: (err : any) =>{
+        console.error('Ошибка подтверждения аренды', err)
+      }
+    });
+    this.closePopup();
+
   }
 
   initiateDepositDispute() {
-
+    this.contractService.disputeRental(this.selectedRental!.rentalId).subscribe();
+    this.closePopup();
   }
 
   sendMessage() {
-
+    let disputeMessage : DisputeMessage = {
+      depositDisputeId: this.selectedRental!.depositDispute.depositDisputeId,
+      depositWithheld: this.depositToHold,
+      WitheldReason: this.holdReasonMessage
+    }
   }
 
-  refundDeposit() {
-
-  }
   stopPropagation(event: Event) {
     event.stopPropagation();
   }

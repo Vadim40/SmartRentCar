@@ -115,7 +115,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div  class="button-container" *ngIf=" selectedRental.rentalStatusId == 5 && !isHoldingDeposit">
+                        <div  class="button-container" *ngIf=" selectedRental.rentalStatusId == 6 && !isHoldingDeposit">
                             <button *ngIf="!isHoldingDeposit" class="action-button" (click)="approveInspection()"> Вернуть залог пользователю </button>
                             <button *ngIf="!isHoldingDeposit" class="action-button" (click)="holdDeposit()"> Задержать залог </button>
                         </div>

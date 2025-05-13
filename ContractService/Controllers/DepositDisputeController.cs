@@ -43,5 +43,28 @@ namespace ContractService.Controllers
 
             return Ok(dispute);
         }
+
+        [HttpGet("message/{deposiDisputeId}")]
+           public async Task<ActionResult<DepositDisputeDTO>> GetDisputeMessage([FromRoute] int deposiDisputeId)
+        {
+            var disputeMessage = await _depositDisputeService.GetDisputeMessage(deposiDisputeId);
+            if (disputeMessage == null)
+                return NoContent();
+
+            return Ok(disputeMessage);
+        }
+
+        [HttpPost("message/create")]
+        public async Task<IActionResult> CreateDisputeMessage([FromBody] DisputeMessageDTO disputeMessage)
+        {
+            await _depositDisputeService.CreateDisputeMessage(disputeMessage);
+            return Ok();
+        }
+        [HttpPut("message/update")]
+        public async Task<IActionResult> UpdateDisputeMessage([FromBody] DisputeMessageDTO disputeMessage)
+        {
+            await _depositDisputeService.UpdateDisputeMessage(disputeMessage);
+            return Ok();
+        }
     }
 }
