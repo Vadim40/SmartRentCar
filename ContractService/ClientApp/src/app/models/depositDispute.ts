@@ -10,3 +10,10 @@ export interface DisputeUpdate {
     deposit: number;
     depositWithheld: number;
 }
+
+export interface DisputeMessage {
+    depositDisputeId: number;
+    depositWithheld: number;
+    WitheldReason: string;
+}
+

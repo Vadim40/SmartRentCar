@@ -11,6 +11,14 @@ namespace ContractService.Repositories.Impl
         {
             _context = context;
         }
+
+        public async Task CreateDisputeMessage(DisputeMessage disputeMessage)
+        {
+              _context.DisputeMessages.Add(disputeMessage);
+              await _context.SaveChangesAsync();
+
+        }
+
         public async Task<DepositDispute> GetDepositDispute(int depositDisputeId)
         {
 
@@ -38,11 +46,25 @@ namespace ContractService.Repositories.Impl
             return contract.DepositDispute;
         }
 
+        public async Task<DisputeMessage> GetDisputeMessage(int depositDisputeId)
+        {
+           return await _context.DisputeMessages
+                                .Where( d => d.DepositDisputeId == depositDisputeId)
+                                .FirstOrDefaultAsync();
+        }
+
         public async Task UpdateDispute(DepositDispute disputeUpdate)
         {
 
-            _context.Attach(disputeUpdate);
-            _context.Entry(disputeUpdate).State = EntityState.Modified;
+            _context.DepositeDisputes.Attach(disputeUpdate);
+            _context.DepositeDisputes.Entry(disputeUpdate).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateDisputeMessage(DisputeMessage disputeMessage)
+        {
+            _context.DisputeMessages.Attach(disputeMessage);
+            _context.DisputeMessages.Entry(disputeMessage).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
     }

@@ -15,6 +15,7 @@ namespace ContractService.Config
         public DbSet<Rental> Rentals => Set<Rental>();
         public DbSet<RentalDocument> RentalDocuments => Set<RentalDocument>();
         public DbSet<Car> Cars => Set<Car>();
+        public DbSet<DisputeMessage> DisputeMessages => Set<DisputeMessage>();
 
     }
 }

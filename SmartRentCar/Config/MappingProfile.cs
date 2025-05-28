@@ -11,7 +11,6 @@ namespace SmartRentCar.Config
         {
             CreateMap<User, UserDTO>();
 
-            CreateMap<Company, CompanyDTO>();
             CreateMap<Car, CarDTO>()
             .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.CarClass.Name)) 
             .ForMember(dest => dest.FuelTypeName, opt => opt.MapFrom(src => src.CarFuelType.Name)) 

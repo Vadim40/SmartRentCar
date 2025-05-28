@@ -8,5 +8,8 @@ namespace ContractService.Repositories
         public Task<DepositDispute> GetDepositDispute( int depositDisputeId);
         public Task<DepositDispute> GetDepositDisputeByRenalId(int rentalId);
         public Task UpdateDispute(DepositDispute disputeUpdate);
+        public Task UpdateDisputeMessage(DisputeMessage disputeMessage);
+        public Task CreateDisputeMessage( DisputeMessage disputeMessage);
+        public Task<DisputeMessage> GetDisputeMessage(int depositDisputeId);
     }
 }
