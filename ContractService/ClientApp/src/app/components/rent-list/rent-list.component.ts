@@ -117,12 +117,14 @@ export class RentListComponent {
         console.error('Ошибка подтверждения аренды', err)
       }
     });
+    this.getRents(this.filter)
     this.closePopup();
-
+    
   }
 
   initiateDepositDispute() {
     this.contractService.disputeRental(this.selectedRental!.rentalId).subscribe();
+    this.getRents(this.filter)
     this.closePopup();
   }
 
@@ -132,6 +134,9 @@ export class RentListComponent {
       depositWithheld: this.depositToHold,
       WitheldReason: this.holdReasonMessage
     }
+    this.getRents(this.filter)
+    this.closePopup();
+  
   }
 
   stopPropagation(event: Event) {
