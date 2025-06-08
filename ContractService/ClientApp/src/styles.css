@@ -54,18 +54,3 @@ body { margin: 0; font-family: Roboto, sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.cdk-overlay-container .mat-select-panel::-webkit-scrollbar {
-  width: 12px !important;
-  background-color: #dbd4c5 !important;
-  border-radius: 8px !important;
-}
-
-.cdk-overlay-container .mat-select-panel::-webkit-scrollbar-thumb {
-  background-color: #232323 !important;
-  border-radius: 8px !important;
-  border: 2px solid #dbd4c5 !important;
-}
-.cdk-overlay-container .mat-select-panel {
-  background-color: hotpink !important;
-}
-

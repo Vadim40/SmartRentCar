@@ -84,7 +84,8 @@ export class CarListComponent {
                 car.carImages = [];
               }
               car.carImages.push(carImage);
-
+              car.costPerDay = car.costPerDay/10000;
+              car.depositAmount = car.depositAmount/10000;
             },
             error: (error) => {
               console.error('Ошибка получения фото автомобиля', error)
