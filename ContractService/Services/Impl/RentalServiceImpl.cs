@@ -1,5 +1,6 @@
 using AutoMapper;
 using ContractService.DTOs;
+using ContractService.Models;
 using ContractService.Repositories;
 
 namespace ContractService.Services.Impl
@@ -9,14 +10,15 @@ namespace ContractService.Services.Impl
         private readonly IMapper _mapper;
         private readonly IRentalRepository _rentalRepository;
 
-        public RentalServiceImpl( IMapper mapper, IRentalRepository rentalRepository){
+        public RentalServiceImpl(IMapper mapper, IRentalRepository rentalRepository)
+        {
             _mapper = mapper;
             _rentalRepository = rentalRepository;
         }
 
         public async Task ApproveRental(int rentalId)
         {
-            int statusId = (int) RentalStatus.Completed;
+            int statusId = (int)DTOs.RentalStatus.Completed;
             await _rentalRepository.UpdateRentalStatus(rentalId, statusId);
         }
 
@@ -24,20 +26,29 @@ namespace ContractService.Services.Impl
         {
             var rental = await _rentalRepository.GetRental(rentalId);
             var rentalDTO = _mapper.Map<RentalDTO>(rental);
-            rentalDTO.ContractAddress = await _rentalRepository.GetContractAddress(rentalId);
             return rentalDTO;
         }
 
-        public async Task<List<RentalDTO>> GetRentals(FilterToRents filter)
+        public async Task<List<RentalDTO>> GetRentals(FilterToRents filter, string role, int companyId)
         {
-            var rentals = await _rentalRepository.GetRentals(filter);
-            var rentalDTOs = _mapper.Map<List<RentalDTO>>(rentals);
-            foreach (RentalDTO rental in rentalDTOs)
+            List<Rental> rentals = new List<Rental> ();
+
+            if (role == "intermediary")
             {
-                rental.ContractAddress = await _rentalRepository.GetContractAddress(rental.RentalId);
+                rentals = await _rentalRepository.GetRentalsToArbiter(filter);
             }
+            else if (role == "company_rep")
+            {
+                rentals = await _rentalRepository.GetRentalsByCompany(filter, companyId);
+            }
+            //TODO заглушка
+             rentals = await _rentalRepository.GetRentalsByCompany(filter, 0);
+            var rentalDTOs = _mapper.Map<List<RentalDTO>>(rentals);
+
+
             return rentalDTOs;
         }
+
 
         public async Task<List<RentalStatusDTO>> GetRentalStatuses()
         {
@@ -47,7 +58,7 @@ namespace ContractService.Services.Impl
 
         public async Task InitiateDispute(int rentalId)
         {
-             int statusId = (int) RentalStatus.PendingResolution;
+            int statusId = (int)DTOs.RentalStatus.PendingArbitration;
             await _rentalRepository.UpdateRentalStatus(rentalId, statusId);
         }
     }

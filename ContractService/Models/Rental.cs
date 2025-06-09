@@ -12,8 +12,10 @@ namespace ContractService.Models
 
         [ForeignKey("RentalStatus")]
         public int RentalStatusId { get; set; }
+        [ForeignKey("DepositDispute")]
+        public int? DepositDisputeId { get; set; }
 
-        [ForeignKey("User")]
+        public int CompanyId { get; set; }
         public int UserId { get; set; }
 
         [ForeignKey("Car")]
@@ -31,6 +33,8 @@ namespace ContractService.Models
 
         [Range(0, double.MaxValue)]
         public decimal Deposit { get; set; }
+        public string ContractAddress { get; set; }
+        public DepositDispute DepositDispute { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }

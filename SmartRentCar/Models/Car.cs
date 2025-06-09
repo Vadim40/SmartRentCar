@@ -8,6 +8,8 @@ namespace SmartRentCar.Models
     {
         [Key]
         public int CarId { get; set; }
+        [ForeignKey("Company")]
+        public int CompanyId { get; set; }
 
         [ForeignKey("CarBrand")]
         public int BrandId { get; set; }
@@ -32,5 +34,6 @@ namespace SmartRentCar.Models
         public CarClass CarClass { get; set; }
         public CarFuelType CarFuelType { get; set; }
         public CarTransmission CarTransmission { get; set; }
+        public Company Company { get; set; }
     }
 }

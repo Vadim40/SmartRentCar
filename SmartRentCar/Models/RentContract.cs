@@ -8,13 +8,14 @@ namespace SmartRentCar.Models
     {
         [Key]
         public int RentContractId { get; set; }
+        [ForeignKey("Company")]
+        public int CompanyId { get; set; }
 
         [ForeignKey("ContractStatus")]
         public int ContractStatusId { get; set; }
 
         [ForeignKey("User")]
         public int UserId { get; set; }
-
         [ForeignKey("Car")]
         public int CarId { get; set; }
 
@@ -36,6 +37,8 @@ namespace SmartRentCar.Models
         public string? ContractAddress {get; set;}
 
         public ContractStatus ContractStatus { get; set; }
+        
+        public Company Company { get; set; }
         public User User { get; set; }
         public Car Car { get; set; }
     }

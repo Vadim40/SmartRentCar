@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { map, Observable } from 'rxjs';
 import { RentContract, RentContractUpdate, RentContractCreate } from '../models/rentContract';
 import { BrowserProvider, Contract, ethers, LogDescription, Signer } from 'ethers';
-import { COMPANY_ADDRESS, CONTRACT_ABI, CONTRACT_FACTORY_ABI, CONTRACT_FACTORY_ADDRESS } from '../models/contractInfo';
+import { COMPANY_ADDRESS, CONTRACT_ABI, CONTRACT_FACTORY_ABI, CONTRACT_FACTORY_ADDRESS, CONTRACT_VERSION } from '../models/contractInfo';
 
 declare global {
   interface Window {
@@ -82,23 +82,33 @@ export class RentContractService extends HttpService {
 
       const renter = await this.signer.getAddress();
 
-      const depositSmall = deposit / 10000000;
-      const rentAmountSmall = rentAmount / 10000000;
+      // Эти значения делятся на 100_000_000, чтобы получить ETH
+      const depositSmall = deposit / 100000000;        
+      const rentAmountSmall = rentAmount / 100000000;  
 
-      const depositWei = ethers.parseEther(depositSmall.toString());
-      const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());
+      console.log("депозит", depositSmall); 
 
-      //  метод БЕЗ передачи value
+      const depositWei = ethers.parseEther(depositSmall.toString());     
+      const rentAmountWei = ethers.parseEther(rentAmountSmall.toString()); 
+
+      const sum = depositWei + rentAmountWei; 
+      console.log("Сумма в ETH:", ethers.formatEther(sum)); 
+
+      
       const tx = await this.contractFactory['createRentContract'](
-        renter,
-        this.companyAddress,
-        depositWei,
-        rentAmountWei,
-        startTime,
-        endTime,
-        unlockDelayHours,
-        { gasLimit: 500000 }
+        CONTRACT_VERSION, 
+        {
+          renter: renter, 
+          company: this.companyAddress, 
+          deposit: depositWei, 
+          rentAmount: rentAmountWei, 
+          startTime: startTime, 
+          endTime: endTime,  
+          unlockDelayHours: unlockDelayHours 
+        },
+        { gasLimit: 500_000 }
       );
+      
 
       console.log("  Транзакция отправлена:", tx.hash);
       const receipt = await tx.wait();
@@ -129,8 +139,8 @@ export class RentContractService extends HttpService {
       }
 
 
-      const depositSmall = deposit / 10000000;
-      const rentAmountSmall = rentAmount / 10000000;
+      const depositSmall = deposit / 100000000;        
+      const rentAmountSmall = rentAmount / 100000000;  
 
       const depositWei = ethers.parseEther(depositSmall.toString());
       const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());

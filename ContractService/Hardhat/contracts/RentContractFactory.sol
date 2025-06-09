@@ -6,60 +6,84 @@ import "@openzeppelin/contracts/proxy/Clones.sol";
 
 contract RentContractFactory {
     address public owner;
-    address public implementation;
+
+    mapping(uint => address) public implementations; // version => logic address
+    uint public latestVersion;
+    
+struct RentInitParams {
+    address renter;
+    address company;
+    address arbiter;
+    uint256 deposit;
+    uint256 rentAmount;
+    uint256 startTime;
+    uint256 endTime;
+}
 
     RentContract[] public allContracts;
     mapping(address => RentContract[]) public contractsByRenter;
     mapping(address => RentContract[]) public contractsByCompany;
 
-    event ContractCreated(address contractAddress, address renter, address company);
-    event FactoryDeployed(address deployer, address implementationAddress);
-    event CloneCreated(address cloneAddress);
-    event InitCalled(bool success);
+    event ImplementationAdded(uint version, address implementation);
+    event ContractCreated(address contractAddress, address renter, address company, uint version);
+    event CloneInitialized(bool success);
 
-    constructor(address _implementation) {
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner");
+        _;
+    }
+
+    constructor() {
         owner = msg.sender;
-        implementation = _implementation;
-
-        emit FactoryDeployed(owner, implementation);
     }
 
-    function createRentContract(
-        address _renter,
-        address _company,
-        uint _deposit,
-        uint _rentAmount,
-        uint _startTime,
-        uint _endTime,
-        uint _unlockDelayHours
-    ) external returns (address) {
-        address clone = Clones.clone(implementation);
-        emit CloneCreated(clone);
+    function addImplementation(uint version, address implementation) external onlyOwner {
+        require(implementation != address(0), "Invalid implementation address");
+        require(implementations[version] == address(0), "Version already exists");
 
-        (bool success, ) = clone.call(
-            abi.encodeWithSignature(
-                "initialize(address,address,uint256,uint256,uint256,uint256,uint256)",
-                _renter,
-                _company,
-                _deposit,
-                _rentAmount,
-                _startTime,
-                _endTime,
-                _unlockDelayHours
-            )
-        );
+        implementations[version] = implementation;
+        if (version > latestVersion) {
+            latestVersion = version;
+        }
 
-        emit InitCalled(success);
-        require(success, "Initialization failed");
-
-        RentContract rentContract = RentContract(clone);
-        allContracts.push(rentContract);
-        contractsByRenter[_renter].push(rentContract);
-        contractsByCompany[_company].push(rentContract);
-
-        emit ContractCreated(clone, _renter, _company);
-        return clone;
+        emit ImplementationAdded(version, implementation);
     }
+
+
+function createRentContract(
+    uint version,
+    RentInitParams calldata params
+) external returns (address) {
+    address implementation = implementations[version];
+    require(implementation != address(0), "Unknown version");
+
+    address clone = Clones.clone(implementation);
+
+   (bool success, ) = clone.call(
+    abi.encodeWithSignature(
+        "initialize(address,address,address,uint256,uint256,uint256,uint256)",
+        params.renter,
+        params.company,
+        params.arbiter,
+        params.deposit,
+        params.rentAmount,
+        params.startTime,
+        params.endTime
+    )
+);
+
+    emit CloneInitialized(success);
+    require(success, "Initialization failed");
+
+    RentContract rentContract = RentContract(clone);
+    allContracts.push(rentContract);
+    contractsByRenter[params.renter].push(rentContract);
+    contractsByCompany[params.company].push(rentContract);
+
+    emit ContractCreated(clone, params.renter, params.company, version);
+    return clone;
+}
+
 
     function getContractsByRenter(address renter) external view returns (RentContract[] memory) {
         return contractsByRenter[renter];
@@ -73,3 +97,5 @@ contract RentContractFactory {
         return allContracts;
     }
 }
+
+

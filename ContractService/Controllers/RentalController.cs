@@ -61,7 +61,7 @@ namespace ContractService.Controllers
         public async Task<ActionResult<List<RentalDTO>>> GetRentals([FromQuery] FilterToRents filter)
         {
 
-            var rentals = await _rentalService.GetRentals(filter);
+            var rentals = await _rentalService.GetRentals(filter, "TODO", 1);
             return Ok(rentals);
 
         }

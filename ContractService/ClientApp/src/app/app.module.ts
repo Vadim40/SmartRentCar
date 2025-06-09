@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { RentListComponent } from './components/rent-list/rent-list.component';
 import { DateComponent } from './components/date/date.component';
-import { DxDateBoxModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxDateBoxModule, DxTextBoxModule } from 'devextreme-angular';
 import { MatSelectModule } from '@angular/material/select';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { CompanyRentListComponent } from './components/company-rent-list/company-rent-list.component';
+import { AuthInterceptor } from './services/config/auth.interceptor';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -19,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     RentListComponent,
     DateComponent,
+    CompanyRentListComponent,
+    LoginComponent,
    
     
   ],
@@ -29,11 +34,15 @@ import { HttpClientModule } from '@angular/common/http';
     DxDateBoxModule,
     MatSelectModule,
     DxTextBoxModule,
+    DxButtonModule,
     BrowserAnimationsModule,
     ScrollingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ]
+  ,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

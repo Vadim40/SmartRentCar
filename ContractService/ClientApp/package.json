@@ -26,6 +26,7 @@
     "@angular/router": "^16.2.0",
     "devextreme": "^23.2.12",
     "devextreme-angular": "^23.2.12",
+    "jwt-decode": "^4.0.0",
     "run-script-os": "^1.1.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

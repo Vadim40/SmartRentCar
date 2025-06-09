@@ -4,6 +4,7 @@ using SmartRentCar.Repositories;
 using SmartRentCar.Repositories.Impl;
 using SmartRentCar.Services.Impl;
 using SmartRentCar.Services;
+using SmartRentCar.Kafka;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,8 @@ builder.Services.AddScoped<ICarService, CarServiceImpl>();
 builder.Services.AddScoped<IRentContractService, RentContractServiceImpl>();
 builder.Services.AddScoped<IUserService, UserServiceImpl>();
 
+builder.Services.AddSingleton<KafkaProducerService>();
+builder.Services.AddHostedService<KafkaConsumerService>(); 
 
 
 var app = builder.Build();

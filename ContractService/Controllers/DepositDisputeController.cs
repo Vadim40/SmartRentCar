@@ -38,8 +38,7 @@ namespace ContractService.Controllers
         public async Task<ActionResult<DepositDisputeDTO>> GetDepositDisputeByRentalId([FromRoute] int rentalId)
         {
             var dispute = await _depositDisputeService.GetDepositDisputeByRentalId(rentalId);
-            if (dispute == null)
-                return NotFound();
+           
 
             return Ok(dispute);
         }

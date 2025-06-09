@@ -32,18 +32,18 @@ namespace ContractService.Repositories.Impl
 
         }
 
-        public async Task<DepositDispute> GetDepositDisputeByRenalId(int rentalId)
+        public async Task<DepositDispute> GetDepositDisputeByRentalId(int rentalId)
         {
-           var contract  = await _context.Contracts
-                .Include(c => c.DepositDispute)
+           var rentContract  = await _context.Rentals
+                .Include(r => r.DepositDispute)
                     .ThenInclude(d => d.DisputeStatus)
-                .Where(c => c.RentalId == rentalId)
+                .Where(r => r.RentalId == rentalId)
                 .FirstOrDefaultAsync();
-            if (contract.DepositDispute == null)
+            if (rentContract == null)
             {
-                throw new KeyNotFoundException($"Deposit dispute  not found.");
+                return null;
             }
-            return contract.DepositDispute;
+            return rentContract.DepositDispute;
         }
 
         public async Task<DisputeMessage> GetDisputeMessage(int depositDisputeId)

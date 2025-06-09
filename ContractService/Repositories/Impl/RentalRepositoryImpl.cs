@@ -14,19 +14,7 @@ namespace ContractService.Repositories.Impl
             _context = context;
         }
 
-        public async Task<string> GetContractAddress(int rentalId)
-        {
-            var address = await _context.Contracts
-                            .Where(c => c.RentalId == rentalId)
-                            .Select( c => c.ContractAddress)
-                            .FirstOrDefaultAsync();
-            if (address == null)
-            {
-                address ="not found";
-            }
-            return address;
-        }
-
+        
         public async Task<Rental> GetRental(int rentalId)
         {
             var rental = await _context.Rentals.FirstOrDefaultAsync(r => r.RentalId == rentalId);
@@ -44,13 +32,13 @@ namespace ContractService.Repositories.Impl
                 .ToListAsync();
         }
 
-        public async Task<List<Rental>> GetRentals(FilterToRents filter)
+        public async Task<List<Rental>> GetRentalsToArbiter(FilterToRents filter)
         {
             return await _context.Rentals
                 .Include(r => r.Car)
                 .Include(r => r.RentalStatus)
                 .Where(r =>
-                    (filter.RentalStatuses == null || filter.RentalStatuses.Contains(r.RentalStatusId)) &&
+                    r.RentalStatusId == (int)DTOs.RentalStatus.PendingArbitration &&
                     (filter.StartDate == null || filter.EndDate == null || (filter.StartDate <= r.EndDate && filter.EndDate >= r.StartDate)) &&
                     (filter.CarName == null || r.Car.CarName.Contains(filter.CarName))
                 )
@@ -70,5 +58,18 @@ namespace ContractService.Repositories.Impl
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<Rental>> GetRentalsByCompany(FilterToRents filter, int companyId)
+        {
+             return await _context.Rentals
+                .Include(r => r.Car)
+                .Include(r => r.RentalStatus)
+                .Where(r =>
+                    r.CompanyId == companyId &&
+                    (filter.RentalStatuses == null || filter.RentalStatuses.Contains(r.RentalStatusId)) &&
+                    (filter.StartDate == null || filter.EndDate == null || (filter.StartDate <= r.EndDate && filter.EndDate >= r.StartDate)) &&
+                    (filter.CarName == null || r.Car.CarName.Contains(filter.CarName))
+                )
+                .ToListAsync();
+        }
     }
 }

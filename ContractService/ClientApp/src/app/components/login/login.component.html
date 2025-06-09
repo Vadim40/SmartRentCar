@@ -1,0 +1,38 @@
+<div class="popup">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" style="display: flex; flex-direction: column; gap: 15px;">
+  
+      <div class="text-box">
+        <label>Логин</label>
+        <dx-text-box
+          name="username"
+          [(ngModel)]="username"
+          [showClearButton]="true"
+          placeholder="Введите логин"
+          required>
+        </dx-text-box>
+      </div>
+  
+      <div class="text-box">
+        <label>Пароль</label>
+        <dx-text-box
+          name="password"
+          [(ngModel)]="password"
+          mode="password"
+          [showClearButton]="true"
+          placeholder="Введите пароль"
+          required>
+        </dx-text-box>
+      </div>
+  
+      <div style="text-align: right;">
+        <dx-button
+          text="Войти"
+          type="success"
+          [disabled]="!loginForm.form.valid"
+          useSubmitBehavior="true">
+        </dx-button>
+      </div>
+  
+    </form>
+  </div>
+  

@@ -29,7 +29,7 @@ namespace ContractService.Services.Impl
 
         public async Task<DepositDisputeDTO> GetDepositDisputeByRentalId(int rentalId)
         {
-            var depositDispute = await _depositDisputeRepository.GetDepositDisputeByRenalId(rentalId);
+            var depositDispute = await _depositDisputeRepository.GetDepositDisputeByRentalId(rentalId);
             return _mapper.Map<DepositDisputeDTO>(depositDispute);
         }
 

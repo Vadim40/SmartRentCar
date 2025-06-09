@@ -54,7 +54,8 @@
                         <td>{{ rental.startDate | date:'dd.MM.yyyy' }} - {{ rental.endDate | date:'dd.MM.yyyy' }}
                         </td>
                         <td>{{ rental.rentalStatusName }}</td>
-                        <td>{{ rental.depositDispute.disputeStatusName  }}</td>
+                        <td>{{ rental.depositDispute?.disputeStatusName }}</td>
+
                     </tr>
                 </tbody>
             </table>
@@ -82,7 +83,8 @@
                             </tr>
                             <tr>
                                 <td>Статус залога</td>
-                                <td>{{  selectedRental.depositDispute.disputeStatusName }}</td>
+                                <td>{{ selectedRental.depositDispute?.disputeStatusName }}</td>
+
                             </tr>
                             <tr>
                                 <td>Адрес контракта</td>

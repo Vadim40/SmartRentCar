@@ -8,7 +8,7 @@ namespace ContractService.Config
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }
-        public DbSet<Contract> Contracts => Set<Contract>();
+       // public DbSet<Contract> Contracts => Set<Contract>();
         public DbSet<RentalStatus> RentalStatuses => Set<RentalStatus>();
         public DbSet<DepositDispute> DepositeDisputes => Set<DepositDispute>();
         public DbSet<DisputeStatus> DisputeStatuses => Set<DisputeStatus>();
