@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: authdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - auth_pgdata:/var/lib/postgresql/data
+
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    environment:
+     ASPNETCORE_ENVIRONMENT: Development 
+     ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=authdb;Username=user;Password=pass"
+    ports:
+      - "8080:8080"
+
+volumes:
+  auth_pgdata:

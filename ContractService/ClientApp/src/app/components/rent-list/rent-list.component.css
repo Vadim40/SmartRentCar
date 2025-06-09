@@ -234,6 +234,18 @@ tbody tr:active {
   border: 2px solid #dbd4c5;
 }
 
+::ng-deep *::-webkit-scrollbar {
+  width: 12px !important;
+  background-color: #dbd4c5 !important;
+  border-radius: 8px !important;
+}
+
+::ng-deep *::-webkit-scrollbar-thumb {
+  background-color: #232323 !important;
+  border-radius: 8px !important;
+  border: 2px solid #dbd4c5 !important;
+}
+
 
 .close {
   position: absolute;
