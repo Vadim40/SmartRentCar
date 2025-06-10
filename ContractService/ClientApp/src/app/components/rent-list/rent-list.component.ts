@@ -4,7 +4,8 @@ import { debounceTime, Subject, Subscription } from 'rxjs';
 import { CarBrand, CarClass } from 'src/app/models/carInfo';
 import { DepositDispute, DisputeMessage, DisputeUpdate } from 'src/app/models/depositDispute';
 import { FilterToRents } from 'src/app/models/filtetToCars';
-import { Rental, RentalStatus} from 'src/app/models/rental';
+import { Rental, RentalStatus, RentalStatusEnum} from 'src/app/models/rental';
+import { AuthService } from 'src/app/services/auth.service';
 import { ContractService } from 'src/app/services/contract.service';
 import { DepositService } from 'src/app/services/deposit.service';
 
@@ -20,7 +21,7 @@ export class RentListComponent {
   filter: FilterToRents = {
     rentalStatuses: [0]
   };
-
+  RentalStatusEnum = RentalStatusEnum;
   rentalStatuses: RentalStatus [] = []
   selectedRentalStatuses: number [] = []
   startDate: Date | undefined = undefined;
@@ -30,11 +31,12 @@ export class RentListComponent {
   depositToHold: number = 0;
   holdReasonMessage: string = 'причина';
   isHoldingDeposit = 0;
-
+  userRole: string | null = null;
   constructor
   (
     private contractService: ContractService,
-    private depositService: DepositService
+    private depositService: DepositService,
+    private authService: AuthService,
   ) {
 
   }
@@ -50,6 +52,13 @@ export class RentListComponent {
     });
     this.getRents(this.filter)
     this.getRentalStatuses()
+    this.getUserRole()
+  }
+
+  getUserRole(){
+    //TODO
+    //this.userRole = this.authService.getUserRole();
+    this.userRole = 'agent'
   }
   getRents(filter: FilterToRents) {
     this.contractService.getRentals(filter).subscribe({
@@ -102,7 +111,7 @@ export class RentListComponent {
 
   }
 
-  approveInspection() {
+  releaseDeposit() {
 
     let disputeUpdate : DisputeUpdate = {
       depositDisputeId: this.selectedRental!.depositDispute.depositDisputeId,
@@ -122,11 +131,6 @@ export class RentListComponent {
     
   }
 
-  initiateDepositDispute() {
-    this.contractService.disputeRental(this.selectedRental!.rentalId).subscribe();
-    this.getRents(this.filter)
-    this.closePopup();
-  }
 
   sendMessage() {
     let disputeMessage : DisputeMessage = {
@@ -139,6 +143,38 @@ export class RentListComponent {
   
   }
 
+  confirmStart() {
+    this.contractService.confirmStart(this.selectedRental!.rentalId).subscribe({
+      error: (err: any) => {
+        console.error('Ошибка подтверждения начала аренды', err);
+      }
+    });
+  }
+  
+  confirmEarlyEnd() {
+    this.contractService.confirmEarlyEnd(this.selectedRental!.rentalId).subscribe({
+      error: (err: any) => {
+        console.error('Ошибка подтверждения досрочного завершения', err);
+      }
+    });
+  }
+  
+  confirmCompletion() {
+    this.contractService.confirmCompletion(this.selectedRental!.rentalId).subscribe({
+      error: (err: any) => {
+        console.error('Ошибка подтверждения завершения', err);
+      }
+    });
+  }
+  
+  sendToArbitration() {
+    this.contractService.sendToArbitration(this.selectedRental!.rentalId).subscribe({
+      error: (err: any) => {
+        console.error('Ошибка отправки арбитру', err);
+      }
+    });
+  }
+  
   stopPropagation(event: Event) {
     event.stopPropagation();
   }

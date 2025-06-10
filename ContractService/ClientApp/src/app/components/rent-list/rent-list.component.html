@@ -99,26 +99,9 @@
                         </table>
                     </div>
 
-                    <div class="actions">
-                        <div class="button-container" *ngIf=" selectedRental.rentalStatusId == 4">
-                            <button class="action-button" (click)="approveInspection()">Подтвердить инспекцию и закрыть контракт</button>
-                            <button class="action-button" (click)="initiateDepositDispute()">Начать разбирательство по залогу</button>
-                        </div>
-                        <div class="button-container" *ngIf=" selectedRental.userMessage">
-                            <span>Сообщение пользователя:</span>
-                            <textarea [(ngModel)]=" selectedRental.userMessage" readonly></textarea>
-                        </div>
-
-                        <div class="button-container" *ngIf=" selectedRental.userFiles?.length">
-                            <label>Файлы пользователя:</label>
-                            <ul>
-                                <li *ngFor="let file of  selectedRental.userFiles">
-                                    <a [href]="file.url" target="_blank">{{ file.name }}</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div  class="button-container" *ngIf=" selectedRental.rentalStatusId == 6 && !isHoldingDeposit">
-                            <button *ngIf="!isHoldingDeposit" class="action-button" (click)="approveInspection()"> Вернуть залог пользователю </button>
+                    <div class="actions" *ngIf="userRole=='agent' " >
+                        <div  class="button-container" >
+                            <button *ngIf="!isHoldingDeposit" class="action-button" (click)="releaseDeposit()"> Вернуть залог пользователю </button>
                             <button *ngIf="!isHoldingDeposit" class="action-button" (click)="holdDeposit()"> Задержать залог </button>
                         </div>
                         
@@ -133,9 +116,23 @@
                             <button class="action-button" (click)="sendMessage()">Отправить сообщение
                                 пользователю</button>
                         </div>
-
-
-
+                    </div>
+                    <div class="actions" *ngIf="userRole=='rep' " >
+                        <div class="button-container">
+                          
+                          
+                            <button *ngIf="selectedRental.rentalStatusId == RentalStatusEnum.PendingConfirmation " class="action-button" (click)="confirmStart()">Подтвердить начало аренды</button>
+                     
+                            <button *ngIf="selectedRental.rentalStatusId === RentalStatusEnum.PendingEarlyEnd" class="action-button" (click)="confirmEarlyEnd()">Подтвердить досрочное завершение</button>
+                          
+                        
+                            <button *ngIf="selectedRental.rentalStatusId === RentalStatusEnum.PendingCompletion" class="action-button" (click)="confirmCompletion()">Подтвердить завершение</button>
+                          
+                            <button *ngIf="selectedRental.rentalStatusId == RentalStatusEnum.PendingCompletion || selectedRental.rentalStatusId == RentalStatusEnum.PendingEarlyEnd" 
+                                    class="action-button" (click)="sendToArbitration()">Пометить проблему</button>
+                          </div>
+                          
+                        
                     </div>
                 </div>
             </div>

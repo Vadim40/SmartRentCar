@@ -31,15 +31,16 @@ export interface RentalStatus {
   name: string;
 }
 export enum RentalStatusEnum {
-    PendingConfirmation = 1,  // Ожидание подтверждения
-    PendingStart = 2,         // Ожидание начала аренды (оплачено, но не началось)
-    Active = 3,               // Активный
-    PendingInspection = 4,     // Ожидание инспекции (проверка автомобиля после возврата)
-    PendingUserResponse = 5,   // Ожидание ответа от клиента (новый статус)
-    PendingResolution = 6,     // Ожидание решения по возврату (обнаружены проблемы)
-    Canceled = 7,             // Отменённый
-    Completed = 8             // Завершенный
+  PendingPayment = 1,          // Ожидание оплаты
+  PendingConfirmation = 2,     // Ожидание подтверждения
+  Active = 3,                 // Активная аренда
+  PendingEarlyEnd = 4,        // Ожидание досрочного завершения
+  PendingCompletion = 5,      // Ожидание завершения
+  PendingArbitration = 6,     // Ожидание решения арбитра
+  Canceled = 7,               // Отменено
+  Completed = 8               // Завершено
 }
+
 
 export enum DepositStatus {
   PendingResolution = 1, // Ожидание решения 

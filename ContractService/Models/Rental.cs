@@ -39,7 +39,16 @@ namespace ContractService.Models
         [Required]
         public DateTime CreatedAt { get; set; }
 
+        public bool IsStartConfirmedByCompany { get; set; }
+        public bool IsStartConfirmedByRenter { get; set; }
+
+        public bool IsEarlyEndConfirmedByCompany { get; set; }
+        public bool IsEarlyEndConfirmedByRenter { get; set; }
+
+        public bool IsEndConfirmedByCompany { get; set; }
+        public bool IsEndConfirmedByRenter { get; set; }
+        public bool IsDisputeRequested { get; set; }
         public RentalStatus RentalStatus { get; set; }
-        public Car Car {get; set;}
+        public Car Car { get; set; }
     }
 }

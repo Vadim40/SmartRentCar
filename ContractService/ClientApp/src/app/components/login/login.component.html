@@ -1,8 +1,7 @@
 <div class="popup">
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" style="display: flex; flex-direction: column; gap: 15px;">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm"  style="display: flex; width: 100%; flex-direction: column; gap: 15px;">
   
       <div class="text-box">
-        <label>Логин</label>
         <dx-text-box
           name="username"
           [(ngModel)]="username"
@@ -13,7 +12,6 @@
       </div>
   
       <div class="text-box">
-        <label>Пароль</label>
         <dx-text-box
           name="password"
           [(ngModel)]="password"
@@ -25,11 +23,10 @@
       </div>
   
       <div style="text-align: right;">
-        <dx-button
+        <dx-button class="action-button"
           text="Войти"
-          type="success"
           [disabled]="!loginForm.form.valid"
-          useSubmitBehavior="true">
+          [useSubmitBehavior]="true">
         </dx-button>
       </div>
   

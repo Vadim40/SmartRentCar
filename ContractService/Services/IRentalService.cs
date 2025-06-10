@@ -11,6 +11,9 @@ namespace ContractService.Services
         public Task InitiateDispute(int renalId);
 
         public Task<List<RentalStatusDTO>> GetRentalStatuses();
-
+        Task ConfirmEarlyEnd(int rentalId);
+        Task ConfirmEnd(int rentalId);
+        Task SendToArbitration(int rentalId);
+        Task ConfirmStart(int rentalId);
     }
 }

@@ -17,7 +17,6 @@ namespace SmartRentCar.Config
         public DbSet<CarClass> CarClasses => Set<CarClass>();
         public DbSet<CarFuelType> CarFuelTypes => Set<CarFuelType>();
         public DbSet<CarImage> CarImages => Set<CarImage>();
-        public DbSet<TestCarImage> TestCarImages => Set<TestCarImage>();
 
         public DbSet<CarTransmission> CarTransmissions => Set<CarTransmission>();
 

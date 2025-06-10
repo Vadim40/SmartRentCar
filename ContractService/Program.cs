@@ -1,4 +1,5 @@
 using ContractService.Config;
+using ContractService.Kafka;
 using ContractService.Repositories;
 using ContractService.Repositories.Impl;
 using ContractService.Services;
@@ -29,6 +30,9 @@ builder.Services.AddScoped<IDepositDisputeRepository, DepositDisputeRepositoryIm
 
 builder.Services.AddScoped<IRentalService, RentalServiceImpl>();
 builder.Services.AddScoped<IDepositDisputeService, DepositDisputeServiceImpl>();
+
+builder.Services.AddSingleton<IKafkaProducer, KafkaProducer>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
