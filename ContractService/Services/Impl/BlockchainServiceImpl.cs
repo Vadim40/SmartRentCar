@@ -14,19 +14,19 @@ namespace ContractService.Services.Impl
 
         public BlockchainServiceImpl(IConfiguration configuration)
         {
-            var ethereumConfig = configuration.GetSection("Ethereum");
-            var infuraUrl = ethereumConfig.GetValue<string>("InfuraUrl");
-            var abiPath = ethereumConfig.GetValue<string>("ContractABIPath");
+            // var ethereumConfig = configuration.GetSection("Ethereum");
+            // var infuraUrl = ethereumConfig.GetValue<string>("InfuraUrl");
+            // var abiPath = ethereumConfig.GetValue<string>("ContractABIPath");
 
 
-            _abi = System.IO.File.ReadAllText(abiPath);
+            // _abi = System.IO.File.ReadAllText(abiPath);
 
 
-            _accountPrivateKey = ethereumConfig.GetValue<string>("AccountPrivateKey");
-            _accountAddress = ethereumConfig.GetValue<string>("AccountAddress");
+            // _accountPrivateKey = ethereumConfig.GetValue<string>("AccountPrivateKey");
+            // _accountAddress = ethereumConfig.GetValue<string>("AccountAddress");
 
-            var account = new Nethereum.Web3.Accounts.Account(_accountPrivateKey);
-            _web3 = new Web3(account, infuraUrl);
+            // var account = new Nethereum.Web3.Accounts.Account(_accountPrivateKey);
+            // _web3 = new Web3(account, infuraUrl);
         }
 
         private Contract GetContract(string contractAddress)

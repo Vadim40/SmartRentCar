@@ -101,15 +101,8 @@ export class AccountComponent {
 
 
 
-  payContract() {
-    console.log('Оплатить контракт');
+ 
 
-  }
-
-  endContractEarly() {
-    console.log('Завершить аренду досрочно');
-
-  }
   confirmAndOpen(event: MouseEvent, url: string): void {
     event.preventDefault();
     const confirmed = confirm(`Перейти по ссылке?\n\n${url}`);
@@ -122,59 +115,93 @@ export class AccountComponent {
   }
 
   async depositFunds() {
-    try {
-      if (this.selectedRent && this.selectedRent.contractAddress)
-       await this.contractService.depositFunds(this.selectedRent.contractAddress, this.selectedRent.deposit, this.selectedRent.totalCost);
-      alert(" Оплата прошла");
-
-      if(this.selectedRent && this.selectedRent.rentContractId)
-      {
-      const rentUpdate : RentContractUpdate= {
-        rentContractId: this.selectedRent.rentContractId,
-        contractStatusId: RentContractStatus.PendingStart
-      }
-      this.contractService.updateRentContract(rentUpdate).subscribe();
-
-      }
-      this.closePopup()
-      this.getRents()
-      this.cdr.detectChanges();
-    } catch (error: any) {
-      console.error(" Ошибка при оплате контракта:", error);
-
-      if (error.code == 'ACTION_REJECTED') {
-        alert(" Вы отменили подписание транзакции.");
-      } else {
-        alert(" Ошибка при оплате");
-      }
-    }
+    if (!this.selectedRent?.contractAddress) return;
+    
+    await this.handleContractAction(
+      () => this.contractService.depositFunds(this.selectedRent!.contractAddress as string, this.selectedRent!.deposit, this.selectedRent!.totalCost),
+      "Оплата прошла",
+      RentContractStatus.PendingConfirmation
+    );
   }
+  
   async cancelContract() {
+    if (!this.selectedRent?.contractAddress) return;
+  
+    await this.handleContractAction(
+      () => this.contractService.cancelRent(this.selectedRent!.contractAddress as string),
+      "Бронь отменена",
+      RentContractStatus.Canceled
+    );
+  }
+  
+  async renterConfirmStart() {
+    if (!this.selectedRent?.contractAddress) return;
+  
+    await this.handleContractAction(
+      () => this.contractService.confirmStart(this.selectedRent!.contractAddress as string),
+      "Начало аренды подтверждено.",
+      RentContractStatus.PendingCompletion
+    );
+  }
+  
+  async finishRentalEarly() {
+    if (!this.selectedRent?.contractAddress) return;
+  
+    await this.handleContractAction(
+      () => this.contractService.finishRentalEarly(this.selectedRent!.contractAddress as string),
+      "Запрошено досрочное завершение аренды.",
+      RentContractStatus.PendingEarlyEnd
+    );
+  }
+  
+  async approveCompletion() {
+    if (!this.selectedRent?.contractAddress) return;
+  
+    await this.handleContractAction(
+      () => this.contractService.approveCompletion(this.selectedRent!.contractAddress as string),
+      "Завершение аренды подтверждено.",
+      RentContractStatus.Completed
+    );
+  }
+  
+  async raiseDispute() {
+    if (!this.selectedRent?.contractAddress) return;
+  
+    await this.handleContractAction(
+      () => this.contractService.raiseDispute(this.selectedRent!.contractAddress as string),
+      "Спор был инициирован.",
+      RentContractStatus.PendingArbitration
+    );
+  }
+  
+  private async handleContractAction(
+    actionFn: () => Promise<void>,
+    successMessage: string,
+    newStatus?: RentContractStatus
+  ) {
     try {
-      if (this.selectedRent && this.selectedRent.contractAddress)
-       await this.contractService.cancelRent(this.selectedRent.contractAddress);
-      alert("Бронь отменена");
-
-      if(this.selectedRent && this.selectedRent.rentContractId)
-      {
-      const rentUpdate : RentContractUpdate= {
-        rentContractId: this.selectedRent.rentContractId,
-        contractStatusId: RentContractStatus.Canceled
+      await actionFn();
+      alert(successMessage);
+  
+      if (this.selectedRent?.rentContractId && newStatus !== undefined) {
+        const rentUpdate: RentContractUpdate = {
+          rentContractId: this.selectedRent.rentContractId,
+          contractStatusId: newStatus
+        };
+        this.contractService.updateRentContract(rentUpdate).subscribe();
       }
-      this.contractService.updateRentContract(rentUpdate).subscribe();
-
-      }
-      this.closePopup()
-      this.getRents()
+  
+      this.closePopup();
+      this.getRents();
       this.cdr.detectChanges();
     } catch (error: any) {
-      console.error(" Ошибка при отмене  контракта:", error);
-
-      if (error.code == 'ACTION_REJECTED') {
-        alert(" Вы отменили подписание транзакции.");
+      console.error(`Ошибка при выполнении действия:`, error);
+      if (error.code === 'ACTION_REJECTED') {
+        alert("Вы отменили подписание транзакции.");
       } else {
-        alert(" Ошибка при отмене контракта");
+        alert("Ошибка при выполнении действия.");
       }
     }
   }
+  
 }

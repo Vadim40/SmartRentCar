@@ -16,7 +16,7 @@ export class CarBookingComponent implements OnInit {
   @Input() car!: Car;
 
   private flatpickrInstance: flatpickr.Instance | undefined;
-  totalCost: number = 0;
+  totalCost: BigInt = 0n;
   canProceed: boolean = false;
   isPopupOpen: boolean = false;
   selectedDateRange: string = '';
@@ -112,7 +112,7 @@ export class CarBookingComponent implements OnInit {
 
   private calculateCost(startDate: Date, endDate: Date): void {
     const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-    this.totalCost = days * this.car.costPerDay;
+    this.totalCost =BigInt(days) * this.car.costPerDay;
     this.canProceed = true;
   }
 
@@ -131,7 +131,7 @@ export class CarBookingComponent implements OnInit {
     if (datePicker) {
       datePicker.value = '';
     }
-    this.totalCost = 0;
+    this.totalCost = 0n;
     this.canProceed = false;
     this.selectedDateRange = '';
   }

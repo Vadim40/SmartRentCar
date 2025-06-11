@@ -9,7 +9,7 @@ namespace SmartRentCar.Models
         [Key]
         public int RentContractId { get; set; }
         [ForeignKey("Company")]
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
 
         [ForeignKey("ContractStatus")]
         public int ContractStatusId { get; set; }

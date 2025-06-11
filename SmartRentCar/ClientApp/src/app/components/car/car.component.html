@@ -22,10 +22,7 @@
       <div class="car-info">
         <span>{{ car.carName }}</span>
         <table>
-          <tr>
-            <td>Год выпуска</td>
-            <td>{{ car.modelYear }}</td>
-          </tr>
+
           <tr>
             <td>Тип топлива</td>
             <td>{{ car.fuelTypeName }}</td>
@@ -40,24 +37,13 @@
           </tr>
           <tr>
             <td>Цена за день</td>
-            <td>{{ car.costPerDay }} ₽</td>
+            <td>{{ car.costPerDay }} ETH</td>
           </tr>
           <tr>
             <td>Залог</td>
-            <td>{{ car.depositAmount }} ₽</td>
+            <td>{{ car.depositAmount }} ETH</td>
           </tr>
           <tr>
-            <td>Количество мест</td>
-            <td>{{ car.seats }}</td>
-          </tr>
-          <tr>
-            <td>Кондиционер</td>
-            <td>{{ car.airConditioning ? 'Есть' : 'Нет' }}</td>
-          </tr>
-          <tr>
-            <td>GPS</td>
-            <td>{{ car.gps ? 'Есть' : 'Нет' }}</td>
-          </tr>
         </table>
       </div>
 

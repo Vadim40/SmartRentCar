@@ -69,6 +69,10 @@
                         <span>{{  selectedRental.carName }}</span>
                         <table>
                             <tr>
+                                <td>Номер аренды</td>
+                                <td>{{ selectedRental.rentalId }}</td>
+                            </tr>
+                            <tr>
                                 <td>Дата аренды</td>
                                 <td>{{  selectedRental.startDate | date:'dd.MM.yyyy' }} - {{  selectedRental.endDate |
                                     date:'dd.MM.yyyy' }}</td>

@@ -7,9 +7,9 @@
 </div>
 
 <div class="summary-container">
-  <span>Цена за день: {{ car.costPerDay }} ₽</span>
-  <span>Залог: {{ car.depositAmount }} ₽</span>
-  <span *ngIf="totalCost > 0">Общая стоимость: {{ totalCost }} ₽</span>
+  <span>Цена за день: {{ car.costPerDay }} ETH</span>
+  <span>Залог: {{ car.depositAmount }} ETH</span>
+  <span *ngIf="totalCost > 0n">Общая стоимость: {{ totalCost }} ETH</span>
 </div>
 
 <button  class="action-button proceed-button" (click)="openPopup()">Продолжить бронирование</button>
@@ -21,8 +21,8 @@
     <div class="details">
       <p><strong>Автомобиль:</strong> {{ car.carName }}</p>
       <p><strong>Даты аренды:</strong> {{ selectedDateRange }}</p>
-      <p><strong>Общая стоимость:</strong> {{ totalCost }} ₽</p>
-      <p><strong>Залог:</strong> {{ car.depositAmount }} ₽</p>
+      <p><strong>Общая стоимость:</strong> {{ totalCost }} ETH</p>
+      <p><strong>Залог:</strong> {{ car.depositAmount }} ETH</p>
     </div>
     <div class="confirmation">
       <button class="action-button confirm-button" (click)="confirmBooking()">Подтвердить</button>

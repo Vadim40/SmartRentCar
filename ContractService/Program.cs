@@ -30,6 +30,7 @@ builder.Services.AddScoped<IDepositDisputeRepository, DepositDisputeRepositoryIm
 
 builder.Services.AddScoped<IRentalService, RentalServiceImpl>();
 builder.Services.AddScoped<IDepositDisputeService, DepositDisputeServiceImpl>();
+builder.Services.AddScoped<IBlockchainService, BlockchainServiceImpl>();
 
 builder.Services.AddSingleton<IKafkaProducer, KafkaProducer>();
 

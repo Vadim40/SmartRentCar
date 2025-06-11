@@ -1,7 +1,7 @@
 
 export const COMPANY_ADDRESS = '0x7462A2FBF684f72AA35b89e72618Cc8622EB94a1'
-export const CONTRACT_FACTORY_ADDRESS = '0xB18Adf13646dD45d1e81EF772993Cb39E1c598aC';
-
+export const CONTRACT_FACTORY_ADDRESS = '0x3A122F1E34A0f1844E70221CfF7d3f8fbFe7F9ba';
+export const ARBITER_ADDRESS = '0x3dACB9EDF2BDDa009Cc87e5bB8af15Aa496223FD'
 export const CONTRACT_FACTORY_ABI = [
 	{
 		"inputs": [],
@@ -28,19 +28,6 @@ export const CONTRACT_FACTORY_ABI = [
 		],
 		"name": "InsufficientBalance",
 		"type": "error"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"name": "CloneInitialized",
-		"type": "event"
 	},
 	{
 		"anonymous": false,
@@ -197,6 +184,11 @@ export const CONTRACT_FACTORY_ABI = [
 						"type": "address"
 					},
 					{
+						"internalType": "address",
+						"name": "arbiter",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
 						"name": "deposit",
 						"type": "uint256"
@@ -214,11 +206,6 @@ export const CONTRACT_FACTORY_ABI = [
 					{
 						"internalType": "uint256",
 						"name": "endTime",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "unlockDelayHours",
 						"type": "uint256"
 					}
 				],
@@ -337,12 +324,22 @@ export const CONTRACT_FACTORY_ABI = [
 ]
 export const CONTRACT_ABI = [
 	{
+		"inputs": [],
+		"name": "AlreadyInitialized",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "CannotInitializeImplementation",
+		"type": "error"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "toOwner",
+				"name": "toCompany",
 				"type": "uint256"
 			},
 			{
@@ -399,13 +396,13 @@ export const CONTRACT_ABI = [
 			{
 				"indexed": true,
 				"internalType": "address",
-				"name": "owner",
+				"name": "company",
 				"type": "address"
 			},
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "paidToOwner",
+				"name": "paidToCompany",
 				"type": "uint256"
 			},
 			{
@@ -430,7 +427,7 @@ export const CONTRACT_ABI = [
 			{
 				"indexed": false,
 				"internalType": "address",
-				"name": "owner",
+				"name": "company",
 				"type": "address"
 			}
 		],
@@ -455,6 +452,92 @@ export const CONTRACT_ABI = [
 		"name": "cancelRental",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "company",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "companyApproveCompletion",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "companyApproveEarlyTermination",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "companyApprovedCompletion",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "companyApprovedEarlyTermination",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "companyConfirmStart",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "companyConfirmedStart",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "completed",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -545,7 +628,7 @@ export const CONTRACT_ABI = [
 			},
 			{
 				"internalType": "address",
-				"name": "_owner",
+				"name": "_company",
 				"type": "address"
 			},
 			{
@@ -582,79 +665,6 @@ export const CONTRACT_ABI = [
 	{
 		"inputs": [],
 		"name": "initialized",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ownerApproveCompletion",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ownerApproveEarlyTermination",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ownerApprovedCompletion",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ownerApprovedEarlyTermination",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ownerConfirmStart",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ownerConfirmedStart",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -755,7 +765,7 @@ export const CONTRACT_ABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "amountToOwner",
+				"name": "amountToCompany",
 				"type": "uint256"
 			}
 		],
@@ -789,6 +799,10 @@ export const CONTRACT_ABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	}
 ]
 export const CONTRACT_VERSION =1;

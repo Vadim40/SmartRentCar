@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { map, Observable } from 'rxjs';
 import { RentContract, RentContractUpdate, RentContractCreate } from '../models/rentContract';
 import { BrowserProvider, Contract, ethers, LogDescription, Signer } from 'ethers';
-import { COMPANY_ADDRESS, CONTRACT_ABI, CONTRACT_FACTORY_ABI, CONTRACT_FACTORY_ADDRESS, CONTRACT_VERSION } from '../models/contractInfo';
+import { ARBITER_ADDRESS, COMPANY_ADDRESS, CONTRACT_ABI, CONTRACT_FACTORY_ABI, CONTRACT_FACTORY_ADDRESS, CONTRACT_VERSION } from '../models/contractInfo';
 
 declare global {
   interface Window {
@@ -82,11 +82,10 @@ export class RentContractService extends HttpService {
 
       const renter = await this.signer.getAddress();
 
-      // Эти значения делятся на 100_000_000, чтобы получить ETH
-      const depositSmall = deposit / 100000000;        
-      const rentAmountSmall = rentAmount / 100000000;  
+      const depositSmall = deposit / 10000;        
+      const rentAmountSmall = rentAmount / 10000;  
 
-      console.log("депозит", depositSmall); 
+      console.log("депозит", rentAmountSmall); 
 
       const depositWei = ethers.parseEther(depositSmall.toString());     
       const rentAmountWei = ethers.parseEther(rentAmountSmall.toString()); 
@@ -100,6 +99,7 @@ export class RentContractService extends HttpService {
         {
           renter: renter, 
           company: this.companyAddress, 
+          arbiter: ARBITER_ADDRESS,
           deposit: depositWei, 
           rentAmount: rentAmountWei, 
           startTime: startTime, 
@@ -139,8 +139,8 @@ export class RentContractService extends HttpService {
       }
 
 
-      const depositSmall = deposit / 100000000;        
-      const rentAmountSmall = rentAmount / 100000000;  
+      const depositSmall = deposit / 10000;        
+      const rentAmountSmall = rentAmount / 10000;  
 
       const depositWei = ethers.parseEther(depositSmall.toString());
       const rentAmountWei = ethers.parseEther(rentAmountSmall.toString());
@@ -173,7 +173,83 @@ export class RentContractService extends HttpService {
       throw error;
     }
   }
+  async confirmStart(contractAddress: string): Promise<void> {
+    try {
+      this.contractAddress = contractAddress;
+      if (!this.contract) {
+        await this.connectWallet();
+        await this.initializeSigner();
+        this.contract = new ethers.Contract(this.contractAddress, this.contractAbi, this.signer);
+      }
+  
+      const tx = await this.contract['renterConfirmStart']({
+        gasLimit: 300_000
+      });
+      await tx.wait();
+      console.log("Арендатор подтвердил начало аренды:", tx.hash);
+    } catch (error) {
+      console.error("Ошибка в renterConfirmStart:", error);
+      throw error;
+    }
+  }
 
+  async finishRentalEarly(contractAddress: string): Promise<void> {
+    try {
+      this.contractAddress = contractAddress;
+      if (!this.contract) {
+        await this.connectWallet();
+        await this.initializeSigner();
+        this.contract = new ethers.Contract(this.contractAddress, this.contractAbi, this.signer);
+      }
+  
+      const tx = await this.contract['finishRentalEarly']({
+        gasLimit: 300_000
+      });
+      await tx.wait();
+      console.log("Арендатор запросил досрочное завершение аренды:", tx.hash);
+    } catch (error) {
+      console.error("Ошибка в finishRentalEarly:", error);
+      throw error;
+    }
+  }
+  async approveCompletion(contractAddress: string): Promise<void> {
+    try {
+      this.contractAddress = contractAddress;
+      if (!this.contract) {
+        await this.connectWallet();
+        await this.initializeSigner();
+        this.contract = new ethers.Contract(this.contractAddress, this.contractAbi, this.signer);
+      }
+  
+      const tx = await this.contract['renterApproveCompletion']({
+        gasLimit: 300_000
+      });
+      await tx.wait();
+      console.log("Арендатор подтвердил завершение аренды:", tx.hash);
+    } catch (error) {
+      console.error("Ошибка в renterApproveCompletion:", error);
+      throw error;
+    }
+  }
+  async raiseDispute(contractAddress: string): Promise<void> {
+    try {
+      this.contractAddress = contractAddress;
+      if (!this.contract) {
+        await this.connectWallet();
+        await this.initializeSigner();
+        this.contract = new ethers.Contract(this.contractAddress, this.contractAbi, this.signer);
+      }
+  
+      const tx = await this.contract['raiseDispute']({
+        gasLimit: 300_000
+      });
+      await tx.wait();
+      console.log("Спор поднят:", tx.hash);
+    } catch (error) {
+      console.error("Ошибка в raiseDispute:", error);
+      throw error;
+    }
+  }
 
   getRentContractsActive(): Observable<RentContract[]> {
     const url = `${this.apiUrl}/active`;

@@ -7,12 +7,8 @@ export interface Car {
     className: string; 
     transmissionTypeName: string; 
     carImages: CarImage[]; 
-    costPerDay: number; 
-    depositAmount: number; 
-    seats: number; 
-    airConditioning: boolean; 
-    gps: boolean; 
-    modelYear: number; 
+    costPerDay: bigint; 
+    depositAmount: bigint; 
     bookings?: CarBooking[];
 }
 

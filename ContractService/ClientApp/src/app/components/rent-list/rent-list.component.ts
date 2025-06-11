@@ -58,7 +58,7 @@ export class RentListComponent {
   getUserRole(){
     //TODO
     //this.userRole = this.authService.getUserRole();
-    this.userRole = 'agent'
+    this.userRole = 'rep'
   }
   getRents(filter: FilterToRents) {
     this.contractService.getRentals(filter).subscribe({

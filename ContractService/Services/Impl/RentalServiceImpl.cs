@@ -124,8 +124,8 @@ namespace ContractService.Services.Impl
                 rentals = await _rentalRepository.GetRentalsToArbiter(filter);
             else if (role == "company_rep")
                 rentals = await _rentalRepository.GetRentalsByCompany(filter, companyId);
-            else
-                rentals = await _rentalRepository.GetRentalsToArbiter(filter);
+            // TODO
+                rentals = await _rentalRepository.GetRentalsByCompany(filter, 1);
 
             return _mapper.Map<List<RentalDTO>>(rentals);
         }
