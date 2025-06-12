@@ -9,7 +9,7 @@
 <div class="summary-container">
   <span>Цена за день: {{ car.costPerDay }} ETH</span>
   <span>Залог: {{ car.depositAmount }} ETH</span>
-  <span *ngIf="totalCost > 0n">Общая стоимость: {{ totalCost }} ETH</span>
+  <span >Общая стоимость: {{ totalCost }} ETH</span>
 </div>
 
 <button  class="action-button proceed-button" (click)="openPopup()">Продолжить бронирование</button>

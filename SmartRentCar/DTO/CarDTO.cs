@@ -8,7 +8,7 @@ namespace SmartRentCar.DTO
     {
         public int CarId { get; set; }
 
- 
+        public int CompanyId { get; set; }
         public string ClassName { get; set; }
 
         public string FuelTypeName { get; set; }

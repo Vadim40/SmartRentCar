@@ -6,6 +6,7 @@ import { CarService } from 'src/app/services/car.service';
 import { RentContractService } from 'src/app/services/contract.service';
 import { RentContract, RentContractStatus, RentContractUpdate, RentContractCreate } from 'src/app/models/rentContract';
 import { firstValueFrom } from 'rxjs';
+import Decimal from 'decimal.js';
 
 @Component({
   selector: 'app-car-booking',
@@ -16,7 +17,7 @@ export class CarBookingComponent implements OnInit {
   @Input() car!: Car;
 
   private flatpickrInstance: flatpickr.Instance | undefined;
-  totalCost: BigInt = 0n;
+  totalCost: Decimal = new Decimal(0);
   canProceed: boolean = false;
   isPopupOpen: boolean = false;
   selectedDateRange: string = '';
@@ -112,7 +113,8 @@ export class CarBookingComponent implements OnInit {
 
   private calculateCost(startDate: Date, endDate: Date): void {
     const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-    this.totalCost =BigInt(days) * this.car.costPerDay;
+    const daysDecimal = new Decimal(days);
+    this.totalCost = daysDecimal.mul(this.car.costPerDay);
     this.canProceed = true;
   }
 
@@ -131,7 +133,7 @@ export class CarBookingComponent implements OnInit {
     if (datePicker) {
       datePicker.value = '';
     }
-    this.totalCost = 0n;
+    this.totalCost = new Decimal(0);
     this.canProceed = false;
     this.selectedDateRange = '';
   }
@@ -188,6 +190,7 @@ export class CarBookingComponent implements OnInit {
       endDate: this.endDate,
       totalCost: this.totalCost,
       deposit: this.car.depositAmount,
+      companyId: this.car.companyId
     };
 
     try {
@@ -213,7 +216,8 @@ export class CarBookingComponent implements OnInit {
   async UpdateRentContract(contractAddress: string) {
     const rentUpdate: RentContractUpdate = {
       rentContractId: this.rentContractId,
-      contractAddress: contractAddress
+      contractAddress: contractAddress,
+      contractStatusId: RentContractStatus.PendingConfirmation
     };
     console.log(rentUpdate)
     try {

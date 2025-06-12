@@ -6,6 +6,7 @@ import { map, Observable } from 'rxjs';
 import { RentContract, RentContractUpdate, RentContractCreate } from '../models/rentContract';
 import { BrowserProvider, Contract, ethers, LogDescription, Signer } from 'ethers';
 import { ARBITER_ADDRESS, COMPANY_ADDRESS, CONTRACT_ABI, CONTRACT_FACTORY_ABI, CONTRACT_FACTORY_ADDRESS, CONTRACT_VERSION } from '../models/contractInfo';
+import Decimal from 'decimal.js';
 
 declare global {
   interface Window {
@@ -67,8 +68,8 @@ export class RentContractService extends HttpService {
   }
 
   async createRentContract(
-    deposit: number,
-    rentAmount: number,
+    deposit: Decimal,
+    rentAmount: Decimal,
     startTime: number,
     endTime: number,
     unlockDelayHours: number
@@ -82,8 +83,13 @@ export class RentContractService extends HttpService {
 
       const renter = await this.signer.getAddress();
 
-      const depositSmall = deposit / 10000;        
-      const rentAmountSmall = rentAmount / 10000;  
+      const depositDecimal = deposit instanceof Decimal ? deposit : new Decimal(deposit);
+      const rentAmountDecimal = rentAmount instanceof Decimal ? rentAmount : new Decimal(rentAmount);
+      
+      const depositSmall = depositDecimal.div(10000);
+      const rentAmountSmall = rentAmountDecimal.div(10000);
+      
+      
 
       console.log("депозит", rentAmountSmall); 
 

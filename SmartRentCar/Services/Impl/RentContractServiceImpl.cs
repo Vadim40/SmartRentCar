@@ -61,7 +61,7 @@ namespace SmartRentCar.Services.Impl
             // TODO заменить на реальный UserID
             rentContract.UserId = 1;
             rentContract.CreatedAt = DateTime.Now;
-            rentContract.ContractStatusId = (int)RentContractStatus.PendingConfirmation;
+            rentContract.ContractStatusId = (int)RentContractStatus.PendingPayment;
 
             return await _rentContractRepository.SaveRentContract(rentContract);
         }

@@ -1,3 +1,4 @@
+import Decimal from "decimal.js";
 import { Car } from "./car";
 
 export interface RentContract {
@@ -17,8 +18,9 @@ export interface RentContractCreate {
     carId: number;
     startDate: Date;
     endDate: Date;
-    totalCost: number;
-    deposit: number;
+    totalCost: Decimal;
+    deposit: Decimal;
+    companyId: number;
 }
 
 export enum RentContractStatus {
